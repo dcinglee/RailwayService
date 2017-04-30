@@ -1,0 +1,251 @@
+@import 'dpr.less';
+*{
+  box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -o-box-sizing:border-box;
+}
+html, body{height: 100%;width: 100%;background-color: #f0f0f0}
+
+body{
+  background-color:#e9eef3;
+  margin:0;
+  color:#555555;
+  -webkit-overflow-scrolling:touch;
+}
+.txt_center {
+  text-align: center;
+}
+.ft_left {
+  float: left;
+}
+.ft_right {
+  float: right;
+}
+
+@media (orientation: portrait ){
+  //竖屏CSS
+  .btn_cover{
+    position: absolute;
+    bottom: 0;
+    left:0;
+  }
+}
+
+//下拉刷新css
+.dropload-up,.dropload-down{
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  .mixin-font-dpr(12px);
+  /* 开启硬件加速 */
+  -webkit-transform:translateZ(0);
+  transform:translateZ(0);
+}
+.dropload-down{
+  height: 50px;
+}
+.dropload-refresh,.dropload-update,.dropload-load,.dropload-noData{
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+}
+.dropload-load .loading{
+  display: inline-block;
+  height: 15px;
+  width: 15px;
+  border-radius: 100%;
+  margin: 6px;
+  border: 2px solid #666;
+  border-bottom-color: transparent;
+  vertical-align: middle;
+  -webkit-animation: rotate 0.75s linear infinite;
+  animation: rotate 0.75s linear infinite;
+}
+@-webkit-keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+//主体css
+.trainLogin{
+  width: 100%;
+  //padding-bottom: 1rem;
+  overflow-y: scroll;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 93%;
+  -webkit-overflow-scrolling: touch;
+  &::-webkit-scrollbar{width:0;height:0;}
+  .trainNum_state{
+    line-height: 0.64rem;
+    width: 100%;
+    height: 1.06666667rem;
+    .mixin-font-dpr(12px);
+    color: #555555;
+    background-color: #fff7dc;
+    padding: 0.213333333rem 4%;
+    overflow: hidden;
+    #loadingToast {
+      position: relative;
+      width: 0.773333333rem;
+      float: left;
+      .weui-loading {
+        width: 0.5rem;
+        height: 0.5rem;
+        margin-top: 0.05rem;
+        background: transparent url(../../images/trainTickets/loading.png) no-repeat;
+        background-size: 100% 100%;
+      }
+      .custom-txt {
+        position: absolute;
+        left: 0.1466666667rem;
+        top: -0.026666667rem;
+        //margin-left: -18px;
+        //margin-top: 0.066666667rem;
+        color: #ff8b00;
+      }
+    }
+    .ft_left{
+      span{
+        color: #ff8b00;
+      }
+    }
+  }
+  .contain{
+    padding: 0.4rem;
+    .trainInfo{
+      border-bottom: 1px dashed white;
+      //width: 9.2rem;
+      height: 3.18666667rem;
+      padding-top: 0.4rem;
+      background: transparent url(../../images/trainTickets/bookSuccess.png) no-repeat;
+      background-size: 100% 100%;
+      .train{
+        .mixin-font-dpr(12px);
+        color: #fff;
+        .trainNo{
+          padding-top: 0.8rem;
+          p{
+            line-height: 1;
+            &:not(:last-child){
+              .mixin-font-dpr(18px);
+            }
+            &:last-child{
+              transform: scaleX(0.7);
+              .icon-straight{
+                .mixin-font-dpr(12px);
+              }
+            }
+          }
+        }
+        .departureDate{
+          margin-bottom: 0.2rem;
+        }
+        .station{
+          .mixin-font-dpr(16px);
+        }
+      }
+    }
+  }
+  .ticket_bottom{
+    background-color: #fff;
+    .trainBox{
+      padding: 0.32rem 0;
+      position: relative;
+      &:not(:last-child){
+        border-bottom: 1px dashed #cfcfcf;
+      }
+      .weui-cell{
+        padding: 0 0.3333333rem;
+        .mixin-font-dpr(12px);
+        &:before{
+          position: static;
+          height: 0;
+          border:none;
+        }
+      }
+    }
+    .trainNoInfo, .other{
+      .weui-cell{
+        line-height: 0.9066666667rem;
+      }
+    }
+    .trainNoInfo{
+      &:before{
+        content: ' ';
+        position: absolute;
+        width: 0.4rem;
+        height: 0.4rem;
+        left: -0.2rem;
+        bottom: -0.2rem;
+        background: #e9eef3;
+        border-radius: 50%;
+      }
+      &:after{
+        content: ' ';
+        position: absolute;
+        width: 0.4rem;
+        height: 0.4rem;
+        right: -0.2rem;
+        bottom: -0.2rem;
+        background: #e9eef3;
+        border-radius: 50%;
+      }
+    }
+    .other{
+      &:before{
+        content: ' ';
+        position: absolute;
+        width: 0.4rem;
+        height: 0.4rem;
+        left: -0.2rem;
+        top: -0.2rem;
+        background: #e9eef3;
+        border-radius: 50%;
+      }
+      &:after{
+        content: ' ';
+        position: absolute;
+        width: 0.4rem;
+        height: 0.4rem;
+        right: -0.2rem;
+        top: -0.2rem;
+        background: #e9eef3;
+        border-radius: 50%;
+      }
+    }
+  }
+}
+//底部css
+.btn_cover{
+  height: 1.3rem;
+  width: 100%;
+  //height: 7.4%;
+  background-color: #ff8b00;
+  color: #fff;
+  a{
+    //padding-top: 3%;
+    line-height: 1.3rem;
+    .mixin-font-dpr(18px);
+  }
+}

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>商户财务报表</title>
+    <meta name="keywords" content="advertise,information,manage"/>
+    <meta name="description" content="广告,广告信息，广告管理哦"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="./assets/css/datepicker.css"/>
+    <!-- basic styles -->
+
+</head>
+<body>
+<div class="page-content">
+    <div class="row">
+        <div class="col-xs-12">
+            <form id="stationFormId" class="form-horizontal" role="form">
+
+                <div class="input-group input-group-sm input-group-sm3" style="margin-bottom: 5px">
+                    <span class="input-group-addon" style="width: 10%;">车站名称</span>
+                    <select class="selectAllStation form-control" id="serviceProviderSel" style="width: 33%;"
+                            name='stationName' onchange=$("#stationFormId").submit()>
+                    </select>
+                </div>
+
+                <div class="input-group input-group-sm input-group-sm3" style="margin-bottom: 5px">
+                    <span class="input-group-addon" style="width: 10%;">商家名称</span>
+                    <input type="text" class="form-control" id="mcname" style="width: 33%;">
+                </div>
+
+                <!--<div class="input-group input-group-sm input-group-sm3" style="margin-bottom: 5px">-->
+                    <!--<span class="input-group-addon" style="width: 10%;">开始时间</span>-->
+                    <!--&lt;!&ndash;<input type="date" class="form-control" id="startdate"&ndash;&gt;-->
+                    <!--&lt;!&ndash;style="width: 33%;">&ndash;&gt;-->
+
+                    <!--<input class="form-control date-picker" style="width: 33%;" id="startdate"-->
+                           <!--type="text" data-date-format="yyyy-mm-dd"/>-->
+                <!--</div>-->
+                <div class="input-group input-group-sm input-group-sm3" style="margin-bottom: 5px">
+                    <span class="input-group-addon" style="width: 10%;">订单日期</span>
+
+                    <input class="form-control date-picker" style="width: 15%;" id="startdate"
+                           type="text" data-date-format="yyyy-mm-dd"/>
+                    <span> 至 </span>
+                    <input class="form-control date-picker" style="width: 15%;" id="enddate"
+                           type="text" data-date-format="yyyy-mm-dd"/>
+                    <!--<input type="date" class="form-control" id="enddate"-->
+                    <!--style="width: 33%;">&nbsp;-->
+
+                    <span>&nbsp;</span>
+                    <button id="dataSearch" class="btn btn-primary btn-sm" title="查询">
+                        <i class="icon-search nav-search-icon"></i>
+                    </button>
+                    <button id="derive" type="button" class="btn btn-primary btn-sm"
+                            data-toggle="modal" title="导出">
+                        导出
+                    </button>
+                    <!-- </div>	 -->
+                </div>
+            </form>
+            <div class="row" style="margin-top: 0px;">
+                <div class="col-xs-12">
+                    <!-- PAGE CONTENT BEGINS -->
+                    <table id="sellerbill_table" class="table"></table>
+                    <!-- PAGE CONTENT ENDS -->
+                </div>
+                <!-- /.col -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.page-content -->
+
+<!-- 添加的modal start-->
+<div class="modal fade bs-example-modal-lg" id="addModal"
+     tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="exampleModalLabel">订单详情</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="addForm" data-type="add">
+                    <div class="form-group">
+                        <label for="roleName" class="col-sm-2 control-label">订单编号</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="orderNo"
+                                   name="orderNo" placeholder="orderNo" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">订单日期</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="createDate"
+                                   name="createDate" placeholder="createDate" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">客户姓名</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="customerName"
+                                   name="customerName" placeholder="customerName" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">客户手机</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="customerPhoneNo"
+                                   name="customerPhoneNo" placeholder="customerPhoneNo" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">订单状态</label>
+                        <div class="col-sm-10">
+                            <select id="orderstatus" class="form-control" name="status"
+                                    disabled>
+                                <option value="1001">正常</option>
+                                <option value="1002">锁定</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">支付状态</label>
+                        <div class="col-sm-10">
+                            <select id="paystatus" class="form-control" name="status"
+                                    disabled>
+                                <option value="13001">已支付</option>
+                                <option value="13002">未支付</option>
+                                <option value="13003">申请退款</option>
+                                <option value="13004">已退款</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="updateDes" class="col-sm-2 control-label">订单价格</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="orderprice"
+                                   name="orderprice" placeholder="orderprice" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="updateDes" class="col-sm-2 control-label">商户名称</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="merchantName"
+                                   name="merchantName" placeholder="merchantName" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="updateDes" class="col-sm-2 control-label">站名</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="stationname"
+                                   name="stationname" placeholder="stationname" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="updateDes" class="col-sm-2 control-label">递送方式</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="delivertype"
+                                   name="delivertype" placeholder="delivertype" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="updateDes" class="col-sm-2 control-label">递送地址</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="deliveradd"
+                                   name="deliveradd" placeholder="deliveradd" required/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" form="addForm">保存</button>
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">取消
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 添加的modal end-->
+<script src="./assets/js/date-time/bootstrap-datepicker.min.js"></script>
+<script src="script/sellerbill.js"></script>
+<!-- inline scripts related to this page -->
+</body>
+</html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>猿动力</title>
+    <meta name="keywords" content="railway,Service,weChat,RailwayServiceWechat"/>
+    <meta name="description" content="高铁微信端,高铁微信服务,高铁微信服务首页"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <script src="statics/js/config/wechat-cfg.js"></script>
+    <script>
+        /*
+         * 获取当前用户信息
+         */
+        function ajax(){
+            var ajaxData = {
+                type:arguments[0].type || "GET",
+                url:arguments[0].url || "",
+                async:arguments[0].async || "true",
+                data:arguments[0].data || null,
+                dataType:arguments[0].dataType || "text",
+                contentType:arguments[0].contentType || "application/x-www-form-urlencoded",
+                beforeSend:arguments[0].beforeSend || function(){},
+                success:arguments[0].success || function(){},
+                error:arguments[0].error || function(){}
+            }
+            ajaxData.beforeSend()
+            var xhr = createxmlHttpRequest();
+            xhr.responseType=ajaxData.dataType;
+            xhr.open(ajaxData.type,ajaxData.url,ajaxData.async);
+            xhr.setRequestHeader("Content-Type",ajaxData.contentType);
+            xhr.send(convertData(ajaxData.data));
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4) {
+                    if(xhr.status == 200){
+                        ajaxData.success(xhr.response)
+                    }else{
+                        ajaxData.error()
+                    }
+                }
+            }
+        }
+        function createxmlHttpRequest() {
+            if (window.ActiveXObject) {
+                return new ActiveXObject("Microsoft.XMLHTTP");
+            } else if (window.XMLHttpRequest) {
+                return new XMLHttpRequest();
+            }
+        }
+        function convertData(data){
+            if( typeof data === 'object' ){
+                var convertResult = "" ;
+                for(var c in data){
+                    convertResult+= c + "=" + data[c] + "&";
+                }
+                convertResult=convertResult.substring(0,convertResult.length-1)
+                return convertResult;
+            }else{
+                return data;
+            }
+        };
+        ajax({
+//            type:"POST",
+            url:"/RailwayService/entrance/getCurrentUser",
+            dataType:"json",
+            success:function(msg){
+                sessionStorage.setItem("userInfo",JSON.stringify(msg.data));
+            },
+            error:function(error){
+                var url = window.location.href;
+                var urlArr = url.split('/');
+//                alert(login_url);
+//                window.location.href = urlArr[0]+'//'+urlArr[2]+'/RailwayService/entrance/index.do';
+                window.location.href = login_url;
+//                window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx76e685e048a40319&redirect_uri=http%3A%2F%2Fszeiv.com%2FRailwayService%2Fentrance%2FuserInfo&response_type=code&scope=snsapi_base&state=RailwayService#wechat_redirect";
+            }
+        })
+    </script>
+    <!-- weUI.css -->
+    <link href="statics/css/weui.min.css" rel="stylesheet"/>
+    <!-- jQ-weUI.css -->
+    <link href="statics/css/jquery-weui.min.css" rel="stylesheet"/>
+    <link href="statics/css/icon-font/iconfont.css" rel="stylesheet">
+    <link href="statics/css/index.css" rel="stylesheet">
+</head>
+
+<body>
+<!--遮罩层-->
+<div id="mask" class="mask"></div>
+<!--行程信息-->
+<div class="tripOut">
+    <div class="close">
+        <p class="fr closeMask">
+            <i class="iconfont icon-guanbi"></i>
+        </p>
+    </div>
+    <div class="trip">
+        <div class="box leftTopBox"></div>
+        <div class="box rightTopBox"></div>
+        <div class="box leftBottomBox"></div>
+        <div class="box rightBottomBox"></div>
+        <p class="tripTop">
+            <span class="fl fz14">当前行程</span>
+            <span class="fr fz14">目的地天气&nbsp;&nbsp;<span class="weather"></span></span>
+        </p>
+        <div class="tripInfo weui-flex">
+            <span class="fl tc"><p class="startStation"></p><p class="startTime fz12">开</p></span>
+            <span class="fl train weui-flex__item"><p class="tc trainNumber"></p><p></p></span>
+            <span class="fr tc"><p class="endStation"></p><p class="endTime fz12">到</p></span>
+        </div>
+        <div class="tripBottom">
+            <span class="late fl">
+                <i class="weui-loading"></i>
+                <span class="weui-loadmore__tips">正在加载</span></span>
+            <span class="fr changeTrip fz14"><a href="javascript:void(0);">修改行程</a></span>
+        </div>
+    </div>
+</div>
+
+<div class="stationInfo">
+    <div class="stationName">
+        <i class="iconfont icon-dingwei"></i>
+        <span class="fz14 localStation">长沙南</span>
+        <ul class="stationList scroll"></ul>
+    </div>
+    <a class="myTrips fz12"><i class="iconfont icon-rili" style="font-size: 14px;"></i>   行程</a>
+</div>
+
+<div class="main scroll">
+    <div class="header">
+        <!-- 轮播图 -->
+        <div class="swiper-container scroll" data-space-between='10' data-pagination='.swiper-pagination' data-autoplay="1000">
+            <div class="swiper-wrapper">
+
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+
+
+    <!-- 服务分类 -->
+    <div class="classify">
+        <div class="weui-flex">
+            <div class="weui-flex__item classifyItem">
+                <a class="classifyLink" href="javascript:void(0);" data-serviceType="service_type_catering_trade">
+
+                </a>
+                <p class="classifyList">送餐服务</p>
+            </div>
+            <div class="weui-flex__item classifyItem">
+                <a class="classifyLink" href="javascript:void(0);" data-serviceType="service_type_charge">
+
+                </a>
+                <p class="classifyList">充电服务</p>
+            </div>
+            <div class="weui-flex__item classifyItem">
+                <a class="classifyLink" href="javascript:void(0);" data-serviceType="service_type_shopping">
+
+                </a>
+                <p class="classifyList">购物服务</p>
+            </div>
+            <div class="weui-flex__item classifyItem">
+                <a class="classifyLink" href="javascript:void(0);" data-serviceType="service_type_buybook">
+
+                </a>
+                <p class="classifyList">图书服务</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 精选商品 -->
+    <div class="select scroll">
+        <div class="selectHeader">
+            <div>
+                <span class="selectTitleImg"></span>
+
+            </div>
+        </div>
+        <div class="selectBody">
+            <div class="selectList clearfix">
+
+            </div>
+        </div>
+    </div>
+
+    <!-- 热门商品 -->
+    <div class="hot">
+        <div class="hotHeader">
+            <span class="hotTitleImg"></span>
+
+        </div>
+        <div class="hotBody">
+            <div class="hotGoodsLeft hotGoods">
+
+            </div>
+            <div class="hotGoodsRight hotGoods">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- 底部导航栏 -->
+<div class="weui-tab" id="tabBar">
+    <div class="weui-tabbar">
+        <a href="index.html" class="weui-tabbar__item weui-bar__item--on tabBarList">
+            <div class="weui-tabbar__icon">
+                <i class="iconfont icon-shouye1" style="font-size: 20px;margin-top: 3px;"></i>
+            </div>
+            <p class="weui-tabbar__label">首页</p>
+        </a>
+        <a href="order.html" class="weui-tabbar__item tabBarList">
+            <div class="weui-tabbar__icon">
+                <i class="iconfont icon-dingdan" style="font-size: 20px;margin-top: 2px;"></i>
+            </div>
+            <p class="weui-tabbar__label">订单</p>
+        </a>
+        <a href="news.html" class="weui-tabbar__item tabBarList">
+            <div class="weui-tabbar__icon">
+                <i class="iconfont icon-iconfontmark"></i>
+            </div>
+            <p class="weui-tabbar__label">消息</p>
+        </a>
+        <a href="my.html" class="weui-tabbar__item tabBarList">
+            <div class="weui-tabbar__icon">
+                <i class="iconfont icon-xingming"></i>
+            </div>
+            <p class="weui-tabbar__label">我的</p>
+        </a>
+    </div>
+</div>
+
+<div class="footer"></div>
+
+<script type="text/html" id="hotList">
+    <a href="javascript:void(0);" class="hotLink" data-merchant="merchantId" data-product="productId" data-service="serviceType" data-station="stationId">
+        <img class="goodsImg" src="statics/images/indexImg/defalt.gif" data-src="imgSrc" alt="" onerror="imgErrorLoad(this)">
+        <div class="goodsInfo">
+            <p class="hotGoodsTitle fz14">goodsName</p>
+            <div class="line"><p class="fl lineLeft"></p>
+                <p class="fr lineRight"></p></div>
+            <p class="hotGoodsDescript fz12">goodsDescript</p>
+            <p class="infoBottom fz12"><i class="heartLogo iconfont icon-heart"></i><span class="sales">月售<span
+                    class="goodsNumber">1000</span>单</span><span class="logoImg"><img src="statics/images/indexImg/defalt.gif"
+                    data-src="logoSrc" alt=""></span></p>
+        </div>
+    </a>
+</script>
+
+<script type="text/html" id="serviceType">
+    <div class="weui-flex__item classifyItem">
+        <a class="classifyLink" href="javascript:void(0);">
+            <img src="statics/images/indexImg/order.png" alt="">
+        </a>
+        <p class="classifyList">serviceName</p>
+    </div>
+</script>
+
+<script type="text/html" id="selectList">
+    <div class="select-box fl">
+        <a href="javascript:void(0);" data-merchant="merchantId" data-product="productId" data-service="serviceType" data-station="stationId">
+            <img class="selectImg" src="defaltImg" alt="" onerror="imgErrorLoad(this)">
+            <p class="selectGoodsName">selectGoodsName1</p>
+            <p class="selectGoodsDescript fz12"><span class="sign "><span
+                    class="selectGoodsPrice">selectGoodsPrice1</span></span><span class="belongStation fz12">belongStation1</span>
+            </p>
+        </a>
+    </div>
+</script>
+
+<script src="statics/js/lib/jquery-2.0.3.min.js"></script>
+<!--<script src="statics/js/lib/fastclick.js"></script>-->
+<script src='statics/js/lib/swiper.min.js'></script>
+<script src="statics/js/lib/jquery-weui.min.js"></script>
+<script src="statics/js/core.min.js"></script>
+<script src="statics/js/disable_ios_scroll.min.js"></script>
+<!--<script src="statics/js/lib/iscroll.js"></script>-->
+<script src="statics/js/index.min.js"></script>
+<!--<script src="statics/js/index.js"></script>-->
+<!--<script>-->
+    <!--$(function () {-->
+        <!--FastClick.attach(document.body);-->
+    <!--});-->
+<!--</script>-->
+
+
+</body>
+
+</html>

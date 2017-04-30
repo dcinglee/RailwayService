@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>订单</title>
+    <meta name="keywords" content="railway,Service,weChat,RailwayServiceWechat" />
+    <meta name="description" content="高铁微信端,高铁微信服务,高铁微信服务点餐" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <link rel="stylesheet" href="statics/css/dropload.css">
+    <!-- weUI.css -->
+    <link href="statics/css/weui.min.css" rel="stylesheet"/>
+    <!-- jQ-weUI.css -->
+    <link href="statics/css/jquery-weui.min.css" rel="stylesheet"/>
+    <link href="statics/css/icon-font/iconfont.css" rel="stylesheet">
+    <link href="statics/css/order.css" rel="stylesheet">
+</head>
+<body>
+<div class="main scroll" ontouchstart="">
+    <!-- 下拉刷新 -->
+    <!--<div class="weui-pull-to-refresh__layer">-->
+        <!--<div class='weui-pull-to-refresh__arrow'></div>-->
+        <!--<div class='weui-pull-to-refresh__preloader'></div>-->
+        <!--<div class="down">下拉刷新</div>-->
+        <!--<div class="up">释放刷新</div>-->
+        <!--<div class="refresh">正在刷新</div>-->
+    <!--</div>-->
+
+    <div class="weui-panel weui-panel_access">
+        <div class="weui-panel__bd">
+
+        </div>
+    </div>
+</div>
+
+
+<!-- 底部导航栏 -->
+<div class="weui-tab" id="tabBar">
+    <div class="weui-tabbar">
+        <a href="index.html" class="weui-tabbar__item tabBarList">
+            <div class="weui-tabbar__icon">
+                <i class="iconfont icon-shouye1"  style="font-size: 20px;margin-top: 3px;"></i>
+            </div>
+            <p class="weui-tabbar__label">首页</p>
+        </a>
+        <a href="order.html" class="weui-tabbar__item weui-bar__item--on tabBarList">
+            <div class="weui-tabbar__icon">
+                <i class="iconfont icon-dingdan"  style="font-size: 20px;margin-top: 2px;"></i>
+            </div>
+            <p class="weui-tabbar__label">订单</p>
+        </a>
+        <a href="news.html" class="weui-tabbar__item tabBarList">
+            <div class="weui-tabbar__icon">
+                <i class="iconfont icon-iconfontmark"></i>
+            </div>
+            <p class="weui-tabbar__label">消息</p>
+        </a>
+        <a href="my.html" class="weui-tabbar__item tabBarList">
+            <div class="weui-tabbar__icon">
+                <i class="iconfont icon-xingming"></i>
+            </div>
+            <p class="weui-tabbar__label">我的</p>
+        </a>
+    </div>
+</div>
+
+<div class="footer"></div>
+
+<script type="text/html" id="orderTemplate">
+    <a href="javascript:void(0);" data-orderId = "orderid1" class="weui-media-box weui-media-box_appmsg orderLink">
+        <div class="weui-media-box__hd">
+            <img class="weui-media-box__thumb merchantImg" src="statics/images/indexImg/orderImg01.png" onerror="imgErrorLoad(this)">
+        </div>
+        <div class="weui-media-box__bd">
+            <p class="weui-media-box__title merchantName">麦当劳</p>
+            <p class="weui-media-box__desc orderTime">2017-2-30 17:30</p>
+            <p class="goodsDetail"><span class="goodsName">本宫鸡腿堡(全翅+琵琶腿+可乐)</span><span>等</span><span class="number">goodsNumber</span><span>件商品</span><span class="fr" style="color: #555;">￥<span class="price">price1</span></span></p>
+        </div>
+        <div class="orderInfo">
+            <p class="orderStatus">订单已取消 <img src="statics/images/indexImg/arrow-gray.png" alt=""></p>
+        </div>
+    </a>
+</script>
+
+<script src="statics/js/lib/jquery-2.0.3.min.js"></script>
+<script src="statics/js/lib/fastclick.js"></script>
+<script src="statics/js/lib/jquery-weui.js"></script>
+<script src="statics/js/core.js"></script>
+<script src="statics/js/lib/dropload.min.js"></script>
+<script src="statics/js/disable_ios_scroll.min.js"></script>
+<script src="statics/js/order.js"></script>
+<script>
+
+    $(function() {
+        FastClick.attach(document.body);
+    });
+</script>
+
+
+</body>
+
+</html>

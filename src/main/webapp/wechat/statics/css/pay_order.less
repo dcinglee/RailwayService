@@ -1,0 +1,245 @@
+@padding: 0% 3%;
+@bd-color: #efefef;
+@cell-color: #FFFFFF;
+@cell-bottom-line-color: #f0f0f0;
+@order-pay: #fbe4d5;
+@order-accounts-bd-color: #989898;
+@order-pay-submit: #e84720;
+@icon-color: #ff6600;
+@wepay-color: #11cd6e;
+@order-pay-radius: 20px;
+@text-align: right;
+
+body.order {
+  background: @bd-color;
+  color: #555555;
+
+  // 用户详情
+  .order-block {
+    padding: @padding;
+    min-height: 40px;
+    @media screen and (max-width: 320px) {
+      padding: 0 2%;
+    }
+    background: @cell-color;
+
+    // icon位置
+    .icon-block {
+      margin-right: 1vw;
+      text-align: center;
+      i {
+        font-size: 26px;
+        color: @icon-color;
+
+        // 微信支付图标颜色
+        &.icon-icon-wepay {
+          color: @wepay-color;
+        }
+      }
+    }
+
+    // 时间选择
+    &#receipt-time,&#time {
+      label {
+        padding: 0 8%;
+        input[type=radio].radio-checked {
+          position: absolute;
+          left: -9999em;
+          &:checked + .weui-icon-checked:before {
+            content: "\EA06";
+            color: #09bb07;
+          }
+        }
+        i.weui-icon-checked {
+          line-height: 17px;
+          vertical-align: text-top;
+          &:before {
+            content: "\EA01";
+            color: #c9c9c9;
+            font-size: 15px;
+            display: block;
+          }
+        }
+      }
+    }
+
+    // 微信支付字体颜色
+    .we-pay {
+      color: @wepay-color;
+      margin: auto;
+    }
+
+    // placeholder默认靠右
+    input {
+      text-align: @text-align;
+      &::-webkit-input-placeholder {
+        text-align: @text-align;
+      }
+    }
+  }
+
+  // 用户详情下划线
+  .order-detail {
+    border-bottom: 1px solid @cell-bottom-line-color;
+
+    .weui-flex__item:not(:nth-of-type(1)) {
+      flex-grow: 1.2;
+    }
+  }
+
+  #receipt-time .weui-flex__item:not(:nth-of-type(1)), #time .weui-flex__item:not(:nth-of-type(1)) {
+    flex-grow: 1.2;
+  }
+
+  // 占位高度
+  .order-bg {
+    padding: 5px;
+  }
+
+  // 菜单详情
+  .order-accounts {
+    padding: @padding;
+    span {
+      display: inline-block;
+    }
+    label {
+      float: right;
+    }
+    .order-accounts-hd {
+      padding: 5px 0;
+      height: 8%;
+      border-bottom: 1px dotted #ddd;
+    }
+    .order-accounts-bd {
+      max-height: 50vh;
+      overflow: auto;
+      @media screen and (max-width: 320px) {
+        max-height: 28vh;
+      }
+      color: @order-accounts-bd-color;
+      padding-top: 5px;
+      div.order-accounts-cell {
+        display: block;
+        div {
+          display: inline-block;
+          float: left;
+          &.name {
+            width: 70%;
+          }
+          &.count {
+            width: 10%;
+            height: 25px;
+          }
+          &.money {
+            text-align: right;
+            width: 20%;
+          }
+        }
+      }
+    }
+  }
+
+  // 商家地址
+  .order-merchant {
+    max-width: 60%;
+    overflow: hidden;
+    margin: auto;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #9d9d9d;
+  }
+
+  // 结算样式
+  .order-submit {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: @padding;
+    background: @order-pay;
+    border-top-left-radius: @order-pay-radius;
+    border-top-right-radius: @order-pay-radius;
+    height: 10%;
+    span {
+      &:nth-of-type(2) {
+        font-size: 20px;
+        font-weight: bold;
+      }
+    }
+    a {
+      color: @cell-color;
+      line-height: 1.8;
+      width: 70%;
+      @media screen and (max-width: 320px) {
+        width: 80%;
+      }
+      @media screen and (max-width: 370px) and (min-width: 320px) {
+        width: 100%;
+      }
+      border-radius: @order-pay-radius;
+      background-color: @order-pay-submit;
+    }
+  }
+
+  // 居中样式
+  .weui-flex__item {
+    margin: auto;
+  }
+
+  // picker 时间选择样式
+  .time-picker {
+    width: 50%;
+  }
+
+  // 文字靠右
+  .font-right {
+    text-align: right;
+  }
+
+  .clearFix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+
+  input[type='radio'] {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    margin-top: -2px;
+    margin-bottom: 1px;
+  }
+
+  // 文字颜色
+  .font-orange {
+    color: @icon-color;
+  }
+
+  .pay-mask {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    -webkit-transition-duration: .3s;
+    transition-duration: .3s;
+    z-index: 100;
+
+    .map {
+      @diff: 260px;
+      height: -moz-calc(~'100% - @{diff}');
+      height: -webkit-calc(~'100% - @{diff}');
+      height: calc(~'100% - @{diff}');
+      width: 100%;
+      overflow: auto;
+      img {
+        max-width: 200%;
+        height: auto;
+      }
+    }
+  }
+}

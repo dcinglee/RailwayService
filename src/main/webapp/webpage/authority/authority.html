@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>权限管理</title>
+    <meta name="keywords" content="station,personal,manage"/>
+    <meta name="description" content="车站人员管理,车站管理信息"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="./assets/css/validationEngine.jquery.css" type="text/css">
+
+    <script src="./assets/js/jquery.validationEngine-zh_CN.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./assets/js/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+<div class="page-content page-content2">
+    <div class="row" style="height: 50px;">
+
+        <div class="col-xs-12">
+            <form id="stationFormId" class="form-horizontal" role="form">
+
+                <div class="input-group input-group-sm input-group-sm3" style="margin-bottom: 5px">
+                    <span class="input-group-addon" style="width: 10%;">权限名称</span>
+                    <input type="text" class="form-control" id="inputName" style="width: 33%;">
+                </div>
+
+                <div class="input-group input-group-sm input-group-sm3" style="margin-bottom: 5px">
+                    <span class="input-group-addon" style="width: 10%;">权限描述</span>
+                    <input type="text" class="form-control" id="inputDescription" style="width: 33%;">&nbsp;
+
+                    <button id="dataSearch" class="btn btn-primary btn-sm" title="查询">
+                        <i class="icon-search nav-search-icon"></i>
+                    </button>
+                    <button id="dataadd" type="button" class="btn btn-primary btn-sm"
+                            data-toggle="modal" data-target="#addModal" title="新增权限">
+                        <i class="icon-plus-sign bigger-120"></i>
+                    </button>
+                    <button id="datachange" type="button" class="btn btn-sm btn-success"
+                            data-toggle="modal" data-target="#updateModal" disabled
+                            title="修改权限">
+                        <i class="icon-pencil bigger-130"></i>
+                    </button>
+                    <button id="datadelete" type="button" class="btn btn-sm btn-danger"
+                            data-toggle="modal" data-target="#deleteModal" disabled
+                            title="删除权限">
+                        <i class="icon-trash bigger-130"></i>
+                    </button>
+                    <!-- </div>	 -->
+                </div>
+            </form>
+
+            <div class="row" style="margin-top: 0px;">
+                <div class="col-xs-12">
+                    <!-- PAGE CONTENT BEGINS -->
+                    <table id="authority_table" class="table"></table>
+                    <!-- PAGE CONTENT ENDS -->
+                </div>
+                <!-- /.col -->
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- /.page-content -->
+
+<!-- 添加的modal start-->
+<div class="modal fade bs-example-modal-lg" id="addModal" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="modalLabel">权限添加</h4>
+            </div>
+            <div class="modal-body">
+
+
+                <form class="form-horizontal" id="addAuthorityForm" data-type="add" role="form">
+                    <div class="form-group">
+                        <label for="inputName1" class="col-sm-2 control-label">权限名称</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="validate[required] form-control" name="name" id="inputName1"
+                                   placeholder="请输入权限名称">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputDescription1" class="col-sm-2 control-label">权限描述</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="validate[required] form-control" name="description"
+                                   id="inputDescription1" placeholder="请输入权限描述">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputMenu1" class="col-sm-2 control-label">菜单</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="validate[required] form-control" name="menuUrl" id="inputMenu1"
+                                   placeholder="请输入菜单名称">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputCode1" class="col-sm-2 control-label">权限码</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="validate[required] form-control" name="code" id="inputCode1"
+                                   placeholder="请输入权限码" value="&#xe606;">
+                        </div>
+                    </div>
+                    
+                      <div class="form-group" hidden>
+                        <label for="inputCode1" class="col-sm-2 control-label">图标</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="validate[required] form-control" name="icon" id="inputCode1"
+                                   placeholder="请选择图标">
+                        </div>
+                    </div>
+       
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">权限状态</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" id="form-field-select-status" name="status">
+                                <option value="0">开启</option>
+                                <option value="1">关闭</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="form-field-select-2" class="col-sm-2 control-label">父权限</label>
+                        <div class="col-sm-10">
+                            <select class="form-control selectFatherAuthority" id="form-field-select-2"
+                                    name="parentId">
+                                <option value="0">无父权限</option>
+                                <!--<option value="1">测试菜单</option>
+                                <option value="2">DEMO</option>
+                                <option value="3">测试update</option>
+                                <option value="4">DEMO3</option>
+                                <option value="5">车站管理</option>
+                                <option value="6">密码重置</option>
+                                <option value="7">用户查询</option>
+                                <option value="8">角色管理</option>
+                                <option value="9">权限管理</option>
+                                <option value="10">订单查询</option>
+                                <option value="11">管理员管理</option>
+                                <option value="12">广告管理</option>
+                                <option value="13">服务人员管理</option>
+                                <option value="14">商户管理</option>
+                                <option value="15">用户管理</option>
+                                <option value="16">订单查询</option>
+                                <option value="17">密码重置</option>
+                                <option value="18">服务管理</option>-->
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">排序顺序</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" id="form-field-select-3" name="orderNo">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">权限类型</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" id="form-field-select-1" name="type">
+                                <option value="0">菜单</option>
+                                <option value="1">按钮</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button form="addAuthorityForm" id="saveAddAuthority" class="btn btn-primary">
+                    保存
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 添加的modal end-->
+
+<!-- 修改的modal start-->
+<div class="modal fade bs-example-modal-lg" id="updateModal" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">权限修改</h4>
+            </div>
+            <div class="modal-body">
+
+
+                <form class="form-horizontal" id="updateAuthorityForm" data-type="update" role="form">
+                    <div class="form-group">
+                        <label for="inputId3" class="col-sm-2 control-label">权限ID</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="authorityId" id="inputId3"
+                                   placeholder="authorityId" readonly="readonly">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">权限名称</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="name" id="inputEmail3"
+                                   placeholder="name">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword13" class="col-sm-2 control-label">权限描述</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="description" id="inputPassword13"
+                                   placeholder="description">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword14" class="col-sm-2 control-label">菜单</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="menuUrl" id="inputPassword14"
+                                   placeholder="menuUrl">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">权限码</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="code" id="inputEmail3"
+                                   placeholder="code">
+                        </div>
+                    </div>
+                    
+                     <div class="form-group" hidden>
+                        <label for="inputCode1" class="col-sm-2 control-label">图标</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="validate[required] form-control" name="icon" id="inputCode1"
+                                   placeholder="icon">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="form-field-select-11" class="col-sm-2 control-label">权限状态</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" id="form-field-select-11" name="status">
+                                <option value="0">开启</option>
+                                <option value="1">关闭</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="form-field-select-12" class="col-sm-2 control-label">父权限</label>
+                        <div class="col-sm-10">
+                            <select class="form-control selectFatherAuthority" id="form-field-select-12"
+                                    name="parentId">
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="form-field-select-13" class="col-sm-2 control-label">排序顺序</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" id="form-field-select-13" name="orderNo">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">权限类型</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" id="form-field-select-14" name="type">
+                                <option value="0">菜单</option>
+                                <option value="1">按钮</option>
+                                <option value="2">其他</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="saveUpdataAuthority" class="btn btn-primary" form="updateAuthorityForm">保存</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 修改的modal end-->
+
+<!-- 删除的modal start-->
+<div class="modal fade" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="myModalLabel">删除任务</h4>
+            </div>
+            <!--Form的id为deleteForm-->
+            <form id="deleteAuthorityForm" data-type="delete">
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary">确认</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- 删除的modal end-->
+
+<!--数据添加成功提示的modal-->
+<div class="modal fade bs-example-modal-lg" id="addSuccessModal" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="myModalLabel">权限添加成功</h4>
+            </div>
+            <!--Form的id为myForm-->
+            <form id="myForm" method="POST">
+                <div class="modal-body">
+                    <!--存放content内容-->
+                    <!--你确定要删除<span id="deleteName"></span>吗？-->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="addSuccessAffirm">确认</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--数据添加成功提示的modal end-->
+
+<!--修改成功提示的modal-->
+<div class="modal fade bs-example-modal-lg" id="updataSuccessModal" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="myModalLabel">修改成功</h4>
+            </div>
+            <!--Form的id为myForm-->
+            <form id="myForm" method="POST">
+                <div class="modal-body">
+                    <!--存放content内容-->
+                    <!--你确定要删除<span id="deleteName"></span>吗？-->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="updataSuccessAffirm">确认</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--修改成功提示的modal end-->
+</body>
+<script src="script/authority.js"></script>
+</html>

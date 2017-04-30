@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>抢票中</title>
+    <meta name="keywords" content="railway,Service,weChat,RailwayServiceWechat" />
+    <meta name="description" content="高铁微信端,高铁微信服务,高铁微信服务首页" />
+    <script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.2/??flexible_css.js,flexible.js"></script>
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0" />-->
+	<link href="../statics/css/weui.min.css" rel="stylesheet"/>
+	<link href="../statics/css/jquery-weui.min.css" rel="stylesheet"/>
+    <link href="../statics/css/icon-font/iconfont.css" rel="stylesheet" />
+    <link href="../statics/css/ticket/grabTicketing.css"  rel="stylesheet" />
+    <!--<link rel="stylesheet" href="../statics/css/ticketsStyle.css" />-->
+</head>
+<body ontouchstart>
+	<section class="trainLogin ticketing">
+        <div class="trainNum_state"><!-- loading toast -->
+            <!--<div id="loadingToast" style="display:none;">-->
+                <!--<i class="weui-loading custom-loading weui-icon_toast"></i>-->
+                <!--<span class="custom-txt">5</span>-->
+            <!--</div>-->
+            <p class="ft_left">已经为您抢票<span class="orange_font">1次</span>，请注意查收手机短信通知！</p>
+        </div>
+        <div class="contain">
+            <div class="trainInfo">
+                <div class="train">
+                    <div class="weui-flex">
+                        <div class="weui-flex__item txt_center">
+                            <p class="departureDate day"></p>
+                            <p class="station startStation"></p>
+                            <p class="startTime"></p>
+                        </div>
+                        <div class="weui-flex__item txt_center trainNo">
+                            <p class="No">&nbsp;</p>
+                            <p>
+                                <!--<img src="../statics/images/trainTickets/whiteGo_icon.png" class="goto"/>-->
+                                <i class="iconfont icon-straight"></i>
+                            </p>
+                        </div>
+                        <div class="weui-flex__item txt_center">
+                            <p class="departureDate week"></p>
+                            <p class="station endStation"></p>
+                            <p class="endTime"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ticket_bottom">
+                <div class="trainNoInfo trainBox">
+                    <div class="weui-cell">
+                        <div class="weui-cell__bd">已选车次</div>
+                        <div class="weui-cell__ft No"></div>
+                    </div>
+                    <div class="weui-cell">
+                        <div class="weui-cell__bd">已选座席</div>
+                        <div class="weui-cell__ft seatType"></div>
+                    </div>
+                </div>
+                <!--<div class="passenger trainBox">-->
+                    <!--<div class="weui-cell">-->
+                        <!--<div class="weui-cell__bd">乘客姓名<p>430202********3017</p></div>-->
+                        <!--<div class="weui-cell__ft">成人票</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <div class="other trainBox">
+                    <div class="weui-cell">
+                        <div class="weui-cell__bd">监控方式</div>
+                        <div class="weui-cell__ft">有票自动下单</div>
+                    </div>
+                    <div class="weui-cell">
+                        <div class="weui-cell__bd">手机号码</div>
+                        <div class="weui-cell__ft phoneNum"></div>
+                    </div>
+                    <div class="weui-cell">
+                        <div class="weui-cell__bd">提醒方式</div>
+                        <div class="weui-cell__ft">短信提醒</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+	</section>
+    <div class="btn_cover">
+        <!--<div class="weui-btn-area btn_bottom">-->
+        <!--<a class="weui-btn btn_both btn_orange" href="javascript:" id="btn_true">确定</a>-->
+        <!--<a class="weui-btn btn_both btn_orange" href="javascript:history.back();" id="">取消</a>-->
+        <!--</div>-->
+        <a class="weui-btn btn_or" href="javascript:void(0);" id="stopGrab_show">停止抢票</a>
+    </div>
+
+    <div class="orderStop hide">
+        <div class="train-mask"></div>
+        <div class="train-confirm">
+            <div class="train-dialog">
+                <ul>
+                    <li class="train-dialog__title">停止抢票</li>
+                    <li class="train-dialog__content">您确定停止抢票吗？</li>
+                    <li class="train-dialog__control">
+                        <dl class="weui-flex">
+                            <dd class="weui-flex__item">
+                                <a href="javascript:void(0);" class="weui-btn weui-btn_plain-default train-dialog__cancel">取消</a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:void(0);" class="weui-btn weui-btn_plain-default train-dialog__ok">确 定</a>
+                            </dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/html" id="passengerTemp">
+        <div class="passenger trainBox">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">乘客姓名<p>证件号码</p></div>
+                <div class="weui-cell__ft">车票类型</div>
+            </div>
+        </div>
+    </script>
+
+    <script src="../statics/js/lib/jquery-2.0.3.min.js"></script>
+    <script src="../statics/js/lib/jweixin-1.0.0.js"></script>
+    <script src="../statics/js/lib/jquery-weui.min.js"></script>
+    <script src="../statics/js/lib/dropload.min.js"></script>
+    <script src="../statics/js/ticketjs/base.js"></script>
+    <script src="../statics/js/ticketjs/grabTicketing.js"></script>
+</body>
+</html>

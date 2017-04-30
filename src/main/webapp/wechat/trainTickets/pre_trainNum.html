@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>备选车次</title>
+    <meta name="keywords" content="railway,Service,weChat,RailwayServiceWechat" />
+    <meta name="description" content="高铁微信端,高铁微信服务,高铁微信服务首页" />
+    <script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.2/??flexible_css.js,flexible.js"></script>
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0" />-->
+	<link href="../statics/css/weui.min.css" rel="stylesheet"/>
+	<link href="../statics/css/jquery-weui.min.css" rel="stylesheet"/>
+    <link href="../statics/css/icon-font/iconfont.css" rel="stylesheet">
+    <link rel="stylesheet" href="../statics/css/ticket/pre_trainNum.css" />
+    <!--<link rel="stylesheet" href="../statics/css/ticketsStyle.css" />-->
+</head>
+<body ontouchstart>
+	<section class="pre_trainNum">
+        <p class="trainNum_state">请选择备选车次：（最多11个）</p>
+		<div class="page__bd">
+        <ul class="trainList">
+
+        </ul>
+    </div>
+	</section>
+    <div class="btn_cover">
+        <a class="weui-btn btn_orange" href="javascript:void(0);" id="">确定</a>
+    </div>
+    <script type="text/html" id="trainNum">
+        <li>
+            <label class="weui-cells_checkbox weui-check__label" for="idList">
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <h2><p>city1</p><p class="time StartTime">startTime</p></h2>
+                        <div class="goto_icon"><p><span class="trainNo">trainNo1</span></p><img src="../statics/images/trainTickets/goThere_icon.png"><p><span>usedTime</span></p></div>
+                        <h2 class="right_txt"><p>city2</p><p class="time endTime">endTime1</p></h2>
+                    </div>
+                    <label class="weui-cells_checkbox weui-check__label">
+                        <input type="checkbox" class="weui-check" name="checkbox1" id="idList">
+                        <i class="weui-icon-checked"></i>
+                    </label>
+                </div>
+                <div class="weui-flex">
+                    <div class="weui-flex__item">seat1</div>
+                    <div class="weui-flex__item">seat2</div>
+                    <div class="weui-flex__item">seat3</div>
+                    <div class="weui-flex__item">seat4</div>
+                </div>
+            </label>
+        </li>
+    </script>
+    <script src="../statics/js/lib/jquery-2.0.3.min.js"></script>
+    <!--<script src="../statics/js/lib/jweixin-1.0.0.js"></script>-->
+    <!--<script src="../statics/js/lib/weui.min.js"></script>-->
+    <!--<script src="../statics/js/lib/jquery-weui.min.js"></script>-->
+    <script src="../statics/js/ticketjs/base.js"></script>
+    <script src="../statics/js/ticketjs/pre_trainNum.js"></script>
+</body>
+</html>

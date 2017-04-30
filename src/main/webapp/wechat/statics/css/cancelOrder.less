@@ -1,0 +1,119 @@
+@body-bg-color: #FFFFFF;
+@separated-color: #e4e3e3;
+@body-padding: 10px 5%;
+@btn-color: #ff6600;
+
+:root {
+  -webkit-overflow-scrolling: touch;
+}
+
+body {
+  background: @body-bg-color;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  // 第一条
+  div.cancel-btn-top {
+    padding: 15px 5%;
+    // 文字说明
+    div.font {
+      margin: auto;
+    }
+    // 按钮
+    div.btn {
+      padding-left: 5vw;
+      a {
+        background: @btn-color;
+        color: @body-bg-color;
+        padding: 0;
+        line-height: 2;
+        width: 60%;
+        float: left;
+      }
+    }
+  }
+
+  // 分隔线
+  div.separated {
+    background: @separated-color;
+    height: 10px;
+  }
+
+  // 详细内容
+  div.detail {
+    padding: @body-padding;
+    //position: absolute;
+    //width: 90%;
+    @diff: 100px;
+    height: -moz-calc(~'100% - @{diff}');
+    height: -webkit-calc(~'100% - @{diff}');
+    height: calc(~'100% - @{diff}');
+    overflow: auto;
+
+    // 退款金额
+    .money-info {
+      padding: 0;
+    }
+
+    // 退款原因
+    div.radio {
+      margin-top: 1.5rem;
+      div.radio-bd {
+        label {
+          margin-top: .3rem;
+        }
+        div.weui-flex {
+          margin-top: .5rem;
+        }
+        input[type=radio].radio-checked {
+          position: absolute;
+          left: -9999em;
+          &:checked + .weui-icon-checked:before {
+            content: "\EA06";
+            color: #09bb07;
+          }
+        }
+        i.weui-icon-checked {
+          line-height: 21px;
+          vertical-align: text-top;
+          &:before {
+            content: "\EA01";
+            color: #c9c9c9;
+            font-size: 15px;
+            display: block;
+          }
+        }
+        div.holder {
+          width: 6%;
+        }
+        textarea {
+          margin-top: 0.5%;
+          border: 1px solid #dedede;
+        }
+      }
+    }
+
+    div.confirm-btn-bottom {
+      @media screen and (min-width: 320px) {
+        padding-top: 2.5rem;
+      }
+      @media screen and (min-width: 360px) {
+        padding-top: 3.5rem;
+      }
+      @media screen and (min-width: 375px) {
+        padding-top: 4rem;
+      }
+      @media screen and (min-width: 384px) {
+        padding-top: 4.5rem;
+      }
+      @media screen and (min-width: 400px) {
+        padding-top: 5.5rem;
+      }
+      a {
+        background: @btn-color;
+        color: @body-bg-color;
+      }
+    }
+  }
+}

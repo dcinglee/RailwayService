@@ -1,0 +1,230 @@
+@import "dpr";
+
+.mixin-switch-dpr(@radius: 16px) {
+  [data-dpr="2"] & {
+    border-radius: @radius * 2;
+    &:after {
+      border-radius: @radius * 2;
+      top: 2px;
+    }
+  }
+
+  [data-dpr="3"] & {
+    border-radius: @radius * 3;
+    &:after {
+      border-radius: @radius * 3;
+      top: 4px;
+    }
+  }
+}
+
+body {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: #555555;
+  background-color: #f0f0f0;
+  margin: 0;
+  .mixin-font-dpr(14px);
+  line-height: 1;
+
+  // section
+  .bg_show {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+  }
+
+  // 最上方图片
+  .bg_img {
+    height: 3.24rem;
+    width: 100%;
+    margin: auto;
+  }
+
+  // 信息主体
+  .content_middle {
+    height: 10rem;
+    margin: 0 30/75rem;
+    background-color: #fff;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -o-border-radius: 10px;
+    box-shadow: 0px 10px 10px 5px #E8E8E8;
+    -webkit-box-shadow: 0px 10px 10px 5px #E8E8E8;
+    -moz-box-shadow: 0px 10px 10px 5px #E8E8E8;
+    -o-box-shadow: 0px 10px 10px 5px #E8E8E8;
+
+    @top: 1.08rem;
+    @left: .48rem;
+
+    // 表单信息
+    .train-form {
+      padding: @top @left 0;
+
+      // 车站title
+      .train-title {
+        span:last-child {
+          float: right;
+        }
+        color: #989898;
+      }
+
+      // 车站名称
+      .train-station {
+        margin: 0.4666666666666667rem 0 0.7333333333333333rem;
+        .mixin-font-dpr(23px);
+
+        dd {
+          -webkit-transition: All .5s ease-in-out;
+          -moz-transition: All 0.5s ease-in-out;
+          -o-transition: All 0.5s ease-in-out;
+          // 交换动画
+          // 目的车站
+          &.to {
+            text-align: right;
+          }
+        }
+
+        .icon-- {
+          .mixin-font-dpr(30px);
+          color: @orange;
+        }
+      }
+
+      // 时间
+      .dateTime {
+        line-height: 1;
+        padding: 0;
+        margin: 0;
+        .weui-cell_access {
+          padding: 0.4666666666666667rem 0;
+          .weui-cell__bd {
+            .mixin-font-dpr();
+          }
+          .weui-cell__ft {
+            .mixin-font-dpr(14px);
+            .mixin-ft-dpr(13px, -4px, 6px, 2px)
+          }
+        }
+      }
+
+      // 切换checkbox
+      .switch {
+        margin-top: .44rem;
+        .mixin-font-dpr();
+        line-height: 1;
+        .weui-flex__item {
+          margin: auto;
+        }
+        .weui-switch {
+          height: .56rem;
+          width: 1.1rem;
+          border-color: @orange;
+          background-color: @orange;
+          .mixin-switch-dpr();
+          &:before {
+            width: 1.04rem;
+            height: .52rem;
+          }
+          &:after {
+            width: .48rem;
+            height: .48rem;
+          }
+          &:checked:after {
+            -webkit-transform: translateX(.55rem);
+            transform: translateX(.55rem);
+          }
+        }
+      }
+    }
+
+    // 提交按钮
+    .weui-btn-area {
+      margin: 1.5866666666666667rem 0.3333333333333333rem 0;
+    }
+
+    // 历史记录
+    .history {
+      padding: 0.4666666666666667rem 0.48rem 0;
+      color: #989898;
+    }
+  }
+
+  // 导航按钮
+  .nav-btn {
+    margin: 1rem 0.48rem 0.3rem;
+    .weui-btn {
+      //height: 1.0666666666666667rem;
+      //padding: 0;
+      .mixin-font-dpr(18px);
+      &:nth-of-type(1) {
+        margin: 0 .30666666666666664rem 0 0;
+      }
+      &:nth-of-type(2) {
+        margin: 0 0 0 .30666666666666664rem;
+      }
+    }
+  }
+
+  // 橙色
+  .btn_orange {
+    background-color: @orange;
+  }
+  .color-orange {
+    color: @orange;
+    border: 0.013333333333333334rem solid @orange;
+  }
+
+  // 按钮
+  .weui-btn {
+    .mixin-font-dpr();
+  }
+
+  // 购票秘籍
+  .alert {
+    display: none;
+    line-height: 1.6;
+    .train_mask {
+      position: fixed;
+      z-index: 1000;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+    }
+    .train_dialog {
+      position: fixed;
+      z-index: 5000;
+      width: 80%;
+      top: 0.26666666666666666rem;
+      bottom: 0.13333333333333333rem;
+      left: 50%;
+      overflow-x: hidden;
+      overflow-y: auto;
+      transform: translateX(-50%);
+      background-color: transparent !important;
+      border-radius: 3px;
+      .mixin-font-dpr(14px);
+      color: #fff;
+      text-align: left;
+      -webkit-overflow-scrolling: touch;
+      &::-webkit-scrollbar {
+        width: 0;
+      }
+
+      h3 {
+        .mixin-font-dpr();
+        color: #D05E19;
+        margin-bottom: 10px;
+        font-weight: normal;
+        text-align: left;
+      }
+    }
+
+  }
+}

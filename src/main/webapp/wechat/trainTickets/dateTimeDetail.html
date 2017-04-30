@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="railway,Service,weChat,RailwayServiceWechat" />
+    <meta name="description" content="高铁微信端,高铁微信服务,高铁微信服务首页" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>选择出发日期</title>
+    <style>
+    *{box-sizing:border-box;}
+    body{padding:0;margin:0;text-align:center;max-width:100%;}
+    .calendar{display:inline-block;width:100%;height:100%;}
+    }
+    </style>
+ <script src="../statics/js/lib/yui-min.js"></script> 
+<script>
+
+YUI({
+    modules: {
+        'trip-calendar': {
+            fullpath: '../statics/js/lib/trip-calendar.js',
+            type    : 'js',
+            requires: ['trip-calendar-css']
+        },
+        'trip-calendar-css': {
+            fullpath: '../statics/css/trip-calendar.css',
+            type    : 'css'
+        }
+    }
+}).use('trip-calendar', function(Y) {
+
+    /**
+     * 非弹出式日历实例
+     * 直接将日历插入到页面指定容器内
+     */
+    var oCal = new Y.TripCalendar({
+        container:'#J_Calendar', //非弹出式日历时指定的容器（必选）     
+        selectedDate: new Date,//指定日历选择的日期
+        count:'3',
+        minDate: new Date,
+        afterDays:'20',
+        isHoliday:true,
+    });
+    
+    //日期点击事件
+    oCal.on('dateclick', function() {
+    	
+        var selectedDate = this.get('selectedDate');
+        console.log(selectedDate);
+        //alert(selectedDate + '\u3010' + this.getDateInfo(selectedDate) + '\u3011');
+        //$("#startDate").val(selectedDate);
+        var splitDate=selectedDate.split("-");
+        //var   d =  new   Date(Date.parse(selectedDate.replace(/-/g,   "/")));
+        var nowDate=new Date();
+        var timestamp2 = Date.parse(new Date(selectedDate));
+        var todays= new Date(new Date(new Date().toLocaleDateString()).getTime()+24*60*60*1000-1);
+        var showStartDate=(splitDate[1].replace(/\b(0+)/gi,""))+'月'+splitDate[2]+'日';
+        if(timestamp2-(nowDate.getTime())<=3600*24*1000){
+        	week='明天';
+        }else if(timestamp2-(nowDate.getTime())<=0){
+        	week='今天';
+        }
+        else {
+        	week=this.getDateInfo(selectedDate);
+        };
+
+        var obj = {
+        	startDate: selectedDate,
+        	showDate: showStartDate,
+        	week: this.getDateInfo(selectedDate)
+        };
+        sessionStorage.setItem('infos',JSON.stringify(obj));
+        window.location.href="trainDetail.html";
+    });
+
+    oCal.on('show',function(){
+        
+    });
+});
+</script>
+</head>
+<body>
+<div id="J_Calendar" class="calendar"></div>
+
+
+<style>
+.calendar-bounding-box{width:100%!important;}
+.calendar-bounding-box .inner{display: block; }
+.calendar-bounding-box .content-box{
+    zoom: normal;
+    padding: 0;
+    border: 0;
+    letter-spacing: 0;
+    word-spacing: 0;}
+.calendar-bounding-box .inner,.calendar-bounding-box .inner h4,.calendar-bounding-box .inner table{width:100%!important;}
+.calendar-bounding-box .inner h4,.calendar-bounding-box .inner td:nth-child(7n) a,.calendar-bounding-box .inner td:nth-child(7n+1) a{color: #FD6601;}
+.calendar-bounding-box td a{padding:0px 14%;}
+.calendar-bounding-box .inner table thead{background-color:#FF6600;color:#fff;font-weight:normal;}
+.calendar-bounding-box .inner table th,.calendar-bounding-box .inner table td {
+    padding: 6px 3%!important;
+    border:0!important;
+    border-bottom: 1px solid #E5E5E5!important;
+}
+.calendar-bounding-box td.start-date a, .calendar-bounding-box td a:hover, .calendar-bounding-box td.end-date a:hover, .calendar-bounding-box td.selected-date a, .calendar-bounding-box td.selected-range a:hover{
+    background-color:#FF6600;border-radius:50% 50%;
+}
+</style>
+</body>
+</html>

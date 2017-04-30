@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>车站管理</title>
+    <meta name="keywords" content="station,personal,manage"/>
+    <meta name="description" content="车站人员管理,车站管理信息"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="./assets/css/validationEngine.jquery.css" type="text/css">
+
+    <script src="./assets/js/jquery.validationEngine-zh_CN.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./assets/js/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
+    <!-- basic styles -->
+
+
+</head>
+
+<body>
+<div class="page-content page-content2">
+    <div class="row">
+        <div class="col-xs-12">
+            <form id="stationFormId" class="form-horizontal" role="form">
+                <div class="input-group input-group-sm" style="margin-bottom: 5px">
+                    <span class="input-group-addon" style="width: 10%;">车站名称</span>
+                    <input type="text" class="form-control" id="inputStation" style="width: 33%;">&nbsp;
+                </div>
+                <div class="input-group input-group-sm" style="margin-bottom: 5px">
+                    <span class="input-group-addon" style="width: 10%;">车站名称</span>
+                    <select class="form-control" onchange=$("#stationFormId").submit()
+                            id="status" style="width: 33%;">
+                        <option value="17001">启用</option>
+                        <option value="17002">停用</option>
+                    </select>
+                    <button id="dataSearch" class="btn btn-primary btn-sm" title="查询">
+                        <i class="icon-search nav-search-icon"></i>
+                    </button>
+
+                    <button id="dataadd" type="button" class="btn btn-primary btn-sm"
+                            data-toggle="modal" data-target="#addModal" title="新增车站">
+                        <i class="icon-plus-sign bigger-120"></i>
+                    </button>
+                    <button id="datachange" type="button" class="btn btn-sm btn-success"
+                            data-toggle="modal" data-target="#updateModal" disabled
+                            title="修改车站">
+                        <i class="icon-pencil bigger-130"></i>
+                    </button>
+                    <!-- <button id="datadelete" type="button" class="btn btn-sm btn-danger"
+                            data-toggle="modal" data-target="#deleteModal" disabled
+                            title="删除车站">
+                        <i class="icon-trash bigger-130"></i>
+                    </button> -->
+                    <!-- </div>	 -->
+                </div>
+            </form>
+            <div class="row" style="margin-top: 0px;">
+                <div class="col-xs-12">
+                    <!-- PAGE CONTENT BEGINS -->
+                    <table id="station_table" class="table"></table>
+                    <!-- PAGE CONTENT ENDS -->
+                </div>
+                <!-- /.col -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.page-content -->
+<!-- 添加的modal start-->
+<div class="modal fade bs-example-modal-lg" id="addModal" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">新增车站</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="addForm" data-type="add">
+                    <div class="form-group">
+                        <label for="roleName" class="col-sm-2 control-label">站名</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="validate[required] form-control" id="stationName"
+                                   name="stationName"
+                                   placeholder="请输入车站名称">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class=" col-sm-2 control-label">站名缩写</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="validate[required] form-control" id="stationNameAbbr"
+                                   name="stationNameAbbr"
+                                   placeholder="请输入站名缩写">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">省</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="validate[required] form-control" id="province" name="province"
+                                   placeholder="车站所在省"
+                            >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class=" col-sm-2 control-label">市</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="validate[required] form-control" name="city"
+                                   placeholder="车站所在市">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class=" col-sm-2 control-label">城市编码</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="validate[required,custom[number]]  form-control" name="cityId"
+                                   placeholder="请输入城市编码">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">状态</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" name="status">
+                                <option value="17001">启用</option>
+                                <option value="17002">停用</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="updateDes" class="col-sm-2 control-label">纬度</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="validate[required,custom[number]] form-control" id="latitude"
+                                   name="latitude" placeholder="请输入车站纬度"
+                            />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="updateDes" class="col-sm-2 control-label">经度</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="validate[required,custom[number]]  form-control" id="longitude"
+                                   name="longitude"
+                                   placeholder="请输入车站经度"/>
+                        </div>
+                    </div>
+
+                    <!--<div class="form-group" hidden>-->
+                    <!--<label for="inputPassword3" class="col-sm-2 control-label">链接Url</label>-->
+                    <!--<div class="col-sm-10">-->
+                    <!--<input type="text" class="validate[required] form-control" name="linkUrl" id="imgUrl"-->
+                    <!--placeholder="请输入链接Url">-->
+                    <!--</div>-->
+                    <!--</div>-->
+
+                    <div class="form-group" hidden>
+                        <label for="inputPassword3" class="col-sm-2 control-label">图片</label>
+                        <div class="col-sm-10">
+                            <input type="hidden" class="form-control" id="advertiseImages"
+                                   name="imageId" placeholder="">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">示意图</label>
+                        <div class="col-sm-10">
+                            <a href="#">
+                                <input class="putbox" type="file" name="file" id="addPageAddImg" multiple="multiple"
+                                       accept="image/*"/>
+                                <!-- <div id="advertiseImg" style=" width:990px;"></div>	 -->
+                                <img class="imgbox" id="advertiseImg" src=""/>
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" form="addForm">保存</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 添加的modal end-->
+<!-- 修改的modal start-->
+<div class="modal fade" id="updateModal" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">站名修改</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form" id="updateForm" data-type="update">
+                    <div class="form-group" hidden>
+                        <label for="roUname" class="col-sm-2 control-label">ID</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="stationId" id="stationId" placeholder="Id"
+                                   readonly="readonly"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="updateDes" class="col-sm-2 control-label">站名</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="stationName" name="stationName" value="曲靖"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="updateDes" class="col-sm-2 control-label">站名缩写</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="stationNameAbbr" name="stationNameAbbr"
+                                   value="QU"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="updateDes" class="col-sm-2 control-label">省</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="province" name="province" value="云南省"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="updateDes" class="col-sm-2 control-label">市</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="city" name="city" value="曲靖市"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword3" class=" col-sm-2 control-label">城市编码</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="cityId"
+                                   placeholder="cityId">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">状态</label>
+                        <div class="col-sm-10">
+                            <select class="form-control statu" name="status">
+                                <option value="17001">启用</option>
+                                <option value="17002">停用</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="updateDes" class="col-sm-2 control-label">纬度</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="latitude" name="latitude" value="1"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="updateDes" class="col-sm-2 control-label">经度</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="longitude" name="longitude" value="1"/>
+                        </div>
+                    </div>
+                    <!--<div class="form-group">-->
+                    <!--<label for="inputPassword3" class="col-sm-2 control-label">linkUrl</label>-->
+                    <!--<div class="col-sm-5">-->
+                    <!--<input type="text" class="form-control" name="linkUrl"-->
+                    <!--placeholder="linkUrl">-->
+                    <!--</div>-->
+                    <!--</div>-->
+
+                    <div class="form-group" hidden>
+                        <label for="inputPassword3" class="col-sm-2 control-label">图片</label>
+                        <div class="col-sm-10">
+                            <input type="hidden" class="form-control" id="advertiseUpdateImages"
+                                   name="imageId" placeholder="请输入确认密码">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">示意图</label>
+                        <div class="col-sm-10">
+                            <a href="#">
+                                <input class="putbox" type="file" name="file" id="inputfile"/>
+                                <!-- <div id="advertiseImgs" style=" width:990px;"></div> -->
+                                <img class="imgbox" id="advertiseImgs" src=""/>
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" form="updateForm">保存</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 修改的modal end-->
+<!-- 示意图的modal start-->
+<div class="modal fade" id="imgModal" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="myModalLabel">车站配送点示意图(可拖拽查看)</h4>
+            </div>
+            <!--Form的id为imgForm-->
+            <form id="imgForm" data-type="image">
+                <div class="modal-body" id="stationImage"
+                     style="width:578px; height:400px; padding: 0; overflow: hidden; position: relative;">
+                    <img class="image-box" id="image-box" src=""/>
+                </div>
+                <!--<div class="modal-footer">-->
+                <!--</div>-->
+            </form>
+        </div>
+    </div>
+</div>
+<!-- 示意图的modal end-->
+<script src="script/stationmannage.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#inputfile").change(function () {
+            //创建FormData对象
+            var data = new FormData();
+            data.append('stationId', $("#stationId").val());
+            //为FormData对象添加数据
+            $.each($('#inputfile')[0].files, function (i, file) {
+                //data
+                data.append('imageFile', file);
+            });
+            $.ajax({
+                url: '../railwayStation/updateImage.action',
+                type: 'POST',
+                data: data,
+                cache: false,
+                contentType: false,    //不可缺
+                processData: false,    //不可缺
+                success: function (resb) {
+                    var rs = eval("(" + resb + ")");
+                    alert(rs.message);
+
+                    var imageId = rs.data.imageId;
+                    console.log(imageId);
+                    $("#advertiseUpdateImages").val(imageId);
+                    $.ajax({
+                        url: '../common/getImageUrl',
+                        type: 'POST',
+                        data: {
+                            "imageId": imageId,
+                        },
+                        cache: false,
+                        dataType: 'json',
+                        success: function (resb) {
+                            var rs = resb;
+
+                            if (rs.code == '1') {
+
+                                var preview = document.getElementById('advertiseImgs');
+                                preview.src = rs.data;
+                            } else {
+                                alert("预览失败，请重新上传");
+                            }
+
+                        }
+                    });
+                }
+            });
+        });
+
+
+        $("#addPageAddImg").change(function () {
+            var $that = $(this);
+            //创建FormData对象
+            var data = new FormData();
+            //data.append('merchantId', $("#updatemerchantId").val());
+
+            $.each($('#addPageAddImg')[0].files, function (i, file) {
+                //data
+                data.append('imageFile', file);
+            });
+
+            $.ajax({
+                url: '../common/addImage.action',
+                type: 'POST',
+                data: data,
+                cache: false,
+                contentType: false,    //不可缺
+                processData: false,    //不可缺
+                success: function (resb) {
+                    var rs = eval("(" + resb + ")");
+
+                    //imageId 40283cab5ada1ac5015adb2a9de60019
+                    //url /images/40283cab5ada1ac5015adb2a9de60019.jpg
+                    //var $merchantImg = $(this).find('input[name="imageId"]');
+
+                    var imageId = rs.data.imageId;
+                    console.log(imageId);
+                    //	$merchantImg.val(rs.data.imageId);
+                    $("#advertiseImages").val(imageId);
+                    $.ajax({
+                        url: '../common/getImageUrl',
+                        type: 'POST',
+                        data: {
+                            "imageId": imageId,
+                        },
+                        cache: false,
+                        dataType: 'json',
+                        success: function (resb) {
+                            var rs = resb;
+                            if (rs.code == '1') {
+                                var previews = document.getElementById('advertiseImg');
+                                previews.src = rs.data;
+                            } else {
+                                alert("预览失败，请重新上传");
+                            }
+
+                        }
+                    });
+                }
+
+            });
+
+        });
+
+        $("#addPageAddImg").change(function () {
+            var $that = $(this);
+            //创建FormData对象
+            var data = new FormData();
+            //data.append('merchantId', $("#updatemerchantId").val());
+
+            $.each($('#addPageAddImg')[0].files, function (i, file) {
+                //data
+                data.append('imageFile', file);
+            });
+
+            $.ajax({
+                url: '../common/addImage.action',
+                type: 'POST',
+                data: data,
+                cache: false,
+                contentType: false,    //不可缺
+                processData: false,    //不可缺
+                success: function (resb) {
+                    var rs = eval("(" + resb + ")");
+
+                    //imageId 40283cab5ada1ac5015adb2a9de60019
+                    //url /images/40283cab5ada1ac5015adb2a9de60019.jpg
+                    //var $merchantImg = $(this).find('input[name="imageId"]');
+
+                    var imageId = rs.data.imageId;
+                    console.log(imageId);
+                    //	$merchantImg.val(rs.data.imageId);
+                    $("#advertiseImages").val(imageId);
+                    $.ajax({
+                        url: '../common/getImageUrl',
+                        type: 'POST',
+                        data: {
+                            "imageId": imageId,
+                        },
+                        cache: false,
+                        dataType: 'json',
+                        success: function (resb) {
+                            var rs = resb;
+                            if (rs.code == '1') {
+                                var previews = document.getElementById('advertiseImg');
+                                previews.src = '..' + rs.data;
+                            } else {
+                                alert("预览失败，请重新上传");
+                            }
+
+                        }
+                    });
+                }
+
+            });
+
+        });
+
+    });
+
+</script>
+</body>
+</html>

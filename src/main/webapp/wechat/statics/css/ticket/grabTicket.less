@@ -1,0 +1,390 @@
+@import 'dpr.less';
+*{
+  box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -o-box-sizing:border-box;
+}
+html, body{height: 100%;width: 100%;background-color: #f0f0f0}
+
+body{
+  background-color:#f0f0f0;
+  margin:0;
+  font-size:14px;
+  color:#555555;
+  -webkit-overflow-scrolling:touch;
+}
+.txt_center {
+  text-align: center;
+}
+.ft_left {
+  float: left;
+}
+.ft_right {
+  float: right;
+}
+//主体css
+.grabTicket{
+  width: 100%;
+  height: 90%;
+  overflow: auto;
+
+  //padding-bottom: 0.66666667rem;
+  .page__bd {
+    margin-bottom: 0.21333333333rem;
+    width: 100%;
+    height: auto;
+    background-color: #fff;
+    a{
+      &:hover{text-decoration: none;}
+    }
+    .weui-cell {
+      padding: 0.13333333rem 0;
+      margin: 0 6%;
+      border-top: 1px dashed #dcdedf;
+      .iconfont{
+        .mixin-font-dpr(16px);
+      }
+      .weui-cell__bd{
+        width: 100%;
+        p span{
+          display: inline-block;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          width: 70%;
+          line-height: 1;
+          vertical-align: middle;
+          margin-bottom: 1px;
+        }
+      }
+      .weui-cell__ft{
+        &:after{
+          width: 0.2rem;
+          height: 0.2rem;
+        }
+      }
+    }
+  }
+}
+
+// 登录信息
+.train-info {
+  margin-bottom: .4rem;
+  li {
+    background: white;
+    padding: .4rem 6% .36rem;
+    .reduce{
+      display: inline-block;
+      height: 100%;
+      width: 0.5rem;
+      i.iconfont{
+        color: #ff5b45;
+        .mixin-font-dpr(16px);
+        vertical-align: middle;
+      }
+    }
+    &.userinfo {
+      padding: .38666666666666666rem .4rem .30666666666666664rem;
+      > dd {
+        &:first-child {
+          margin-right: 0.17333333333333334rem;
+        }
+        &:nth-of-type(2) {
+          .weui-flex__item {
+            color: #747a7f;
+            span {
+              .mixin-font-dpr(9px);
+            }
+          }
+        }
+      }
+      i.iconfont {
+        .mixin-font-dpr(18px);
+        line-height: 1rem;
+      }
+      .block {
+        margin-bottom: 0.25333333333333335rem;
+      }
+      .block-right {
+        margin-right: 0.14666666666666667rem;
+      }
+    }
+    &:not(:last-child) {
+      margin-bottom: .02666666666666667rem;
+    }
+    .mixin-font-dpr(12px);
+    i.iconfont {
+      .mixin-font-dpr(12px);
+    }
+  }
+}
+
+.selectInfo p{
+  line-height: 1rem;
+  span{
+    color: #acb5bd;
+  }
+}
+.grab_tickets p{
+  line-height: 0.8rem;
+}
+  //除去伪类或第一个元素border
+.grabTicket .page__bd .weui-cell:before, .grabTicket .weui-cell:first-child, .set_show .weui-cell:before {border: 0px;}
+.tickets_detail h2, .tickets_detail h2 p span, .weui-cell__bd p{
+  .mixin-font-dpr(12px);
+  color: #555555;
+  font-weight: normal;
+}
+  //显示用户信息
+.hide{display: none;}
+.min_img{
+  width: auto;
+  height: 0.26666667rem;
+}
+//短信通知
+.weui-cell__ft input{
+  border: none;
+}
+
+//浮层css
+.clear-mask {
+  visibility: initial;
+}
+
+//登录12306
+.alert {
+  display: none;
+}
+.page__bd.alert {
+  padding-bottom: 0.26666667rem;
+  opacity: 0;
+  margin-top: 1000px;
+  .tip {
+    width: 100%;
+    .mixin-font-dpr(12px);
+    color: #fff;
+    text-align: center;
+    padding: 0.13333333rem 0px;
+    background-color: #ff8b00;
+    .close {
+      float: right;
+      width: 0.24rem;
+      height: 0.24rem;
+      margin: 0px 3% 0.133333333rem;
+      background: url(../../images/trainTickets/close.png) no-repeat center;
+      background-size: 100% 100%;
+    }
+  }
+  .rel_login {
+    width: 100%;
+    padding: 0px 3%;
+    dt {
+      border-bottom: 1px solid #bdbdbd;
+      margin-top: 0.13333333rem;
+      position: relative;
+      i {
+        position: absolute;
+        float: left;
+        width: 0.26666667rem;
+        height: 0.58666667rem;
+        background-size: 0.26666667rem auto;
+      }
+      .user_icon {
+        background: url(../../images/trainTickets/user_icon.png) no-repeat center;
+      }
+      .rel .input-control {
+        width: 100%;
+        height: 0.58666667rem;
+        border: 0;
+        color: #555555;
+        .mixin-font-dpr(14px);
+        line-height: 0.58666667rem;
+        padding-left: 0.42666667rem;
+      }
+    }
+  }
+}
+//座位选择
+  .weui-picker__hd {
+    background-color: #ff8b00;
+    padding: 0.26666667rem 0.666666667rem;
+    a{
+      color: #fff;
+      &:hover{
+        text-decoration: none;
+      }
+    }
+  }
+.set_show .weui-picker {
+  //.mixin-font-dpr(11px);
+  .title{
+    .trainNum_state {
+      width: 100%;
+      height: auto;
+      //.mixin-font-dpr(12px);
+      color: #555555;
+      background-color: #fff7dc;
+      padding: 0.10666667rem 4%;
+    }
+  }
+  .weui-picker__bd{
+    overflow-y: scroll;
+    //height: 3.94666667rem;
+    height: 5.68rem;
+      .weui-cells_checkbox{
+        padding: 0 0.666667rem;
+        .weui-picker__item{
+          height: 1rem;
+        }
+      }
+  }
+}
+.set_show .weui-cell .weui-cell__hd {
+  width: 50%;
+  text-align: left;
+}
+//车次选择
+.date_show{
+  .weui-picker{
+    //.mixin-font-dpr(16px);
+    .title{
+      background-color: #fff7dc;
+      padding-left: 0.44rem;
+      color: #555555;
+    }
+    .weui-picker__bd{
+      height: 5.12rem;
+      .weui-cells_checkbox .weui-cell{
+        height: 1rem;
+        padding: 0 0.66666667rem;
+        label{
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+.grabTicket .weui-footer_fixed-bottom{
+  position: absolute;
+}
+//底部css
+.bottom{
+  //height: 1.93333333rem;
+  height: 10%;
+  min-height: 1.5rem;
+  overflow: hidden;
+  .trainNum_state{
+    //height: 0.626666667rem;
+    height: 30%;
+    background-color: #fff7dc;
+    line-height: 0.6rem
+  }
+  .link{
+    display: block;
+    width: 100%;
+    //height: 1.30666667rem;
+    height: 70%;
+    line-height:1.2rem;
+    text-align: center;
+    .mixin-font-dpr(18px);
+    background-color: #ff8b00;
+    color: white;
+    &:hover{
+      text-decoration: none;
+    }
+  }
+}
+
+// 12306输入
+#login {
+  background: white;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  -webkit-transform: translateY(100%);
+  transform: translateY(100%);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transition: -webkit-transform .4s;
+  transition: -webkit-transform .4s;
+  transition: transform .4s;
+  transition: transform .4s, -webkit-transform .4s;
+  overflow: auto;
+  @media all and (orientation: portrait) {
+    top: 4rem;
+  }
+  @media all and (orientation: landscape) {
+    top: 0;
+  }
+
+  &.login-show {
+    -webkit-transform: translate(0);
+    transform: translate(0);
+  }
+
+  // title
+  .tip {
+    padding: .37333333333333335rem .4rem .36rem;
+    text-align: center;
+    background: @orange;
+    color: white;
+    .mixin-font-dpr(12px);
+    i.iconfont {
+      .mixin-font-dpr(12px);
+    }
+  }
+
+  // 表单
+  .login-info {
+    padding: .22666666666666666rem .4rem 0;
+
+    dt {
+      border-bottom: 1/75rem solid #bdbdbd;
+      padding: .2rem 0;
+      //输入框
+      .weui-input {
+        height: auto;
+        line-height: normal;
+        .mixin-font-dpr(15px);
+      }
+      input::-webkit-input-placeholder {
+        color: #acb5bd;
+      }
+      input::-moz-placeholder {
+        color: #acb5bd;
+      }
+      input:-ms-input-placeholder {
+        color: #acb5bd;
+      }
+
+      // icon
+      i.iconfont {
+        .mixin-font-dpr(18px);
+        margin-left: 3/75rem;
+        margin-right: .49333333333333335rem;
+      }
+    }
+  }
+
+  // 提交按钮
+  .btn_login {
+    color: white;
+    padding: .6rem 1.2666666666666666rem .8rem;
+    .btn_or {
+      background: @orange;
+      .mixin-font-dpr(19px);
+    }
+  }
+}
+
+//weuiCSS
+.weui-toast {
+  width: 3rem;
+  min-height: 3rem;
+  .weui-toast_content{
+    .mixin-font-dpr(16px);
+  }
+}

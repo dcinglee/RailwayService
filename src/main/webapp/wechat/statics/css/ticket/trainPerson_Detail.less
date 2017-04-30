@@ -1,0 +1,63 @@
+@import "dpr";
+
+body {
+  color: @font-default-color;
+  background: @body-default-bg-color;
+  .mixin-all(fixed);
+  overflow: auto;
+  .mixin-font-dpr(14px);
+
+  .page__bd {
+    // 每行布局
+    .weui-cell {
+      background: white;
+      padding: 41/75rem 30/75rem;
+
+      input {
+        text-align: right;
+        &::-webkit-input-placeholder{
+          color: #acb5bd;
+        }
+        color: @orange;
+      }
+    }
+
+    // 右箭头全响应
+    .weui-cell_access {
+      .weui-cell__ft {
+        .mixin-weui-ft();
+      }
+    }
+  }
+
+  // 儿童票
+  .child_titcket {
+    .mixin-font-dpr(12px);
+    padding: 23/75rem 30/75rem;
+  }
+
+  // 提交按钮
+  .btn-submit {
+    padding: 34/75rem 95/75rem;
+    margin: 0;
+    .weui-btn {
+      background: @orange;
+      .mixin-font-dpr(19px);
+    }
+  }
+
+  .sel-boxs {
+    .btn {
+      background: @orange;
+    }
+    .sel-con .border {
+      border-color: @orange;
+    }
+    .btn1 {
+      width: auto;
+      color: white;
+      line-height: 0.6111111111111112rem;
+      font-size: 0.5rem;
+    }
+  }
+}

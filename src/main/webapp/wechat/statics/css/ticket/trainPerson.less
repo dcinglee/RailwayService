@@ -1,0 +1,175 @@
+@import "dpr.less";
+
+body {
+  color: @font-default-color;
+  background: @body-default-bg-color;
+  .mixin-font-dpr(12px);
+  line-height: 1;
+  .mixin-all(fixed);
+  overflow: auto;
+
+  // 用户信息
+  ul {
+    li, dd {
+      background: white;
+      &.jump {
+        padding: 44/75rem 30/75rem 32/75rem;
+        span {
+          color: @orange;
+          .mixin-line-height(17px);
+        }
+        i.iconfont {
+          color: #acb5bd;
+          .mixin-font-dpr(17px);
+        }
+        margin-bottom: 30/75rem;
+      }
+      &.user-info {
+        padding: 22/75rem 30/75rem 27/75rem;
+        &:not(:last-child) {
+          margin-bottom: 2/75rem;
+        }
+
+        // 复选框
+        .check {
+          input[type=checkbox].radio-checked {
+            position: absolute;
+            left: -9999em;
+            &:checked + .weui-icon-checked:before {
+              content: "\EA06";
+              color: @green;
+            }
+          }
+          i.weui-icon-checked {
+            .mixin-line-height(30px);
+            vertical-align: text-top;
+            &:before {
+              content: "\EA01";
+              color: #c9c9c9;
+              display: block;
+              .mixin-font-dpr(12px);
+            }
+          }
+        }
+
+        // 用户详情
+        .detail {
+          margin-left: 17/75rem;
+          p {
+            line-height: 30/75rem;
+            .mixin-font-dpr(14px);
+            > span:first-child {
+              margin-right: 28/75rem;
+            }
+          }
+          div {
+            margin-top: 15/75rem;
+            .mixin-font-dpr(12px);
+            color: #acb5bd;
+          }
+        }
+
+        // 通过状态
+        .status {
+          padding: 22/75rem 22.5/75rem 17/75rem;
+          text-align: center;
+          &.status-access {
+            color: @green;
+          }
+        }
+
+        // 更改icon
+        i.iconfont {
+          color: @orange;
+          .mixin-font-dpr(20px);
+          .mixin-line-height(30px);
+        }
+      }
+    }
+    li > dl {
+      background: @body-default-bg-color;
+      max-height: 11rem;
+      overflow: auto;
+    }
+  }
+
+  // 申明
+  .declare {
+    margin-top: 32/75rem;
+    .mixin-font-dpr(12px);
+    text-align: center;
+    span  {
+      color: @orange;
+      margin-right: 12/75rem;
+    }
+    i.iconfont {
+      .mixin-font-dpr(12px);
+    }
+  }
+
+  // 确认按钮
+  .btn-bottom {
+    @media all and (orientation: portrait) {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 39/75rem 95/75rem;
+    }
+    @media all and (orientation: landscape) {
+      margin: .5rem 0;
+      padding: 0 95/75rem;
+    }
+
+    a {
+      background: @orange;
+      color: white;
+      .mixin-font-dpr(19px);
+      padding: 27/75rem auto;
+    }
+  }
+
+  // 核验说明
+  .alert {
+    display: none;
+    line-height: 1.6;
+    .train_mask {
+      position: fixed;
+      z-index: 1000;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+    }
+    .train_dialog {
+      position: fixed;
+      z-index: 5000;
+      width: 80%;
+      top: 0.26666666666666666rem;
+      bottom: 0.13333333333333333rem;
+      left: 50%;
+      overflow-x: hidden;
+      overflow-y: auto;
+      transform: translateX(-50%);
+      background-color: transparent !important;
+      border-radius: 3px;
+      .mixin-font-dpr(14px);
+      color: #fff;
+      text-align: left;
+      -webkit-overflow-scrolling: touch;
+      &::-webkit-scrollbar {
+        width: 0;
+      }
+
+      h3 {
+        .mixin-font-dpr();
+        color: #D05E19;
+        margin-bottom: 10px;
+        font-weight: normal;
+        text-align: left;
+      }
+    }
+
+  }
+}

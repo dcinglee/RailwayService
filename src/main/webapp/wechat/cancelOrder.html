@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>取消订单</title>
+    <meta name="keywords" content="railway,Service,weChat,RailwayServiceWechat"/>
+    <meta name="description" content="高铁微信端,高铁微信服务,高铁微信服务首页"/>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0"/>
+    <!--<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>-->
+    <!--<meta http-equiv="Pragma" content="no-cache"/>-->
+    <!--<meta http-equiv="Expires" content="0"/>-->
+    <script src="statics/js/config/wechat-cfg.js"></script>
+    <script>if (!sessionStorage.userInfo) {window.location.href = login_url;}</script>
+    <link rel="stylesheet" href="statics/css/weui.min.css">
+    <link rel="stylesheet" href="statics/css/jquery-weui.min.css">
+    <link rel="stylesheet" href="statics/css/icon-font/iconfont.css">
+    <link rel="stylesheet" href="statics/css/cancelOrder.css">
+</head>
+<body>
+<div class="cancel-btn-top weui-flex">
+    <div class="font">
+        取消订单，请先
+    </div>
+    <div class="btn weui-flex__item">
+        <a href="tel://00000000000;" class="weui-btn weui-btn_default btn-cancel">
+            <i class="iconfont icon-phone">联系商家</i>
+        </a>
+    </div>
+</div>
+<div class="separated"></div>
+<div class="detail">
+    <div class="money">
+        <span>退款金额:</span>
+        ￥<span id="refund"></span>
+    </div>
+    <div class="weui-cells__tips money-info">退款将于2个工作日内原路返回</div>
+    <div class="radio">
+        <label class="radio-title">
+            取消订单原因
+        </label>
+        <div class="radio-bd">
+            <label for="late" class="weui-flex">
+                <div>
+                    <input type="radio" class="radio-checked" id="late" data-name="reason" value="1" checked>
+                    <i class="weui-icon-checked"></i>
+                </div>
+                <div class="weui-flex__item">
+                    <p>要发车了，没时间</p>
+                </div>
+            </label>
+            <label for="other" class="weui-flex">
+                <div>
+                    <input type="radio" class="radio-checked" id="other" data-name="reason" data-target="#other-reason"
+                           value="3">
+                    <i class="weui-icon-checked"></i>
+                </div>
+                <div class="weui-flex__item">
+                    <p>其他原因</p>
+                </div>
+            </label>
+            <div class="weui-flex">
+                <div class="holder"></div>
+                <textarea class="weui-textarea weui-flex__item" id="other-reas on" placeholder="请输入原因" rows="5"
+                          disabled></textarea>
+                <div class="holder"></div>
+            </div>
+        </div>
+    </div>
+    <div class="confirm-btn-bottom">
+        <a href="javascript:void(0);" class="weui-btn weui-btn_default btn-confirm">提交</a>
+    </div>
+</div>
+
+<script src="statics/js/lib/jquery-2.0.3.min.js"></script>
+<script src="statics/js/lib/jquery-weui.min.js"></script>
+<script src="statics/js/core.min.js"></script>
+<script src="statics/js/cancelOrder.min.js"></script>
+<script>
+    var dpr = window.devicePixelRatio - 2,
+        $btn = $('div.confirm-btn-bottom'),
+        padding_top = $btn.css('padding-top'),
+        font = $('html').css('font-size');
+    padding_top = Number(padding_top.substring(0, padding_top.length - 2));
+    font = Number(font.substring(0, font.length - 2));
+    if (dpr > 0) {
+        $('div.confirm-btn-bottom').css('padding-top', padding_top + font + 'px');
+    }
+</script>
+</body>
+</html>

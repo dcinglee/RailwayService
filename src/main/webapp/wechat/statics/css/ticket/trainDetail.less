@@ -1,0 +1,274 @@
+@import 'dpr.less';
+*{
+  box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -o-box-sizing:border-box;
+}
+html, body{height: 100%;width: 100%;-webkit-overflow-scrolling:touch;}
+
+body{
+  background-color:#fff;
+  margin:0;
+  font-size:14px;
+  color:#555555;
+}
+//全局变量
+@width:0.32rem;
+@color01:#555;
+@color02:#a0a0a0;
+
+//顶部css
+.trainDetail{
+  width: 100%;
+  .timetable{
+    width: 100%;
+    height: auto;
+    color: #fff;
+    padding: 0.58666667rem 1.0933333rem 1.053333333rem 0.96rem;
+    background: url(../../images/trainTickets/trainDetail_bg.png) no-repeat center;
+    background-size: 100% 100%;
+    overflow: hidden;
+  }
+}
+.trainDetail .left{
+  width: 28%;
+  float: left;
+  padding-right: 6.5%;
+  text-align: center;
+  .startTime{
+    .mixin-font-dpr(10px);
+    line-height: 0.5466667rem;
+  }
+  .startStation{
+    line-height: 0.6533333rem;
+    .mixin-font-dpr(16px);
+    border: 1px solid #fff;
+    border-radius: 5px;
+  }
+  .day{
+    line-height: 0.6266667rem;
+    .mixin-font-dpr(10px);
+  }
+}
+.trainDetail .center{
+  padding-top: 0.4rem;
+  width: 42.46%;
+  float: left;
+  text-align: center;
+  p{
+    line-height: 1;
+    &:nth-child(2){
+      transform: scaleX(0.7);
+      .icon-straight{
+        .mixin-font-dpr(12px);
+      }
+    }
+  }
+  .trainNo, #timeTable{
+    .mixin-font-dpr(12px);
+  }
+  img{
+    width: 100%;
+  }
+}
+.trainDetail .right{
+  width: 29.53%;
+  float: right;
+  overflow: hidden;
+  .endInfo{
+    float: right;
+    width: 73.86%;
+    text-align: center;
+    .endTime{
+      .mixin-font-dpr(10px);
+      line-height: 0.5466667rem;
+    }
+    .endStation{
+      line-height: 0.6533333rem;
+      .mixin-font-dpr(16px);
+      border: 1px solid #fff;
+      border-radius: 5px;
+    }
+  }
+  .floorPrice{
+    float: right;
+    text-align: right;
+    line-height: 0.6266667rem;
+    .mixin-font-dpr(10px);
+  }
+}
+//内容区css
+.seatInfo{
+  padding:0 4%;
+  .weui-flex {
+    width: 100%;
+    height: 1.16rem;
+    line-height: 1.16rem;
+    text-align: center;
+    background-color: #fff;
+    border-bottom: 1px solid #ebebeb;
+    .arrow {
+      i {
+        .mixin-font-dpr(12px);
+      }
+      width: 15%;
+      color: #ff6600;
+    }
+    .iconLeft {
+      text-align: left;
+    }
+    .iconRight {
+      text-align: right;
+    }
+    .weui-flex__item {
+      color: #ff6600;
+      .icon-rili {
+        .mixin-font-dpr(16px)
+      }
+      .today {
+        padding-left: 0.1866666667rem;
+        .mixin-font-dpr(12px)
+      }
+    }
+  }
+}
+//选择座位类型
+.seatDetail .train_data{
+  border-bottom: 1px solid #e7e7e7;
+  width: 100%;
+  height:1.15rem;
+  li{
+    float: left;
+    line-height:1.15rem;
+    height: 100%;
+    .mixin-font-dpr(14px);
+    &:first-child{
+      width: 18.72%;
+    }
+    &:nth-child(2){
+      width: 22.93%;
+      text-align: center;
+    }
+    &:nth-child(3){
+      width: 20.63%;
+      text-align: center;
+    }
+  }
+  .btn{
+    width: 18.43%;
+    a{
+      display: inline-block;
+      float: right;
+      line-height: 0.6933333rem;
+      width: 86.61%;
+      margin-top: 0.2rem;
+      text-align: center;
+      color: white;
+      border-radius: 10px;
+      text-decoration: none;
+    }
+  }
+  .buy{
+    a{
+      background-color: #ff6600;
+    }
+  }
+  .book{
+    a{
+      background-color: #f39801;
+    }
+  }
+}
+
+/* 弹出框 */
+.alert{display:none;}
+.train_mask{    position: fixed;
+  z-index: 1000;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+}
+.train_dialog{
+  position: fixed;
+  z-index: 5000;
+  width: 80%;
+  //max-width: 300px;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  //text-align: center;
+  border-radius: 3px;
+  overflow-y: scroll;
+  //background-color:#fff;
+  color: #fff;
+  height: 100%;
+  &::-webkit-scrollbar{width:0;height:0;}
+  .content{
+    -webkit-overflow-scrolling:touch;
+    p{
+      text-indent: 2em;
+    }
+  }
+}
+//时刻表弹出框
+#time_show .train_dialog{
+  background-color:transparent;
+  height:auto;
+  top: 32%;
+  width: 92%;
+  h3{
+    .mixin-font-dpr(16px);
+    color:#ff6600;
+    text-align:center;
+    margin-bottom:10px;
+  }
+  ul{
+    float:left;
+    list-style:none;
+    .mixin-font-dpr(14px);
+    color:#D05E19;
+    width:100%;
+    height:auto;
+    padding:10px 3%;
+    border:1px solid #DF5F0A;
+    border-radius:6px;
+    dl{
+      width:100%;
+      display:inline-block;
+      padding-bottom:10px;
+      dt{
+        width:18%;
+        float:left;
+        margin:0 1%;
+        text-align: center;
+      }
+    }
+    .active{color: white;}
+    .title dl{border-bottom:1px solid #DF5F0A;}
+  }
+  .content{
+    .mixin-font-dpr(14px);
+    color:#fff;
+    text-align:left;
+    h3{
+      font-weight:normal;
+      text-align:left;
+    }
+  }
+}
+
+//底部css
+.weui-footer_fixed-bottom .weui-btn{
+  img{
+    width: 54.86%;
+    display: inline-block;
+  }
+  &:after{
+    width: 0;
+    height:0;
+  }
+}

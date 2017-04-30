@@ -1,0 +1,194 @@
+@import 'dpr.less';
+*{
+  box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -o-box-sizing:border-box;
+}
+html, body{height: 100%;width: 100%;background-color: #f0f0f0}
+
+body{
+  background-color:#f0f0f0;
+  margin:0;
+  color:#555555;
+  -webkit-overflow-scrolling:touch;
+}
+//全局变量
+@width:0.32rem;
+@color01:#555;
+@color02:#a0a0a0;
+
+//头部样式
+header{
+  width:100%;
+  height:1.16rem;
+  line-height:1.16rem;
+  text-align:center;
+  background-color:#ff6600;
+  padding:0 4%;
+  position: absolute;
+  .arrow{
+    i{
+      .mixin-font-dpr(12px);
+    }
+    width: 15%;
+    color: #fff;
+  }
+  .iconLeft{
+    text-align: left;
+  }
+  .iconRight{
+    text-align: right;
+  }
+  .weui-flex__item{
+    color: #fff;
+    .icon-rili{
+      .mixin-font-dpr(16px)
+    }
+    .today{
+      padding-left:0.1866666667rem;
+      .mixin-font-dpr(12px)
+    }
+  }
+}
+
+
+//内容样式
+.container{
+  height: 93.48%;
+  width: 100%;
+  position: absolute;
+  top: 1.16rem;
+  left: 0;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling:touch;
+  &::-webkit-scrollbar{width:0;height:0;}
+}
+.container .trainList{
+  li{
+    margin: 0.21333333rem;
+    //margin-bottom: 0;
+    //border: 0.21333333rem solid #f0f0f0;
+    padding: 0.2rem 0.1866666667rem;
+    border-radius:6px;
+    -webkit-border-radius:6px;
+    background-color: white;
+  }
+}
+.container .trainInfo{
+  overflow: hidden;
+}
+.container .left{
+  float: left;
+  width: 33.31%;
+}
+
+.stationLogo{
+  display: inline-block;
+  width: 0.42666667rem;
+  height: 0.42666667rem;
+  border: 1px solid #e96419;
+  border-radius: 6px;
+  color: #e96419;
+  .mixin-font-dpr(10px);
+  line-height: 0.42666667rem;
+  text-align: center;
+}
+.station{
+  .mixin-font-dpr(16px);
+  color: @color01;
+  line-height: 1;
+  //padding-right: 0.24rem;
+  text-align: center;
+}
+.timeCss{
+  .mixin-font-dpr(10px);
+  color: @color02;
+  line-height: 0.50666667rem;
+}
+
+.container .left .startName{
+  height: 0.6133333rem;
+  padding-right: 0.24rem;
+  .startLogo{
+      .stationLogo;
+   }
+  .startStation{
+    float: right;
+    width: 78%;
+    .station;
+    .startTime{
+      .timeCss;
+    }
+  }
+}
+.container .center{
+  float: left;
+  width: 32.94%;
+  position: relative;
+  img{
+    width: 100%;
+  }
+  .trainNum{
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: -5px;
+    transform: translateX(-50%);
+    .mixin-font-dpr(10px);
+  }
+  .time{
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 0.35rem;
+    transform: translateX(-50%);
+    .mixin-font-dpr(10px);
+  }
+}
+.container .right{
+  float: right;
+  width: 33.31%;
+}
+.container .right .endName{
+  height: 0.6133333rem;
+  padding-left: 0.24rem;
+  .endLogo{
+    .stationLogo;
+    float: right;
+  }
+  .endStation{
+    display: inline-block;
+    width: 78%;
+    .station;
+    .endTime{
+      .timeCss;
+    }
+  }
+}
+.seatInfo{
+  padding-top: 0.24rem;
+  overflow: hidden;
+}
+.seatInfo .seatNum{
+  float: left;
+  color: @color02;
+  width: 100%;
+  .mixin-font-dpr(10px);
+  line-height: 0.37333333rem;
+}
+.seatInfo .price{
+  float: right;
+  color: #ea661b;
+  .mixin-font-dpr(14px);
+  line-height: 1;
+}
+
+//weuiCSS
+.weui-toast {
+  width: 3rem;
+  min-height: 3rem;
+  .weui-toast_content{
+    .mixin-font-dpr(16px);
+  }
+}

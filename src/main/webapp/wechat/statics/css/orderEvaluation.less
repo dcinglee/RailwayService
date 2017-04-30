@@ -1,0 +1,187 @@
+@color-btn: #ff6600;
+
+body {
+  .order-top {
+    margin: auto;
+    text-align: center;
+
+    position: relative;
+
+    // 模糊背景
+    &:before {
+      content: ' ';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 10px;
+      z-index: -1;
+      background-position: 0 50%;
+      background-size: 100%;
+      /* Chrome, Opera */
+      -webkit-filter: blur(10px);
+      -moz-filter: blur(10px);
+      -ms-filter: blur(10px);
+      filter: blur(10px);
+    }
+
+    & > div {
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.3);
+      padding: 3vh;
+
+      // logo
+      .logo-circle {
+        border-radius: 100%;
+        width: 90px;
+        height: 90px;
+        margin: auto;
+      }
+      .merchant-title {
+        line-height: 24px;
+        text-align: center;
+        color: #FFFFFF;
+      }
+    }
+  }
+  .order-content {
+    padding: 5vh 30px;
+    @media screen and (max-width: 320px) {
+      padding: 3vh 30px;
+    }
+
+    span.appraisal {
+      text-align: center;
+      display: block;
+      width: 100%;
+    }
+
+    // 评价星星
+    .click-star {
+      padding-top: 1vh;
+      .star_bg {
+        margin: auto;
+        width: 100px;
+        height: 20px;
+        background: url(../images/star.png) repeat-x;
+        position: relative;
+        overflow: hidden;
+        &:hover .star {
+          background-image: none;
+        }
+        .star {
+          height: 100%;
+          width: 20px;
+          line-height: 6em;
+          position: absolute;
+          z-index: 3;
+          &:hover {
+            background: url(../images/star.png) repeat-x 0 -20px !important;
+            left: 0;
+            z-index: 2;
+          }
+        }
+        .star_1 {
+          left: 0;
+          &:hover {
+            width: 20px;
+          }
+        }
+        .star_2 {
+          left: 20px;
+          &:hover {
+            width: 40px;
+          }
+        }
+        .star_3 {
+          left: 40px;
+          &:hover {
+            width: 60px;
+          }
+        }
+        .star_4 {
+          left: 60px;
+          &:hover {
+            width: 80px;
+          }
+        }
+        .star_5 {
+          left: 80px;
+          &:hover {
+            width: 100px;
+          }
+        }
+        label {
+          display: block;
+          _display: inline;
+          height: 100%;
+          width: 100%;
+          cursor: pointer;
+        }
+        .score {
+          position: absolute;
+          clip: rect(0 0 0 0);
+          &:checked {
+            & + .star {
+              background: url(../images/star.png) repeat-x 0 -20px;
+              left: 0;
+              z-index: 1;
+            }
+          }
+        }
+        .score_1:checked ~ .star_1 {
+          width: 20px;
+        }
+        .score_2:checked ~ .star_2 {
+          width: 40px;
+        }
+        .score_3:checked ~ .star_3 {
+          width: 60px;
+        }
+        .score_4:checked ~ .star_4 {
+          width: 80px;
+        }
+        .score_5:checked ~ .star_5 {
+          width: 100px;
+        }
+      }
+    }
+
+    // 评价内容
+    span.text-title {
+      display: block;
+      width: 100%;
+      text-align: center;
+      margin-top: 5vh;
+    }
+
+    div.area {
+      background: #dedede;
+      border-radius: 15px;
+      padding: 10px;
+      margin-top: 10px;
+      textarea {
+        background: #dedede;
+        margin: auto;
+        font-size: 15px;
+      }
+    }
+
+    .order-btn {
+      padding-top: 50px;
+      @media screen and (max-width: 320px) {
+        padding-top: 5vh;
+      }
+      .color-btn {
+        background: @color-btn;
+        color: #FFFFFF;
+      }
+    }
+    /* for IE6-IE8 JS 交互 */
+    .star_checked {
+      background: url(../images/star.png) repeat-x 0 -20px;
+      left: 0;
+      z-index: 1;
+    }
+  }
+}

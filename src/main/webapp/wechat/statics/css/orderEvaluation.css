@@ -1,0 +1,172 @@
+body .order-top {
+  margin: auto;
+  text-align: center;
+  position: relative;
+}
+body .order-top:before {
+  content: ' ';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 10px;
+  z-index: -1;
+  background-position: 0 50%;
+  background-size: 100%;
+  /* Chrome, Opera */
+  -webkit-filter: blur(10px);
+  -moz-filter: blur(10px);
+  -ms-filter: blur(10px);
+  filter: blur(10px);
+}
+body .order-top > div {
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 3vh;
+}
+body .order-top > div .logo-circle {
+  border-radius: 100%;
+  width: 90px;
+  height: 90px;
+  margin: auto;
+}
+body .order-top > div .merchant-title {
+  line-height: 24px;
+  text-align: center;
+  color: #FFFFFF;
+}
+body .order-content {
+  padding: 5vh 30px;
+  /* for IE6-IE8 JS 交互 */
+}
+@media screen and (max-width: 320px) {
+  body .order-content {
+    padding: 3vh 30px;
+  }
+}
+body .order-content span.appraisal {
+  text-align: center;
+  display: block;
+  width: 100%;
+}
+body .order-content .click-star {
+  padding-top: 1vh;
+}
+body .order-content .click-star .star_bg {
+  margin: auto;
+  width: 100px;
+  height: 20px;
+  background: url(../images/star.png) repeat-x;
+  position: relative;
+  overflow: hidden;
+}
+body .order-content .click-star .star_bg:hover .star {
+  background-image: none;
+}
+body .order-content .click-star .star_bg .star {
+  height: 100%;
+  width: 20px;
+  line-height: 6em;
+  position: absolute;
+  z-index: 3;
+}
+body .order-content .click-star .star_bg .star:hover {
+  background: url(../images/star.png) repeat-x 0 -20px !important;
+  left: 0;
+  z-index: 2;
+}
+body .order-content .click-star .star_bg .star_1 {
+  left: 0;
+}
+body .order-content .click-star .star_bg .star_1:hover {
+  width: 20px;
+}
+body .order-content .click-star .star_bg .star_2 {
+  left: 20px;
+}
+body .order-content .click-star .star_bg .star_2:hover {
+  width: 40px;
+}
+body .order-content .click-star .star_bg .star_3 {
+  left: 40px;
+}
+body .order-content .click-star .star_bg .star_3:hover {
+  width: 60px;
+}
+body .order-content .click-star .star_bg .star_4 {
+  left: 60px;
+}
+body .order-content .click-star .star_bg .star_4:hover {
+  width: 80px;
+}
+body .order-content .click-star .star_bg .star_5 {
+  left: 80px;
+}
+body .order-content .click-star .star_bg .star_5:hover {
+  width: 100px;
+}
+body .order-content .click-star .star_bg label {
+  display: block;
+  _display: inline;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+}
+body .order-content .click-star .star_bg .score {
+  position: absolute;
+  clip: rect(0 0 0 0);
+}
+body .order-content .click-star .star_bg .score:checked + .star {
+  background: url(../images/star.png) repeat-x 0 -20px;
+  left: 0;
+  z-index: 1;
+}
+body .order-content .click-star .star_bg .score_1:checked ~ .star_1 {
+  width: 20px;
+}
+body .order-content .click-star .star_bg .score_2:checked ~ .star_2 {
+  width: 40px;
+}
+body .order-content .click-star .star_bg .score_3:checked ~ .star_3 {
+  width: 60px;
+}
+body .order-content .click-star .star_bg .score_4:checked ~ .star_4 {
+  width: 80px;
+}
+body .order-content .click-star .star_bg .score_5:checked ~ .star_5 {
+  width: 100px;
+}
+body .order-content span.text-title {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 5vh;
+}
+body .order-content div.area {
+  background: #dedede;
+  border-radius: 15px;
+  padding: 10px;
+  margin-top: 10px;
+}
+body .order-content div.area textarea {
+  background: #dedede;
+  margin: auto;
+  font-size: 15px;
+}
+body .order-content .order-btn {
+  padding-top: 50px;
+}
+@media screen and (max-width: 320px) {
+  body .order-content .order-btn {
+    padding-top: 5vh;
+  }
+}
+body .order-content .order-btn .color-btn {
+  background: #ff6600;
+  color: #FFFFFF;
+}
+body .order-content .star_checked {
+  background: url(../images/star.png) repeat-x 0 -20px;
+  left: 0;
+  z-index: 1;
+}

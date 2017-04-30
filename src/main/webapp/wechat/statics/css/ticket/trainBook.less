@@ -1,0 +1,212 @@
+@import 'dpr.less';
+
+@line-color: #ffa233;
+@base-color: #ff8b00;
+@reduce-color: #ff5b45;
+
+body {
+  background-color: @body-default-bg-color;
+  margin: 0;
+  color: @font-default-color;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  line-height: 1;
+  .mixin-font-dpr(14px);
+
+  .trainLogin {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+
+    // 车次信息
+    .timetable {
+      width: auto;
+      //height: 3.04rem;
+      background: url('../../images/trainTickets/trainLogin_icon.png') no-repeat center;
+      background-size: 100% 100%;
+      border-top: 1px solid @line-color;
+      border-bottom: 1px solid @line-color;
+      margin: .4rem 0;
+      padding: .52rem 2rem .72rem;
+
+      // 车次详细时间
+      .train-date {
+        .mixin-font-dpr(13px);
+        margin-bottom: 0.5333333333333333rem;
+      }
+
+      // 发车、到达站
+      .train-station {
+        text-align: center;
+        #start_station, #end_station {
+          .mixin-font-dpr(19px);
+        }
+        #start_time, #end_time {
+          .mixin-font-dpr(12px);
+        }
+        #line {
+          .mixin-font-dpr(15.8px);
+          .mixin-line-height(19px);
+          //width: 2.96rem;
+        }
+        .goto {
+          img {
+            vertical-align: super;
+            width: 2rem;
+          }
+        }
+        #start_station, #line, #end_station {
+          margin-bottom: 0.17333333333333334rem;
+        }
+      }
+    }
+
+    // 登录信息
+    .train-info {
+      margin-bottom: .4rem;
+      li {
+        background: white;
+        padding: .4rem .4rem .36rem;
+        .mixin-font-dpr(12px);
+        &.userinfo {
+          padding: .38666666666666666rem .4rem .30666666666666664rem;
+          > dd {
+            &:first-child {
+              margin-right: 0.17333333333333334rem;
+            }
+            &:nth-of-type(2) {
+              .weui-flex__item {
+                color: #747a7f;
+                span {
+                  .mixin-font-dpr(9px);
+                }
+              }
+            }
+          }
+          i.iconfont {
+            .mixin-font-dpr(18px);
+            line-height: 1rem;
+          }
+          .block {
+            margin-bottom: 0.25333333333333335rem;
+          }
+          .block-right {
+            margin-right: 0.14666666666666667rem;
+          }
+        }
+        &:not(:last-child) {
+          margin-bottom: .02666666666666667rem;
+        }
+        &#bound,&#modify {
+          position: relative;
+          dd:last-child {
+            position: absolute;
+            right: .4rem;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+        }
+        i.iconfont {
+          .mixin-font-dpr(20px);
+        }
+      }
+    }
+
+    // 预定按钮
+    .btn_bottom {
+      margin: 0;
+      padding: 0 1.2666666666666666rem;
+      a.btn_or {
+        background: @base-color;
+        .mixin-font-dpr(19px);
+      }
+    }
+
+    // 12306输入
+    #login {
+      background: white;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      -webkit-transform: translateY(100%);
+      transform: translateY(100%);
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      -webkit-transition: -webkit-transform .4s;
+      transition: -webkit-transform .4s;
+      transition: transform .4s;
+      transition: transform .4s, -webkit-transform .4s;
+      overflow: auto;
+      @media all and (orientation: portrait) {
+        top: 4rem;
+      }
+      @media all and (orientation: landscape) {
+        top: 0;
+      }
+
+      &.login-show {
+        -webkit-transform: translate(0);
+        transform: translate(0);
+      }
+
+      // title
+      .tip {
+        padding: .37333333333333335rem .4rem .36rem;
+        text-align: center;
+        background: @base-color;
+        color: white;
+        .mixin-font-dpr(12px);
+        i.iconfont {
+          .mixin-font-dpr(12px);
+        }
+      }
+
+      // 表单
+      .login-info {
+        padding: .22666666666666666rem .4rem 0;
+
+        dt {
+          border-bottom: 1/75rem solid #bdbdbd;
+          padding: .2rem 0;
+          //输入框
+          .weui-input {
+            height: auto;
+            line-height: normal;
+            .mixin-font-dpr(15px);
+          }
+          input::-webkit-input-placeholder {
+            color: #acb5bd;
+          }
+          input::-moz-placeholder {
+            color: #acb5bd;
+          }
+          input:-ms-input-placeholder {
+            color: #acb5bd;
+          }
+
+          // icon
+          i.iconfont {
+            .mixin-font-dpr(18px);
+            margin-left: 3/75rem;
+            margin-right: .49333333333333335rem;
+          }
+        }
+      }
+
+      // 提交按钮
+      .btn_login {
+        color: white;
+        padding: .6rem 1.2666666666666666rem .8rem;
+        .btn_or {
+          background: @base-color;
+          .mixin-font-dpr(19px);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,175 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>订单详情</title>
+    <meta name="keywords" content="railway,Service,weChat,RailwayServiceWechat" />
+    <meta name="description" content="高铁微信端,高铁微信服务,高铁微信服务点餐" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="statics/js/config/wechat-cfg.js"></script>
+    <script type="text/javascript">
+        // 微信分享
+        var str = window.location.href;
+        if(sessionStorage.userInfo){
+//            return
+        }else if(str.indexOf("userId")>=-1){
+            var str1= str.split("?")[1];
+            var arr = str1.split("&");
+            var userInfo = {};
+            userInfo.userId = arr[1].split("=")[1];
+            sessionStorage.setItem("userInfo",JSON.stringify(userInfo));
+            sessionStorage.setItem("orderId",arr[0].split("=")[1]);
+        }else{
+            window.location.href = login_url;
+        }
+    </script>
+    <link rel="stylesheet" href="statics/css/dropload.css">
+    <!-- weUI.css -->
+    <link href="statics/css/weui.min.css" rel="stylesheet"/>
+    <!-- jQ-weUI.css -->
+    <link href="statics/css/jquery-weui.min.css" rel="stylesheet"/>
+    <link href="statics/css/icon-font/iconfont.css" rel="stylesheet">
+    <link href="statics/css/orderDetail.css" rel="stylesheet"/>
+</head>
+<body>
+<div>
+    <div id="mask">
+        <div class="carImg">
+            <img src="" alt="">
+        </div>
+    </div>
+    <div class="main scroll" ontouchstart="" >
+        <div class="verificationCode">
+            <p>确认收货</p>
+            <p>验证码</p>
+            <p class="code">0124</p>
+        </div>
+
+        <!--头部-->
+        <div class="header">
+            <div class="bg"></div>
+            <div class="merchantInfo">
+                <div class="merchantLogo"><img src="statics/images/indexImg/orderImg01.png" alt=""></div>
+                <p class="merchantStatus tc"></p>
+                <p class="merchantCancleStatus tc"></p>
+                <p class="reason tc"></p>
+            </div>
+            <div class="weui-flex">
+                <!--<div class="weui-flex__item tc merchantBox" style="display: none;"><span><a class="linkMerchant" href="#"><i class="iconfont icon-phone"></i>联系商家</a></span></div>-->
+                <div class="weui-flex__item tc wayBtn" style="display: none;"><span><a class="peisong"  href="#"><i class="iconfont icon-phone"></i>联系配送员</a></span></div>
+                <div class="weui-flex__item tc cancelBtn" style="display: none;"><span><a class="cancelOrder cancelText" href="cancelOrder.html">取消订单</a></span></div>
+            </div>
+        </div>
+
+        <!--商品详情-->
+        <div class="goodsInfo">
+            <div class="infoTitle">
+                <a class="merchantLink" href="javascript:void(0);">
+                    <!--<p class="merchantName fl">-->
+                        <!--<img src="statics/images/indexImg/orderImg01.png">-->
+                    <!--<p class="name fz13" ></p>-->
+                    <!--<p class="address fz12" ></p>-->
+                    <!--</p>-->
+                    <p class="merchantName fl">
+                        <img src="statics/images/indexImg/orderImg01.png">
+                    </p>
+                    <span class="name" style="line-height: 25px;font-size: 20px;font-weight: bold;" ></span>
+                    <p class="merchantPrice fr fz12 c98">商品总价<span class="priceLogo" style="color: #575757;">￥</span><span class="c58 priceTotal" style="color: #575757;"></span></p>
+                </a>
+            </div>
+            <div class="goodsList">
+                <ul class="list">
+
+                </ul>
+            </div>
+        </div>
+
+        <!--订单详情-->
+        <div class="orderInfo">
+            <div class="orderTitle">
+                <p class="orderName fz13">订单详情</p>
+                <div style="overflow: hidden;">
+                    <p id="cptar" class="orderNumber fz12 fl"></p>
+                    <button class="copy fr fz12" data-clipboard-action="copy" data-clipboard-target=".orderNo">复制</button>
+                    <!--<button id="cpbtn" class="copy fr fz12">复制</button>-->
+                </div>
+            </div>
+            <div class="orderDetails">
+                <ul class="orderList">
+                    <li class="contacts"></li>
+                    <li class="orderWay" style="display: none;"></li>
+                    <li class="deliverAddress"></li>
+                    <li class="payWay" style="display: none;"></li>
+                    <li class="orderTime"></li>
+                    <li class="way"></li>
+                </ul>
+            </div>
+        </div>
+
+        <!--评价-->
+        <div class="evaluation" style="display: none">
+            <p><a href="orderEvaluation.html">评价</a></p>
+        </div>
+    </div>
+</div>
+
+    <!-- 底部导航栏 -->
+    <div class="weui-tab" id="tabBar">
+        <div class="weui-tabbar">
+            <a href="index.html" class="weui-tabbar__item tabBarList">
+                <!-- <span class="weui-badge" style="position: absolute;top: -.4em;right: 1em;">8</span> -->
+                <div class="weui-tabbar__icon">
+                    <i class="iconfont icon-shouye1"></i>
+                    <!--<img src="statics/images/indexImg/u67.png" alt="">-->
+                </div>
+                <p class="weui-tabbar__label">首页</p>
+            </a>
+            <a href="order.html" class="weui-tabbar__item tabBarList">
+                <div class="weui-tabbar__icon">
+                    <i class="iconfont icon-dingdan"></i>
+                    <!--<img src="statics/images/indexImg/u69.png" alt="">-->
+                </div>
+                <p class="weui-tabbar__label">订单</p>
+            </a>
+            <a href="news.html" class="weui-tabbar__item tabBarList">
+                <div class="weui-tabbar__icon">
+                    <i class="iconfont icon-iconfontmark"></i>
+                    <!--<img src="statics/images/indexImg/u73.png" alt="">-->
+                </div>
+                <p class="weui-tabbar__label">消息</p>
+            </a>
+            <a href="my.html" class="weui-tabbar__item tabBarList">
+                <div class="weui-tabbar__icon">
+                    <i class="iconfont icon-xingming"></i>
+                    <!--<img src="statics/images/indexImg/u71.png" alt="">-->
+                </div>
+                <p class="weui-tabbar__label">我的</p>
+            </a>
+        </div>
+    </div>
+
+    <div class="footer"></div>
+    <script type="text/html" id="goodsTemplate">
+        <li>
+            <p class="goodsName fl">本宫凤堡</p>
+            <p class="price fr"><span>×</span><span class="number">1</span><span class="goodsPrice">￥</span><span>23</span></p>
+        </li>
+    </script>
+    <script src="statics/js/lib/jquery-2.0.3.min.js"></script>
+    <script src="statics/js/lib/fastclick.js"></script>
+    <script src="statics/js/lib/jquery-weui.js"></script>
+    <script src="statics/js/core.js"></script>
+    <script src="statics/js/disable_ios_scroll.min.js"></script>
+    <script src="statics/js/lib/clipboard.min.js"></script>
+    <script src="statics/js/lib/dropload.min.js"></script>
+    <!--<script src="statics/js/orderDetail.min.js"></script>-->
+    <script src="statics/js/orderDetail.js"></script>
+<script>
+    $(function() {
+        FastClick.attach(document.body);
+    });
+</script>
+
+
+</body>
+
+</html>

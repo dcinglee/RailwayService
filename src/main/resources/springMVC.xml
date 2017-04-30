@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans  
+                        http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context  
+                        http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc
+                        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+    <!-- start spring mvc annotation -->
+    <context:annotation-config/>
+    <!-- let static resource handler by web servlet -->
+    <mvc:default-servlet-handler/>
+
+    <!--加载包含Redis的配置文件-->
+    <context:property-placeholder location="classpath:common.properties"/>
+
+    <!--使用Redis连接池配置（仅用于Session）-->
+    <bean id="sessionJedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxIdle" value="${redis.maxIdle}"/>
+        <property name="maxTotal" value="${redis.maxTotal}"/>
+        <property name="maxWaitMillis" value="${redis.maxWaitMillis}"/>
+        <property name="testOnBorrow" value="${redis.testOnBorrow}"/>
+    </bean>
+
+    <!--使用Redis连接池（仅用于Session）-->
+    <bean id="sessionJedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+        <property name="hostName" value="${redis.hostName}"/>
+        <property name="port" value="${redis.port}"/>
+        <property name="password" value="${redis.password}"/>
+        <property name="timeout" value="${redis.timeout}"/>
+        <property name="poolConfig" ref="sessionJedisPoolConfig"/>
+        <property name="database" value="0"/>
+    </bean>
+
+    <!--使用Redis模板操作（仅用于Session）-->
+    <bean id="sessionRedisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+        <property name="connectionFactory" ref="sessionJedisConnectionFactory"/>
+        <property name="keySerializer">
+            <bean class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
+        </property>
+        <property name="hashKeySerializer">
+            <bean class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
+        </property>
+    </bean>
+
+    <!--使用Redis作为服务器的Session-->
+    <bean class="org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration">
+        <property name="maxInactiveIntervalInSeconds" value="1800"/>
+    </bean>
+
+    <!--注解驱动-->
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <ref bean="jacksonMessageConverter"/>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <!--控制器扫描-->
+    <context:component-scan base-package="com.railwayservice.*.web,com.railwayserviceWX.controller"/>
+
+    <!--静态资源访问-->
+    <!--<mvc:resources mapping="/favicon.ico" location="/"/>
+    <mvc:resources mapping="/MP_verify_WpNYyk4Wm3iBqe1A.txt" location="/"/>
+    <mvc:resources mapping="/MP_verify_OB81Cm7yz3KgnVih.txt" location="/"/>
+    <mvc:resources mapping="/default/**" location="/default/"/>
+    <mvc:resources mapping="/webpage/**" location="/webpage/"/>
+    <mvc:resources mapping="/wechat/**" location="/wechat/"/>
+    <mvc:resources mapping="/images/**" location="/images/"/>
+    <mvc:resources mapping="/webjars/**" location="/webjars/"/>
+    <mvc:resources mapping="/*.html" location="/"/>-->
+
+    <!--基于注解的登陆拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/favicon.ico"/>
+            <mvc:exclude-mapping path="/MP_verify_WpNYyk4Wm3iBqe1A.txt"/>
+            <mvc:exclude-mapping path="/MP_verify_OB81Cm7yz3KgnVih.txt"/>
+            <mvc:exclude-mapping path="/default/**"/>
+            <mvc:exclude-mapping path="/webpage/**"/>
+            <mvc:exclude-mapping path="/wechat/**"/>
+            <mvc:exclude-mapping path="/images/**"/>
+            <mvc:exclude-mapping path="/webjars/**"/>
+            <mvc:exclude-mapping path="/*.html"/>
+            <bean class="com.railwayservice.application.interceptor.AuthInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <!-- 注册文件上传解析器 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="maxUploadSize" value="104857600"/>
+        <property name="maxInMemorySize" value="4096"/>
+    </bean>
+
+    <!--Json解析器-->
+    <bean id="jacksonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+        <property name="supportedMediaTypes">
+            <list>
+                <value>text/html;charset=UTF-8</value>
+                <value>application/json;charset=UTF-8</value>
+            </list>
+        </property>
+        <property name="objectMapper">
+            <bean class="com.fasterxml.jackson.databind.ObjectMapper">
+                <property name="dateFormat">
+                    <bean class="java.text.SimpleDateFormat">
+                        <constructor-arg type="java.lang.String" value="yyyy-MM-dd HH:mm:ss"/>
+                    </bean>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+</beans>

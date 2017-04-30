@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>预订车票</title>
+    <meta name="keywords" content="railway,Service,weChat,RailwayServiceWechat"/>
+    <meta name="description" content="高铁微信端,高铁微信服务,高铁微信服务首页"/>
+    <script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.2/??flexible_css.js,flexible.js"></script>
+    <link href="../statics/css/weui.min.css" rel="stylesheet"/>
+    <link href="../statics/css/jquery-weui.min.css" rel="stylesheet"/>
+    <link href="../statics/css/icon-font/iconfont.css" rel="stylesheet">
+    <link rel="stylesheet" href="../statics/css/ticket/trainBook.css"/>
+    <link rel="stylesheet" href="../statics/css/ticket/vCode.css"/>
+</head>
+<body ontouchstart>
+<section class="trainLogin">
+    <!--车次信息-->
+    <ul class="timetable">
+        <!--发车时间-->
+        <li class="train-date weui-flex">
+            <dd class="weui-flex__item" id="dateTime"></dd>
+            <dd id="week"></dd>
+        </li>
+        <!--站点信息-->
+        <li class="train-station weui-flex">
+            <dl>
+                <dd id="start_station"></dd>
+                <dd id="start_time"></dd>
+            </dl>
+            <dl class="weui-flex__item">
+                <dd id="line"></dd>
+                <dd class="goto">
+                    <img src="../statics/images/trainTickets/goThere_icon.png" alt="">
+                </dd>
+            </dl>
+            <dl>
+                <dd class="weui-flex__item" id="end_station"></dd>
+                <dd class="weui-flex__item" id="end_time"></dd>
+            </dl>
+        </li>
+    </ul>
+
+    <!--登录信息-->
+    <ul class="train-info">
+        <li id="bound" class="weui-flex">
+            <dd class="weui-flex__item">绑定12306帐号</dd>
+            <dd>
+                <i class="iconfont icon-msnui-bind"></i>
+            </dd>
+        </li>
+        <li id="logged" class="weui-flex hide">
+            <dd class="weui-flex__item">12306登录帐号</dd>
+            <dd id="switch" class="color-orange">切换帐号</dd>
+        </li>
+        <li id="modify" class="weui-flex hide">
+            <dd class="weui-flex__item">添加/修改乘车人</dd>
+            <dd>
+                <i class="iconfont icon-tianjiachangyonglvke"></i>
+            </dd>
+        </li>
+    </ul>
+
+    <!--预定按钮-->
+    <div class="weui-btn-area btn_bottom hide">
+        <a class="weui-btn btn_or" href="javascript:void(0);" id="submit">立即预订</a>
+    </div>
+
+</section>
+
+<script type="text/html" id="clone_userInfo">
+    <li class="weui-flex userinfo">
+        <dd>
+            <i class="iconfont icon-jianshao color-btn-jianshao" data-idx="-1"></i>
+        </dd>
+        <dd class="weui-flex__item">
+            <dl class="weui-flex block">
+                <dd class="block-right">乘客姓名</dd>
+                <dd class="weui-flex__item">
+                    <span>车票类型</span>
+                </dd>
+            </dl>
+            <dl>
+                <dd>证件号码</dd>
+            </dl>
+        </dd>
+        <dd>
+            <dl class="block">
+                <dd>座位类型</dd>
+            </dl>
+            <dl>
+                <dd>&yen;车票单价</dd>
+            </dl>
+        </dd>
+    </li>
+</script>
+<script type="text/html" id="clone_12306">
+    <!-- 绑定12306账号 -->
+    <div class="train-mask"></div>
+    <div id="login">
+        <div class="weui-flex tip">
+            <span class="weui-flex__item">绑定12306账号</span>
+            <i class="iconfont icon-guanbi1"></i>
+        </div>
+        <dl class="login-info">
+            <dt class="weui-flex">
+                <i class="iconfont icon-geren"></i>
+                <input id="account" type="text" class="weui-input weui-flex__item" placeholder="请输入12306账号">
+            </dt>
+            <dt class="weui-flex">
+                <i class="iconfont icon-mima"></i>
+                <input id="pwd" type="password" class="weui-input weui-flex__item" placeholder="请输入12306密码">
+            </dt>
+            <dd>
+            </dd>
+        </dl>
+        <div class="btn_login">
+            <a class="weui-btn btn_or" href="javascript:" id="a_login_12306">确认</a>
+        </div>
+    </div>
+</script>
+<script type="text/html" id="clone_auth">
+    <div id="code">
+        <div class="train-mask"></div>
+        <div class="auth">
+            <div class="center">
+                <img src="图片地址" id="vcode_img">
+                <div class="auth-check">
+                    <label for="1">
+                        <input type="checkbox" id="1">
+                        <i class="icon iconfont icon-huochepiao"></i>
+                    </label>
+                    <label for="2">
+                        <input type="checkbox" id="2">
+                        <i class="icon iconfont icon-huochepiao"></i>
+                    </label>
+                    <label for="3">
+                        <input type="checkbox" id="3">
+                        <i class="icon iconfont icon-huochepiao"></i>
+                    </label>
+                    <label for="4">
+                        <input type="checkbox" id="4">
+                        <i class="icon iconfont icon-huochepiao"></i>
+                    </label>
+                </div>
+                <div class="auth-check">
+                    <label for="5">
+                        <input type="checkbox" id="5">
+                        <i class="icon iconfont icon-huochepiao"></i>
+                    </label>
+                    <label for="6">
+                        <input type="checkbox" id="6">
+                        <i class="icon iconfont icon-huochepiao"></i>
+                    </label>
+                    <label for="7">
+                        <input type="checkbox" id="7">
+                        <i class="icon iconfont icon-huochepiao"></i>
+                    </label>
+                    <label for="8">
+                        <input type="checkbox" id="8">
+                        <i class="icon iconfont icon-huochepiao"></i>
+                    </label>
+                </div>
+                <div class="weui-btn-area">
+                    <a href="javascript:void(0);" class="weui-btn btn_or" id="vCode">确定</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<script src="../statics/js/lib/jquery-2.0.3.min.js"></script>
+<script src="../statics/js/lib/jquery-weui.min.js"></script>
+<script src="../statics/js/ticketjs/base.js"></script>
+<script src="../statics/js/ticketjs/trainBook.js"></script>
+</body>
+</html>

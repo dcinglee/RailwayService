@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <title>商品推荐管理</title>
+    <meta name="keywords" content="station,personal,manage"/>
+    <meta name="description" content="商品推荐管理"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="./assets/css/datepicker.css"/>
+</head>
+
+<body>
+<div class="page-content page-content2">
+    <div class="row">
+        <div class="col-xs-12">
+            <form id="stationFormId" class="form-horizontal" role="form">
+
+                <div class="input-group input-group-sm input-group-sm3" style="margin-bottom: 5px">
+                    <span class="input-group-addon" style="width: 10%;">选择车站</span>
+                    <select class="selectAllStation form-control" id="productStationId" style="width: 33%;" onchange=$("#stationFormId").submit()>
+                    </select>
+                </div>
+                <div class="input-group input-group-sm input-group-sm3" style="margin-bottom: 5px">
+                    <span class="input-group-addon" style="width: 10%;">服务类型</span>
+                    <select class="selectAllService form-control" id="serviceType" style="width: 33%;" onchange=$("#stationFormId").submit()>
+                    </select>
+                </div>
+                <div class="input-group input-group-sm input-group-sm3" style="margin-bottom: 5px">
+                    <span class="input-group-addon" style="width: 10%;">商家名称</span>
+                    <input type="text" class="form-control" id="merchant" style="width: 33%;">
+                </div>
+                <div class="input-group input-group-sm input-group-sm3" style="margin-bottom: 5px">
+                    <span class="input-group-addon" style="width: 10%;">商品名称</span>
+                    <input type="text" class="form-control" id="product" style="width: 33%;">
+                </div>
+                <div class="input-group input-group-sm input-group-sm3" style="margin-bottom: 5px">
+                    <span class="input-group-addon" style="width: 10%;">推荐类型</span>
+                    <select class="selectAllRecommend form-control" id="serviceCommend" style="width: 33%;" onchange=$("#stationFormId").submit()>
+                    			<option value="0">所有美食</option>
+                    			<option value="10000">精选美食</option>
+                                <option value="10001">未推荐</option>
+                                <option value="10002">热门商品</option>
+                    </select>&nbsp;
+
+                    <button id="dataSearch" class="btn btn-primary btn-sm" title="查询">
+                        <i class="icon-search nav-search-icon"></i>
+                    </button>
+                    <button id="datachange" type="button" class="btn btn-sm btn-success"
+                            data-toggle="modal" data-target="#updateModal" disabled
+                            title="修改">
+                        <i class="icon-pencil bigger-130"></i>
+                    </button>
+                    <!-- </div>	 -->
+                </div>
+            </form>
+            <div class="row" style="margin-top: 0px;">
+                <div class="col-xs-12">
+                    <!-- PAGE CONTENT BEGINS -->
+                    <table id="product_table" class="table"></table>
+                    <!-- PAGE CONTENT ENDS -->
+                </div>
+                <!-- /.col -->
+            </div>
+        </div>
+        <!-- /.col -->
+    </div>
+</div>
+<!-- /.page-content -->
+<!-- 修改的modal start-->
+<div class="modal fade" id="updateModal" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="exampleModalLabel">商品类型修改</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form" id="updateForm"
+                      data-type="update">
+                    <div class="form-group">
+                        <label for="stationName1" class="col-sm-2 control-label">车站名称</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="stationName1" readonly/>
+                        </div>
+                    </div>
+                     <div class="form-group">
+                        <label for="merchantName1" class="col-sm-2 control-label">商户名称</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="merchantName1" readonly/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="productName1" class="col-sm-2 control-label">商品名称</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="productName1" readonly/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="productPrice1" class="col-sm-2 control-label">商品售价</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="productPrice1" readonly/>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="productSales" class="col-sm-2 control-label">商品销量</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="productSales" />
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="productHits" class="col-sm-2 control-label">点击量</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="productHits" />
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="productscore" class="col-sm-2 control-label">商品评分</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="productscore" />
+                        </div>
+                    </div>
+                   
+                    <div class="form-group" hidden >
+                        <label for="productId" class="col-sm-2 control-label">产品id</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="productId" readonly/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">推荐类型</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" name="position1">
+                                <option value="10000">精选美食</option>
+                                <option value="10001">未推荐</option>
+                                <option value="10002">热门商品</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" form="updateForm" id="sub">保存</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="script/product.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,248 @@
+body {
+  font-size: 14px;
+  background: url("../images/route-bg.jpg") #000000;
+  background-size: 100%;
+  line-height: 1;
+  overflow: auto;
+}
+@media all and (orientation: portrait) {
+  body {
+    padding: 6% 2.5%;
+  }
+}
+@media all and (orientation: landscape) {
+  body {
+    padding: 2.5% 6%;
+  }
+}
+body header.title {
+  font-size: 12px;
+  color: #FFF;
+  text-align: center;
+  height: 21.5px;
+  background: rgba(255, 102, 0, 0.5);
+  border-radius: 20px;
+}
+@media screen and (min-width: 375px) {
+  body header.title {
+    margin: 0 3%;
+  }
+}
+body header.title span {
+  line-height: 21.5px;
+}
+body main {
+  margin-top: 10px;
+}
+body main nav {
+  margin-top: 0;
+  border: 2px solid #f96401;
+  border-radius: 5px;
+  height: 65.5px;
+}
+body main nav a.weui-flex__item {
+  text-align: center;
+  padding: 10px 0;
+}
+body main nav a.weui-flex__item .title {
+  color: #FFF;
+}
+body main nav a.weui-flex__item .nav-value {
+  color: #f96401;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+body main nav a.weui-flex__item:nth-of-type(2) > div {
+  border-left: 1px solid #f96401;
+  border-right: 1px solid #f96401;
+}
+body main nav a.active {
+  position: relative;
+}
+body main nav a.active:after {
+  content: " ";
+  position: absolute;
+  width: 70%;
+  left: 15%;
+  bottom: 0;
+  border-bottom: 4.5px solid #f96401;
+}
+body main div.content {
+  margin-top: 10.5px;
+  border: 2px solid #f96401;
+  border-radius: 5px;
+  padding: 5px 17px;
+}
+@media screen and (max-width: 350px) and (min-width: 320px) {
+  body main div.content {
+    height: 240px;
+  }
+}
+@media screen and (min-width: 375px) {
+  body main div.content {
+    height: 288px;
+  }
+}
+@media screen and (max-width: 370px) and (min-width: 350px) {
+  body main div.content {
+    height: 280px;
+  }
+}
+body main div.content > .weui-flex {
+  height: 25px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #f96401;
+}
+body main div.content > .weui-flex.content--title .change-type {
+  position: relative;
+  text-align: center;
+  margin: auto;
+}
+body main div.content > .weui-flex.content--title .change-type span {
+  margin-right: 10px;
+  font-weight: bold;
+  color: #FFF;
+}
+body main div.content > .weui-flex.content--title .change-type .direction {
+  vertical-align: middle;
+  height: 14px;
+  transform: rotate(270deg);
+}
+body main div.content > .weui-flex.content--title .change-type .stationList {
+  width: 100%;
+  position: absolute;
+  left: -10px;
+  z-index: 10;
+  display: none;
+  background-color: white;
+  border-radius: 10px;
+  color: #555555;
+}
+body main div.content > .weui-flex.content--title .change-type .stationList li {
+  position: relative;
+  line-height: 50px;
+}
+body main div.content > .weui-flex.content--title .change-type .stationList li:after {
+  content: ' ';
+  position: absolute;
+  height: 0;
+  border-bottom: 1px solid #d6d6d6;
+  top: 0;
+  left: 10%;
+  width: 80%;
+}
+body main div.content > .weui-flex.content--title .search {
+  flex-grow: 2.155;
+  border-left: 1px solid #f96401;
+}
+body main div.content > .weui-flex.content--title .search .weui-flex {
+  padding-left: 10px;
+}
+body main div.content > .weui-flex.trips select {
+  color: #FFF;
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+  width: 100%;
+  font-size: 16px;
+}
+body main div.content > .weui-flex input {
+  color: #FFF;
+  height: 25px;
+  margin-left: 10px;
+}
+body main div.content > .weui-flex i.iconfont {
+  color: #f96401;
+  margin-top: 7px;
+  margin-left: 2px;
+}
+body main div.content .city-box,
+body main div.content .trip-box {
+  position: relative;
+  color: #FFF;
+  height: 168px;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  text-align: center;
+  margin-top: 15px;
+  height: 80%;
+}
+body main div.content .city-box > div,
+body main div.content .trip-box > div {
+  height: 100%;
+}
+body main div.content .city-box > div .box-block,
+body main div.content .trip-box > div .box-block {
+  width: 25%;
+  float: left;
+  position: relative;
+}
+body main div.content .city-box > div .box-block span,
+body main div.content .trip-box > div .box-block span {
+  font-size: 16px;
+}
+body main div.content .city-box .box-block {
+  padding: 17px 0;
+}
+body main div.content .city-box .box-block span {
+  display: block;
+}
+body main div.content .trip-box .box-block {
+  padding: 17px 0;
+}
+body main div.content .trip-box .box-block .trip {
+  font-weight: bold;
+}
+body main div.content .trip-box .box-block .time {
+  margin-top: 6px;
+  font-size: 12px;
+}
+body footer {
+  left: 2.5%;
+  right: 2.5%;
+}
+@media all and (orientation: portrait) {
+  body footer {
+    position: absolute;
+    bottom: 8px;
+  }
+}
+@media all and (orientation: landscape) {
+  body footer {
+    position: static;
+    margin-top: 20px;
+  }
+}
+body footer a.weui-btn_default {
+  line-height: 2;
+  height: 35px;
+  color: #FFF;
+  background: #f96401;
+}
+body footer div.skip {
+  margin-top: 19px;
+  text-align: center;
+}
+body footer div.skip a {
+  color: #FFF;
+  font-size: 14px;
+}
+@media screen and (max-width: 320px) {
+  body footer {
+    height: 13vh;
+  }
+  body footer div.skip {
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+  }
+}
+body .click {
+  background: #F90;
+  -webkit-transition: 0.3s all ease;
+  -moz-transition: 0.3s all ease;
+  -ms-transition: 0.3s all ease;
+  -o-transition: 0.3s all ease;
+  -webkit-transition: .3s left ease;
+  transition: 0.3s all ease;
+}

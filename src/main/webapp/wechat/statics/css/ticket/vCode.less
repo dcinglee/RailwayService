@@ -1,0 +1,79 @@
+@import "dpr";
+
+// 12306打码
+.auth {
+  .mixin-all(fixed);
+  z-index: 3;
+
+  .center {
+    position: relative;
+    margin: 50% auto;
+    text-align: center;
+
+    img {
+      width: 9rem;
+      height: auto;
+    }
+
+    #img_refresh {
+      position: absolute;
+      right: .6rem;
+      top: .1rem;
+      line-height: 2;
+      background: #286090;
+      .mixin-font-dpr(13px);
+
+      .icon {
+        .mixin-font-dpr(13px);
+        vertical-align: top;
+        margin-right: 6px;
+      }
+    }
+
+    .auth-check {
+      position: absolute;
+      left: .65rem;
+      right: .6rem;
+      height: 2.0834rem;
+      &:nth-of-type(1) {
+        top: 1.25rem;
+      }
+      &:nth-of-type(2) {
+        top: 3.45rem;
+      }
+      label {
+        position: relative;
+        width: 2.0834rem;
+        height: 2.0834rem;
+        float: left;
+        &:not(:last-child) {
+          margin-right: 0.13rem;
+        }
+        input {
+          position: absolute;
+          left: -9999rem;
+        }
+        input:checked + .icon-huochepiao {
+          display: block;
+          color: red;
+          .mixin-font-dpr(45px);
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%,-50%);
+        }
+        .icon-huochepiao {
+          display: none;
+        }
+      }
+    }
+
+    .weui-btn-area {
+      margin: .5rem 1rem;
+      .btn_or {
+        background: @orange;
+        .mixin-font-dpr(18px);
+      }
+    }
+  }
+}

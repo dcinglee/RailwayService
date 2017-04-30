@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>管理员管理</title>
+    <meta name="keywords" content="manager,personal,manage"/>
+    <meta name="description" content="用户,管理员,管理员管理"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="./assets/css/validationEngine.jquery.css" type="text/css">
+
+    <script src="./assets/js/jquery.validationEngine-zh_CN.js"></script>
+    <script src="./assets/js/jquery.validationEngine.js"></script>
+
+
+</head>
+<body>
+<div class="page-content">
+    <div class="row">
+
+        <div class="col-xs-12">
+            <form id="stationFormId" class="form-horizontal" role="form">
+
+                <div class="input-group input-group-sm input-group-sm3" style="margin-bottom: 5px">
+                    <span class="input-group-addon" style="width: 10%;">管理员名称</span>
+                    <input type="text" class="form-control" id="inputStation" style="width: 33%;">&nbsp;
+
+                    <button id="dataSearch" class="btn btn-primary btn-sm" title="查询">
+                        <i class="icon-search nav-search-icon"></i>
+                    </button>
+                    <button id="dataadd" type="button" class="btn btn-primary btn-sm"
+                            data-toggle="modal" data-target="#addModal" title="管理员添加">
+                        <i class="icon-plus-sign bigger-120"></i>
+                    </button>
+                    <button id="datachange" type="button" class="btn btn-sm btn-success"
+                            data-toggle="modal" data-target="#updateModal" disabled
+                            title="管理员修改">
+                        <i class="icon-pencil bigger-130"></i>
+                    </button>
+                    <button id="datadelete" type="button" class="btn btn-sm btn-danger"
+                            data-toggle="modal" data-target="#deleteModal" disabled
+                            title="删除任务">
+                        <i class="icon-trash bigger-130"></i>
+                    </button>
+                    <!-- </div>	 -->
+                </div>
+            </form>
+
+            <div class="row" style="margin-top: 0px;">
+                <div class="col-xs-12">
+                    <!-- PAGE CONTENT BEGINS -->
+                    <table id="manager_table" class="table"></table>
+                    <!-- PAGE CONTENT ENDS -->
+                </div>
+                <!-- /.col -->
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.page-content -->
+
+
+<!-- 添加的modal start-->
+<div class="modal fade bs-example-modal-lg" id="addModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="exampleModalLabel">管理员添加</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="addForm" data-type="addAdmin">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">姓名</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="validate[required] form-control"
+                                   name="name" placeholder="请输入姓名">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">账号</label>
+                        <div class="col-sm-10">
+                            <input type="text"
+                                   class="validate[required,custom[numberOfLetter],minSize[2],maxSize[20]]  form-control"
+                                   name="account" placeholder="请输入账号">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">密码</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="validate[minSize[6],maxSize[20]] form-control"
+                                   name="password" placeholder="请输入密码">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">确认密码</label>
+                        <div class="col-sm-10">
+                            <input type="password" class=" form-control"
+                                   name="confirmPassword" placeholder="请再次输入密码">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">所属车站</label>
+                        <div class="col-sm-3">
+                            <select class=" form-control selectAllStation" name="belongId">
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">角色权限</label>
+                        <div class=" col-sm-10 roleCheckBoxs " style="padding-top: 4px;">
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">性别</label>
+                        <div class="  col-sm-10 "
+                             style="padding-left: 0px; padding-top: 0px; margin-top: -5px;">
+                            <div class="radio col-sm-2" style="padding-left: 10px;">
+                                <label> <input name="gender" type="radio" value="1001"
+                                               class="ace"/> <span class="lbl"> 男</span>
+                                </label>
+                            </div>
+                            <div class="radio col-sm-2 " style="padding-left: 0px;">
+                                <label> <input name="gender" type="radio" value="1002"
+                                               class="ace"/> <span class="lbl"> 女</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">状态</label>
+                        <div class="col-sm-3" required>
+                            <select class="form-control" name="adminState">
+                                <option value="3001">正常</option>
+                                <option value="3002">锁定</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" form="addForm">保存</button>
+                <!--  <button type="reset" class="btn btn-warnning">重置</button> -->
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 添加的modal end-->
+
+<!-- 修改的modal start-->
+<div class="modal fade" id="updateModal" role="dialog"
+     aria-labelledby="exampleModalLabel">
+    <div id="modalDialog" class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="exampleModalLabel">管理员修改</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="updateForm"
+                      data-type="updateAdmin">
+                    <div class="form-group" hidden>
+                        <label class="col-sm-2 control-label">ID</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="adminId"
+                                   id="adminId" placeholder="Id">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">姓名</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="name"
+                                   value="chenxiuyan"> </input>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">账号</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="account"
+                                   readonly value="王三"> </input>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">所属车站</label>
+                        <div class="col-sm-10">
+                            <select class="form-control selectAllStation" name="belongId">
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">角色权限</label>
+                        <div class="col-sm-10 roleCheckBoxs " style="padding-top: 4px;">
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">性别</label>
+                        <div class="col-sm-10 "
+                             style="padding-left: 0px; padding-top: 0px; margin-top: -5px;">
+                            <div class="radio col-sm-2 " style="padding-left: 10px;">
+                                <label> <input name="gender" type="radio" value="1001"
+                                               class="ace"/> <span class="lbl">男</span>
+                                </label>
+                            </div>
+                            <div class="radio col-sm-2 " style="padding-left: 0px;">
+                                <label> <input name="gender" type="radio" value="1002"
+                                               class="ace"/> <span class="lbl">女</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">状态</label>
+                        <div class="col-sm-3">
+                            <select class="form-control" name="adminState">
+                                <option value="3001">正常</option>
+                                <option value="3002">锁定</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- <div class="form-group">
+                    <label  class="col-sm-2 control-label">电话号码</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" name="phoneNo" value="15899888888">
+                      </input>
+                    </div>
+                  </div> -->
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" form="updateForm">保存</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 修改的modal end-->
+
+<!-- 删除的modal start-->
+<div class="modal fade" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">删除任务</h4>
+            </div>
+            <!--Form的id为myForm-->
+            <form id="deleteForm" data-type="deleteAdmin">
+                <div class="modal-body"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary">确认</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- 删除的modal end-->
+
+<script src="script/manager.js"></script>
+</body>
+</html>

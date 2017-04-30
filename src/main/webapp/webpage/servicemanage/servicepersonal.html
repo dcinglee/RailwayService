@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>服务人员管理</title>
+    <meta name="keywords" content="service,personal,manage"/>
+    <meta name="description" content="服务人员管理,人员管理信息"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+     <link rel="stylesheet" href="./assets/css/validationEngine.jquery.css" type="text/css">
+
+    <script src="./assets/js/jquery.validationEngine-zh_CN.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./assets/js/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
+    <!-- basic styles -->
+
+</head>
+
+<body>
+<div class="page-content page-content2">
+    <div class="row">
+        <div class="col-xs-12">
+            <form id="stationFormId" class="form-horizontal" role="form">
+                <div class="input-group input-group-sm input-group-sm3" style="margin-bottom: 5px">
+                    <span class="input-group-addon" style="width: 10%;">车站名称</span>
+                    <select class="selectAllStation form-control"  onchange=$("#stationFormId").submit()
+                            id="serviceProviderSel" style="width: 33%;">
+                    </select>
+                </div>
+
+                <div class="input-group input-group-sm input-group-sm3" style="margin-bottom: 5px">
+                    <span class="input-group-addon" style="width: 10%;">服务人员</span>
+                    <input type="text" class="form-control" id="serviceName" style="width: 33%;">
+                </div>
+
+                <div class="input-group input-group-sm input-group-sm3" style="margin-bottom: 5px">
+                    <span class="input-group-addon" style="width: 10%;">联系方式</span>
+                    <input type="text" class="form-control" id="servicephoneNo" style="width: 33%;">
+                </div>
+
+                <div class="input-group input-group-sm input-group-sm3" style="margin-bottom: 5px">
+                    <span class="input-group-addon" style="width: 10%;">身份证号</span>
+                    <input type="text" class="form-control" id="inputStation3" style="width: 33%;">&nbsp;
+
+                    <button id="dataSearch" class="btn btn-primary btn-sm" title="查询">
+                        <i class="icon-search nav-search-icon"></i>
+                    </button>
+                    <button id="dataadd" type="button" class="btn btn-primary btn-sm"
+                            data-toggle="modal" data-target="#addModal" title="服务人员添加">
+                        <i class="icon-plus-sign bigger-120"></i>
+                    </button>
+                    <button id="datachange" type="button" class="btn btn-sm btn-success"
+                            data-toggle="modal" data-target="#updateModal" disabled
+                            title="服务人员修改">
+                        <i class="icon-pencil bigger-130"></i>
+                    </button>
+                    <button id="datadelete" type="button" class="btn btn-sm btn-danger"
+                            data-toggle="modal" data-target="#deleteModal" disabled
+                            title="删除任务">
+                        <i class="icon-trash bigger-130"></i>
+                    </button>
+                    <!-- </div>	 -->
+                </div>
+            </form>
+            <div class="row" style="margin-top: 0px;">
+                <div class="col-xs-12">
+                    <!-- PAGE CONTENT BEGINS -->
+                    <table id="servicePersonal_table" class="table"></table>
+                    <!-- PAGE CONTENT ENDS -->
+                </div>
+                <!-- /.col -->
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.page-content -->
+
+<!-- 添加的modal start-->
+<div class="modal fade bs-example-modal-lg" id="addModal" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="exampleModalLabel">服务人员添加</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="addForm" data-type="add">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">姓名</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="validate[required] form-control" id="name" name="name"
+                                   placeholder="请输入姓名">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">账号</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="validate[required,custom[numberOfLetter],minSize[2],maxSize[20]]  form-control" id="account"
+                                   name="account" placeholder="请输入账号">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">身份证号</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="validate[required,custom[numberOfLetter]] form-control" name="identityCardNo"
+                                   placeholder="请输入身份证号码">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" 
+                                   name="password" placeholder="请输入密码">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">确认密码</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" 
+                                   name="confirmPassword" placeholder="请再次输入密码">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">服务类型</label>
+                        <div class="col-sm-10  serviceTypecheckboxs "
+                             style="padding-top: 4px"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">车站</label>
+                        <div class="col-sm-3">
+                            <select class="form-control selectAllStation" name="stationId">
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">联系电话</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="validate[required,custom[number]] form-control" id="phoneNo"
+                                   name="phoneNo" placeholder="请输入手机号">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">年龄</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="validate[required,custom[number]] form-control" id="age" name="age"
+                                   placeholder="请输入年龄">
+                        </div>
+                    </div>
+
+                    <div id="wrap" class="form-group">
+                        <label class="col-sm-2 control-label">性别</label>
+                        <div class="col-sm-10 "
+                             style="padding-left: 0px; padding-top: 0px; margin-top: -5px;">
+                            <div class="radio col-sm-2" style="padding-left: 10px;">
+                                <label> <input name="gender" type="radio" value="1001"
+                                               class="ace"/> <span class="lbl"> 男</span>
+                                </label>
+                            </div>
+                            <div class="radio col-sm-2 " style="padding-left: 0px;">
+                                <label> <input name="gender" type="radio" value="1002"
+                                               class="ace"/> <span class="lbl"> 女</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">状态</label>
+                        <div class="col-sm-3">
+                            <select class="form-control" name="status">
+                                <option value="5001">启用</option>
+                                <option value="5002">停用</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" form="addForm">保存</button>
+                <!--  <button type="reset" class="btn btn-warnning">重置</button> -->
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 添加的modal end-->
+
+<!-- 修改的modal start-->
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="exampleModalLabel">服务人员修改</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form" id="updateForm"
+                      data-type="update">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">ID</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="serviceProviderId"
+                                   id="serviceProviderId" placeholder="Id" readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">姓名</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="name" 
+                                   value="王三"> </input>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">账号</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="account"
+                              readonly  value="sz-5554458"> </input>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">身份证号</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="identityCardNo"
+                                   value="sz-5554458"> </input>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">服务类型</label>
+                        <div class="col-sm-10  serviceTypecheckboxs"
+                             style="padding-top: 4px"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">车站</label>
+                        <div class="col-sm-10">
+                            <select class="form-control selectAllStation" name="stationId">
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">联系电话</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="phoneNo"
+                                   id="phoneNo" value="15899888888"> </input>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">年龄</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="age" id="age">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">性别</label>
+                        <div class="col-sm-10"
+                             style="padding-left: 0px; padding-top: 0px; margin-top: -5px;">
+                            <div class="radio col-sm-2" style="padding-left: 10px;">
+                                <label> <input name="gender" type="radio" class="ace"
+                                               value="1001"/> <span class="lbl">男</span>
+                                </label>
+                            </div>
+                            <div class="radio col-sm-2" style="padding-left: 0px;">
+                                <label> <input name="gender" type="radio" class="ace"
+                                               value="1002"/> <span class="lbl">女</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">状态</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" name="status">
+                                <option value="5001">启用</option>
+                                <option value="5002">停用</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" form="updateForm">保存</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 修改的modal end-->
+
+<!-- 删除的modal start-->
+<div class="modal fade" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">删除任务</h4>
+            </div>
+            <!--Form的id为myForm-->
+            <form id="deleteForm" data-type="delete">
+                <div class="modal-body"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary">确认</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- 删除的modal end-->
+<!--  <script src="assets/js/jquery.ztree.all.min.js"></script> -->
+
+<script type="text/javascript">
+    $(function () {
+        $(":checkbox").click(function () {
+            if ($(this).attr("checked") != undefined) {
+                $(this).siblings().attr("checked", false);
+                $(this).attr("checked", true);
+            }
+        });
+    });
+</script>
+<script src="script/servicepersonal.js"></script>
+</body>
+</html>

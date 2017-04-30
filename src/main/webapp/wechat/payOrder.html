@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>确认订单</title>
+    <meta name="keywords" content="railway,Service,weChat,RailwayServiceWechat"/>
+    <meta name="description" content="高铁微信端,高铁微信服务,高铁微信服务首页"/>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0"/>
+    <!--<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">-->
+    <!--<meta http-equiv="Pragma" content="no-cache"/>-->
+    <!--<meta http-equiv="Expires" content="0"/>-->
+    <script src="statics/js/config/wechat-cfg.js"></script>
+    <script>if (!sessionStorage.userInfo) {window.location.href = login_url;}</script>
+    <link rel="stylesheet" href="statics/css/weui.min.css">
+    <link rel="stylesheet" href="statics/css/jquery-weui.min.css">
+    <link rel="stylesheet" href="statics/css/icon-font/iconfont.css">
+    <link rel="stylesheet" href="statics/css/pay_order.css">
+</head>
+
+<body class="order">
+<!--送货方式-->
+<div class="weui-flex order-block radio">
+    <div class="icon-block">
+        <i class="iconfont icon-tuihuo-copy"></i>
+    </div>
+    <div style="margin: auto;">
+        送货方式
+    </div>
+    <div class="weui-flex__item" style="text-align: right">
+        <label for="delivery">
+            <input type="radio" id="delivery" data-name="method" checked data-target="receipt"> 配送员送
+        </label>
+    </div>
+    <div class="weui-flex__item" style="text-align: right">
+        <label for="self_take">
+            <input type="radio" id="self_take" data-name="method" data-target="time"> 到店自取
+        </label>
+    </div>
+</div>
+<!--占位符-->
+<div class="order-bg"></div>
+<!--用户名-->
+<div class="weui-flex order-block order-detail">
+    <div class="icon-block">
+        <i class="iconfont icon-xingming"></i>
+    </div>
+    <div class="weui-flex__item">姓名</div>
+    <div class="weui-flex__item">
+        <input type="text" class="weui-input" placeholder="请输入姓名" id="username">
+    </div>
+</div>
+<!--手机号码-->
+<div class="weui-flex order-block order-detail">
+    <div class="icon-block">
+        <i class="iconfont icon-phone"></i>
+    </div>
+    <div class="weui-flex__item">手机号</div>
+    <div class="weui-flex__item">
+        <input type="tel" class="weui-input" placeholder="请输入手机号" id="phone" maxlength="11">
+    </div>
+</div>
+<!--收货地点-->
+<div class="weui-flex order-block order-detail" id="receipt-place">
+    <div class="icon-block">
+        <i class="iconfont icon-ditu"></i>
+    </div>
+    <div class="weui-flex__item">
+        <span>收货位置</span>
+    </div>
+    <div class="weui-flex__item">
+        <input type="text" class="weui-input font-right" placeholder="请选择详细地址" id="location-select">
+    </div>
+</div>
+<!--最晚送达时间-->
+<div class="order-block radio" id="receipt-time">
+    <div class="weui-flex">
+        <div class="icon-block">
+            <i class="iconfont icon-naozhong"></i>
+        </div>
+        <div class="weui-flex__item">
+            <span>最迟送达时间</span>
+        </div>
+    </div>
+    <label for="late_20" class="weui-flex">
+        <div>
+            <input type="radio" class="radio-checked" id="late_20" data-name="receipt-time" checked data-reset="#span_lastTime">
+            <i class="weui-icon-checked"></i>
+        </div>
+        <div class="weui-flex__item">
+            <p>成功提交订单后，预计<span class="font-orange">30</span>分钟后送达</p>
+        </div>
+    </label>
+
+    <label for="late_re" class="weui-flex">
+        <div>
+            <input type="radio" class="radio-checked" id="late_re" data-name="receipt-time" data-picker="#last-time" >
+            <i class="weui-icon-checked"></i>
+        </div>
+        <div class="weui-flex__item">
+            <p>预约当天<span id="span_lastTime" class="font-orange">稍晚时间</span>送达</p>
+            <input type="text" id="last-time" style="display: none;" data-target="#span_lastTime">
+        </div>
+    </label>
+</div>
+<!--自取取货时间-->
+<div class="order-block radio" id="time" style="display: none;">
+    <div class="weui-flex">
+        <div class="icon-block">
+            <i class="iconfont icon-naozhong"></i>
+        </div>
+        <div class="weui-flex__item">
+            <span>预计取货时间</span>
+        </div>
+    </div>
+    <label for="late_10" class="weui-flex">
+        <div>
+            <input type="radio" class="radio-checked" id="late_10" data-name="select-time" checked data-reset="#span_selectTime">
+            <i class="weui-icon-checked"></i>
+        </div>
+        <div class="weui-flex__item">
+            <p>预计<span class="font-orange">10</span>分钟后到店自取</p>
+        </div>
+    </label>
+
+    <label for="late_se" class="weui-flex">
+        <div>
+            <input type="radio" class="radio-checked" id="late_se" data-name="select-time" data-picker="#time-select" >
+            <i class="weui-icon-checked"></i>
+        </div>
+        <div class="weui-flex__item">
+            <p>预约当天<span id="span_selectTime" class="font-orange">稍晚时间</span>到店自取</p>
+            <input type="text" id="time-select" style="display: none;" data-target="#span_selectTime">
+        </div>
+    </label>
+</div>
+<!--占位符-->
+<div class="order-bg"></div>
+<!--商家位置-->
+<div class="weui-flex order-block order-detail">
+    <div class="icon-block">
+        <i class="iconfont icon-store"></i>
+    </div>
+    <div class="weui-flex__item">
+        <span>商家位置</span>
+    </div>
+    <div class="font-right order-merchant">
+        <span></span>
+    </div>
+</div>
+<!--支付方式-->
+<div class="weui-flex order-block">
+    <div class="icon-block">
+        <i class="iconfont icon-zhifufangshi"></i>
+    </div>
+    <div class="weui-flex__item">
+        <span>支付方式</span>
+    </div>
+    <div class="icon-block">
+        <i class="iconfont icon-icon-wepay"></i>
+    </div>
+    <div class="font-right we-pay">
+        <span>微信支付</span>
+    </div>
+</div>
+<!--占位符-->
+<div class="order-bg"></div>
+<!--商品详情块-->
+<div class="order-accounts">
+    <div class="order-accounts-hd">
+        <span>商品总价</span>
+        <label data-name="cost"></label>
+    </div>
+    <div class="order-accounts-bd scroll"></div>
+</div>
+<!--支付按钮块-->
+<div class="footer-wrap">
+    <footer class="weui-flex order-submit">
+        <div class="order-pay weui-flex__item">
+            <span>待支付</span>
+            <span data-name="cost"></span>
+        </div>
+        <div class="weui-flex__item">
+            <a href="javascript:void(0);" class="weui-btn weui-btn_default" id="submit">确认支付</a>
+        </div>
+    </footer>
+</div>
+<!--小推车-->
+<div class="pay-mask">
+    <div class="map"></div>
+</div>
+<script type="html/text" id="clone">
+    <div class="order-accounts-cell" data-name="tr">
+            <div class="name">
+                __商品名称__
+            </div>
+            <div class="count">
+                X__商品数量__
+            </div>
+            <div class="money">
+                ￥<span>__商品价格__</span>
+            </div>
+        </div>
+
+</script>
+<script src="statics/js/lib/jquery-2.0.3.min.js"></script>
+<script src="statics/js/lib/jquery-weui.min.js"></script>
+<script src="statics/js/core.min.js"></script>
+<script src="statics/js/pay-order.js"></script>
+<!--<script src="statics/js/pay-order.min.js"></script>-->
+</body>
+
+</html>

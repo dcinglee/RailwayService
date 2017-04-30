@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>录入行程</title>
+    <meta name="keywords" content="railway,Service,weChat,RailwayServiceWechat"/>
+    <meta name="description" content="高铁微信端,高铁微信服务,高铁微信服务首页"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0"/>
+    <!--<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>-->
+    <!--<meta http-equiv="Pragma" content="no-cache"/>-->
+    <!--<meta http-equiv="Expires" content="0"/>-->
+    <script src="statics/js/config/wechat-cfg.js"></script>
+    <script>if(!sessionStorage.userInfo){window.location.href = login_url;}</script>
+    <link rel="stylesheet" href="statics/css/weui.min.css">
+    <link rel="stylesheet" href="statics/css/jquery-weui.min.css">
+    <link rel="stylesheet" href="statics/css/icon-font/iconfont.css">
+    <link rel="stylesheet" href="statics/css/route.css">
+</head>
+<body>
+<header class="title">
+    <span>录入行程: 查看列车是否晚点, 目的地天气, 订餐及购物</span>
+</header>
+<main>
+    <nav class="weui-flex">
+        <a class="weui-flex__item active" href="#start-city">
+            <div>
+                <div class="title">始发站</div>
+                <div class="nav-value" id="start">
+                    <span style="display: none;"></span>
+                    <i class="iconfont icon-xiala"></i>
+                </div>
+            </div>
+        </a>
+        <a class="weui-flex__item" href="#trips">
+            <div>
+                <div class="title">车次</div>
+                <div class="nav-value" id="train">
+                    <span style="display: none;"></span>
+                    <i class="iconfont icon-xiala"></i>
+                </div>
+            </div>
+        </a>
+        <a class="weui-flex__item" href="#terminal">
+            <div>
+                <div class="title">终点站</div>
+                <div class="nav-value" id="end">
+                    <span style="display: none;"></span>
+                    <i class="iconfont icon-xiala"></i>
+                </div>
+            </div>
+        </a>
+    </nav>
+    <div class="content start" id="start-city">
+        <div class="search-city weui-flex">
+            <i class="iconfont icon-search"></i>
+            <input type="search" class="weui-input" placeholder="站名或站名拼音首字母">
+        </div>
+        <div class="city-box scroll">
+            <div class="city-content" data-name="content-search"></div>
+        </div>
+    </div>
+    <div class="content trips" id="trips" style="display: none;">
+        <div class="weui-flex content--title">
+            <div class="weui-flex__item change-type">
+                <span>高铁G</span>
+                <img class="direction" src="statics/images/indexImg/arrow.png" alt="">
+                <ul class="stationList">
+                    <li>高铁G</li>
+                    <li>动车D</li>
+                </ul>
+            </div>
+            <div class="weui-flex__item search">
+                <div class="weui-flex">
+                    <i class="iconfont icon-search"></i>
+                    <div class="weui-flex__item">
+                        <input type="number" class="weui-input trip" placeholder="请输入车次">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="trip-box scroll">
+            <div class="trip-content" data-name="content">
+                <div class="gaotie"></div>
+                <div class="dongche" style="display: none;"></div>
+            </div>
+            <div class="trip-content" data-name="content-search" style="display: none;">
+                <div class="gaotie"></div>
+                <div class="dongche" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+    <div class="content terminal" id="terminal" style="display: none;">
+        <div class="search-city weui-flex">
+            <i class="iconfont icon-search"></i>
+            <input type="search" class="weui-input" placeholder="站名或站名拼音首字母">
+        </div>
+        <div class="city-box scroll">
+            <div class="city-content" data-name="content-search"></div>
+        </div>
+    </div>
+
+</main>
+<footer>
+    <a href="javascript:void(0);" class="weui-btn weui-btn_default" data-name="route">确定</a>
+    <div class="skip">
+        <a href="javascript:void(0);">跳过></a>
+    </div>
+</footer>
+<script src="statics/js/lib/jquery-2.0.3.min.js"></script>
+<script src="statics/js/lib/jquery-weui.min.js"></script>
+<script src="statics/js/core.min.js"></script>
+<!--<script src="statics/js/route.min.js"></script>-->
+<script src="statics/js/route.js"></script>
+</body>
+</html>

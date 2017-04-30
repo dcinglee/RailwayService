@@ -1,0 +1,347 @@
+* {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+body {
+  background-color: #fff;
+  margin: 0;
+  font-size: 14px;
+  color: #555555;
+}
+.trainDetail {
+  width: 100%;
+}
+.trainDetail .timetable {
+  width: 100%;
+  height: auto;
+  color: #fff;
+  padding: 0.58666667rem 1.0933333rem 1.053333333rem 0.96rem;
+  background: url(../images/trainTickets/trainDetail_bg.png) no-repeat center;
+  background-size: 100% 100%;
+  overflow: hidden;
+}
+.trainDetail .left {
+  width: 28%;
+  float: left;
+  padding-right: 6.5%;
+  text-align: center;
+}
+.trainDetail .left .startTime {
+  font-size: 10px;
+  line-height: 0.5466667rem;
+}
+[data-dpr="2"] .trainDetail .left .startTime {
+  font-size: 20px;
+}
+[data-dpr="3"] .trainDetail .left .startTime {
+  font-size: 30px;
+}
+.trainDetail .left .startStation {
+  line-height: 0.6533333rem;
+  font-size: 16px;
+  border: 1px solid #fff;
+  border-radius: 5px;
+}
+[data-dpr="2"] .trainDetail .left .startStation {
+  font-size: 32px;
+}
+[data-dpr="3"] .trainDetail .left .startStation {
+  font-size: 48px;
+}
+.trainDetail .left .day {
+  line-height: 0.6266667rem;
+  font-size: 10px;
+}
+[data-dpr="2"] .trainDetail .left .day {
+  font-size: 20px;
+}
+[data-dpr="3"] .trainDetail .left .day {
+  font-size: 30px;
+}
+.trainDetail .center {
+  width: 42.46%;
+  float: left;
+  text-align: center;
+}
+.trainDetail .center .trainNo,
+.trainDetail .center #timeTable {
+  font-size: 12px;
+}
+[data-dpr="2"] .trainDetail .center .trainNo,
+[data-dpr="2"] .trainDetail .center #timeTable {
+  font-size: 24px;
+}
+[data-dpr="3"] .trainDetail .center .trainNo,
+[data-dpr="3"] .trainDetail .center #timeTable {
+  font-size: 36px;
+}
+.trainDetail .center img {
+  width: 100%;
+}
+.trainDetail .right {
+  width: 29.53%;
+  float: right;
+  overflow: hidden;
+}
+.trainDetail .right .endInfo {
+  float: right;
+  width: 73.86%;
+  text-align: center;
+}
+.trainDetail .right .endInfo .endTime {
+  font-size: 10px;
+  line-height: 0.5466667rem;
+}
+[data-dpr="2"] .trainDetail .right .endInfo .endTime {
+  font-size: 20px;
+}
+[data-dpr="3"] .trainDetail .right .endInfo .endTime {
+  font-size: 30px;
+}
+.trainDetail .right .endInfo .endStation {
+  line-height: 0.6533333rem;
+  font-size: 16px;
+  border: 1px solid #fff;
+  border-radius: 5px;
+}
+[data-dpr="2"] .trainDetail .right .endInfo .endStation {
+  font-size: 32px;
+}
+[data-dpr="3"] .trainDetail .right .endInfo .endStation {
+  font-size: 48px;
+}
+.trainDetail .right .floorPrice {
+  float: right;
+  text-align: right;
+  line-height: 0.6266667rem;
+  font-size: 10px;
+}
+[data-dpr="2"] .trainDetail .right .floorPrice {
+  font-size: 20px;
+}
+[data-dpr="3"] .trainDetail .right .floorPrice {
+  font-size: 30px;
+}
+.seatInfo {
+  padding: 0 4%;
+}
+.seatInfo .time {
+  width: 100%;
+  height: 1.16rem;
+  line-height: 1.16rem;
+  text-align: center;
+  position: relative;
+  color: #ec6418;
+  border-bottom: 1px solid #e7e7e7;
+}
+.seatInfo .time h3 {
+  width: auto;
+  font-weight: normal;
+  vertical-align: middle;
+}
+.seatInfo .time .back_icon {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.seatInfo .time .icon-rili {
+  font-size: 16px;
+}
+[data-dpr="2"] .seatInfo .time .icon-rili {
+  font-size: 32px;
+}
+[data-dpr="3"] .seatInfo .time .icon-rili {
+  font-size: 48px;
+}
+.seatInfo .time .today {
+  padding-left: 0.1866666667rem;
+  font-size: 14px;
+}
+[data-dpr="2"] .seatInfo .time .today {
+  font-size: 28px;
+}
+[data-dpr="3"] .seatInfo .time .today {
+  font-size: 42px;
+}
+.seatInfo .time .gotoes {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.seatInfo .time .iconfont {
+  font-size: 16px;
+  color: #ec6418;
+}
+[data-dpr="2"] .seatInfo .time .iconfont {
+  font-size: 32px;
+}
+[data-dpr="3"] .seatInfo .time .iconfont {
+  font-size: 48px;
+}
+.seatDetail .train_data {
+  border-bottom: 1px solid #e7e7e7;
+  width: 100%;
+  height: 1.15rem;
+}
+.seatDetail .train_data li {
+  float: left;
+  line-height: 1.15rem;
+  height: 100%;
+  font-size: 14px;
+}
+[data-dpr="2"] .seatDetail .train_data li {
+  font-size: 28px;
+}
+[data-dpr="3"] .seatDetail .train_data li {
+  font-size: 42px;
+}
+.seatDetail .train_data li:first-child {
+  width: 18.72%;
+}
+.seatDetail .train_data li:nth-child(2) {
+  width: 22.93%;
+  text-align: center;
+}
+.seatDetail .train_data li:nth-child(3) {
+  width: 20.63%;
+  text-align: center;
+}
+.seatDetail .train_data .btn {
+  width: 18.43%;
+}
+.seatDetail .train_data .btn a {
+  display: inline-block;
+  float: right;
+  line-height: 0.6933333rem;
+  width: 86.61%;
+  margin-top: 0.2rem;
+  text-align: center;
+  color: white;
+  border-radius: 10px;
+  text-decoration: none;
+}
+.seatDetail .train_data .buy a {
+  background-color: #ff6600;
+}
+.seatDetail .train_data .book a {
+  background-color: #f39801;
+}
+/* 弹出框 */
+.alert {
+  display: none;
+}
+.train_mask {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+}
+.train_dialog {
+  position: fixed;
+  z-index: 5000;
+  width: 80%;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  border-radius: 3px;
+  overflow-y: scroll;
+  color: #fff;
+  height: 100%;
+}
+.train_dialog::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+.train_dialog .content {
+  -webkit-overflow-scrolling: touch;
+}
+.train_dialog .content p {
+  text-indent: 2em;
+}
+#time_show .train_dialog {
+  background-color: transparent;
+  height: auto;
+  top: 32%;
+  width: 92%;
+}
+#time_show .train_dialog h3 {
+  font-size: 16px;
+  color: #ff6600;
+  text-align: center;
+  margin-bottom: 10px;
+}
+[data-dpr="2"] #time_show .train_dialog h3 {
+  font-size: 32px;
+}
+[data-dpr="3"] #time_show .train_dialog h3 {
+  font-size: 48px;
+}
+#time_show .train_dialog ul {
+  float: left;
+  list-style: none;
+  font-size: 14px;
+  color: #D05E19;
+  width: 100%;
+  height: auto;
+  padding: 10px 3%;
+  border: 1px solid #DF5F0A;
+  border-radius: 6px;
+}
+[data-dpr="2"] #time_show .train_dialog ul {
+  font-size: 28px;
+}
+[data-dpr="3"] #time_show .train_dialog ul {
+  font-size: 42px;
+}
+#time_show .train_dialog ul dl {
+  width: 100%;
+  display: inline-block;
+  padding-bottom: 10px;
+}
+#time_show .train_dialog ul dl dt {
+  width: 18%;
+  float: left;
+  margin: 0 1%;
+  text-align: center;
+}
+#time_show .train_dialog ul .active {
+  color: white;
+}
+#time_show .train_dialog ul .title dl {
+  border-bottom: 1px solid #DF5F0A;
+}
+#time_show .train_dialog .content {
+  font-size: 14px;
+  color: #fff;
+  text-align: left;
+}
+[data-dpr="2"] #time_show .train_dialog .content {
+  font-size: 28px;
+}
+[data-dpr="3"] #time_show .train_dialog .content {
+  font-size: 42px;
+}
+#time_show .train_dialog .content h3 {
+  font-weight: normal;
+  text-align: left;
+}
+.weui-footer_fixed-bottom .weui-btn img {
+  width: 54.86%;
+  display: inline-block;
+}
+.weui-footer_fixed-bottom .weui-btn:after {
+  width: 0;
+  height: 0;
+}

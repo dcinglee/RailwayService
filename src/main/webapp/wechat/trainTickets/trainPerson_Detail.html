@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加乘车人</title>
+    <meta name="keywords" content="railway,Service,weChat,RailwayServiceWechat"/>
+    <meta name="description" content="高铁微信端,高铁微信服务,高铁微信服务首页"/>
+    <script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.2/??flexible_css.js,flexible.js"></script>
+    <link href="../statics/css/weui.min.css" rel="stylesheet"/>
+    <link href="../statics/css/jquery-weui.min.css" rel="stylesheet"/>
+    <link href="../statics/css/icon-font/iconfont.css" rel="stylesheet">
+    <link rel="stylesheet" href="../statics/css/ticket/trainPerson_Detail.css"/>
+</head>
+<body>
+<div class="page__bd">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <p>姓名</p>
+        </div>
+        <div class="weui-cell__ft">
+            <input type="text" class="weui-input" placeholder="请输入乘车人姓名" id="username"/>
+        </div>
+    </div>
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <p>手机号码</p>
+        </div>
+        <div class="weui-cell__ft">
+            <input type="tel" class="weui-input" placeholder="请输入手机号" id="phone" maxlength="11">
+        </div>
+    </div>
+    <div class="weui-cell weui-cell_access">
+        <div class="weui-cell__bd">
+            <p>乘客类型</p>
+        </div>
+        <div class="weui-cell__ft">
+            <input type="text" class="weui-input" placeholder="请输入乘客类型" id="person" value="成人票" data-code="1">
+        </div>
+    </div>
+    <div class="weui-cell weui-cell_access">
+        <div class="weui-cell__bd">
+            <p>证件类型</p>
+        </div>
+        <div class="weui-cell__ft">
+            <input type="text" class="weui-input" placeholder="请选择证件类型" id="ID" value="二代身份证" data-code="1">
+        </div>
+    </div>
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <p>证件号码</p>
+        </div>
+        <div class="weui-cell__ft">
+            <input type="text" class="weui-input" placeholder="请输入证件号码" id="NO"/>
+        </div>
+    </div>
+    <div class="weui-cell weui-cell_access hide" id="date_type">
+        <div class="weui-cell__bd">
+            <p>出生日期</p>
+        </div>
+        <div class="weui-cell__ft">
+            <input type="text" class="weui-input" placeholder="请选择出生日期" id="date">
+        </div>
+    </div>
+    <div class="weui-cell weui-cell_access" id="sex_type">
+        <div class="weui-cell__bd">
+            <p>性别</p>
+        </div>
+        <div class="weui-cell__ft">
+            <input type="text" class="weui-input" placeholder="请选择性别" id="sex">
+        </div>
+    </div>
+</div>
+<div class="child_titcket color-orange hide">
+    *儿童票必须儿童身高在1.2米——1.5米之间
+</div>
+<div class="weui-btn-area btn-submit">
+    <a class="weui-btn" href="javascript:" id="submit">确定</a>
+</div>
+
+<script src="../statics/js/lib/jquery-2.0.3.min.js"></script>
+<!--<script src="../statics/js/lib/weui.min.js"></script>-->
+<script src="../statics/js/lib/jquery-weui.min.js"></script>
+<script src="../statics/js/lib/jquery.selector-rem.js"></script>
+<script src="../statics/js/ticketjs/base.js"></script>
+<script src="../statics/js/ticketjs/trainPerson_Detail.js"></script>
+</body>
+</html>

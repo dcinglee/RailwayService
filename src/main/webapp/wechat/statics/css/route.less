@@ -1,0 +1,311 @@
+@font-color: #FFF;
+@font-size: 12px;
+@border-color: #f96401;
+@radius: 5px;
+
+.border-mixin(@top) {
+  margin-top: @top;
+  border: 2px solid @border-color;
+  border-radius: @radius;
+}
+
+.bottom-line-mixin(@bottom: 10px, @border-colo: @border-color) {
+  padding-bottom: @bottom;
+  border-bottom: 1px solid @border-colo;
+}
+
+body {
+  //position: fixed;
+  //top: 0;
+  //left: 0;
+  //right: 0;
+  //bottom: 0;
+  font-size: 14px;
+  background: url("../images/route-bg.jpg") #000000;
+  background-size: 100%;
+  line-height: 1;
+  overflow: auto;
+  @media all and (orientation: portrait) {
+    padding: 6% 2.5%;
+  }
+  @media all and (orientation: landscape) {
+    padding: 2.5% 6%;
+  }
+
+  // 描述信息
+  header.title {
+    font-size: @font-size;
+    color: @font-color;
+    text-align: center;
+    height: 21.5px;
+    background: rgba(255, 102, 0, .5);
+    border-radius: 20px;
+    @media screen and (min-width: 375px) {
+      margin: 0 3%;
+    }
+
+    span {
+      line-height: 21.5px;
+    }
+  }
+
+  main {
+    margin-top: 10px;
+
+    // 导航
+    nav {
+      .border-mixin(0);
+      height: 65.5px;
+
+      // 切换按钮
+      a {
+        // 按钮内部布局
+        &.weui-flex__item {
+          text-align: center;
+          padding: 10px 0;
+
+          // 标题
+          .title {
+            color: @font-color;
+          }
+
+          // 值
+          .nav-value {
+            color: @border-color;
+            font-size: @font-size + 6;
+            font-weight: bold;
+            margin-top: 10px;
+          }
+
+          &:nth-of-type(2) > div {
+            border-left: 1px solid @border-color;
+            border-right: 1px solid @border-color;
+          }
+        }
+
+        // 激活样式
+        &.active {
+          position: relative;
+          &:after {
+            content: " ";
+            position: absolute;
+            width: 70%;
+            left: 15%;
+            bottom: 0;
+            border-bottom: 4.5px solid #f96401;
+          }
+        }
+      }
+    }
+
+    // 动态框
+    div.content {
+      .border-mixin(10.5px);
+
+      @media screen and (max-width: 350px) and (min-width: 320px) {
+        height: 240px;
+      }
+      @media screen and (min-width: 375px) {
+        height: 288px;
+      }
+      @media screen and (max-width: 370px) and (min-width: 350px) {
+        height: 280px;
+      }
+
+      padding: 5px 17px;
+
+      > .weui-flex {
+        height: 25px;
+        .bottom-line-mixin(5px);
+
+        // 城市搜索
+        &.search-city {
+        }
+
+        // 车次
+        &.content--title {
+          .change-type {
+            position: relative;
+            text-align: center;
+            margin: auto;
+
+            span {
+              margin-right: 10px;
+              font-weight: bold;
+              color: @font-color;
+            }
+
+            .direction {
+              vertical-align: middle;
+              height: 14px;
+              transform: rotate(270deg);
+            }
+
+            .stationList {
+              width: 100%;
+              position: absolute;
+              left: -10px;
+              z-index: 10;
+              display: none;
+              background-color: white;
+              border-radius: 10px;
+              color: #555555;
+
+              li {
+                position: relative;
+                line-height: 50px;
+                &:after {
+                  content: ' ';
+                  position: absolute;
+                  height: 0;
+                  border-bottom: 1px solid #d6d6d6;
+                  top: 0;
+                  left: 10%;
+                  width: 80%;
+                }
+              }
+            }
+          }
+
+          .search {
+            flex-grow: 2.155;
+            border-left: 1px solid @border-color;
+            .weui-flex {
+              padding-left: 10px;
+            }
+          }
+        }
+        &.trips {
+          // 选择
+          select {
+            color: @font-color;
+            border: 0;
+            outline: 0;
+            background-color: transparent;
+            width: 100%;
+            font-size: 16px;
+          }
+        }
+
+        // 搜索框
+        input {
+          color: @font-color;
+          height: 25px;
+          margin-left: 10px;
+        }
+
+        // search icon
+        i.iconfont {
+          color: @border-color;
+          margin-top: 7px;
+          margin-left: 2px;
+        }
+      }
+
+      // block标准高度
+      .city-box, .trip-box {
+        position: relative;
+        color: @font-color;
+        height: 168px;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+        text-align: center;
+        margin-top: 15px;
+        height: 80%;
+
+        > div {
+          height: 100%;
+
+          .box-block {
+            width: 25%;
+            float: left;
+            position: relative;
+
+            span {
+              font-size: @font-size + 4;
+            }
+          }
+        }
+      }
+
+      // 城市选择
+      .city-box {
+        .box-block {
+          padding: 17px 0;
+
+          span {
+            display: block;
+          }
+        }
+      }
+
+      // 车次选择
+      .trip-box {
+        .box-block {
+          padding: 17px 0;
+
+          .trip {
+            font-weight: bold;
+          }
+
+          .time {
+            margin-top: 6px;
+            font-size: @font-size;
+          }
+        }
+      }
+    }
+  }
+
+  // footer
+  footer {
+    @media all and (orientation: portrait) {
+      position: absolute;
+      bottom: 8px;
+    }
+    @media all and (orientation: landscape) {
+      position: static;
+      margin-top: 20px;
+    }
+    left: 2.5%;
+    right: 2.5%;
+
+    a.weui-btn_default {
+      line-height: 2;
+      height: 35px;
+      color: @font-color;
+      background: @border-color;
+    }
+    div.skip {
+      margin-top: 19px;
+      text-align: center;
+      a {
+        color: @font-color;
+        font-size: @font-size + 2;
+      }
+    }
+
+    @media screen and (max-width: 320px) {
+      height: 13vh;
+
+      div.skip {
+        margin-top: 2vh;
+        margin-bottom: 2vh;
+      }
+    }
+  }
+
+  input::-webkit-input-placeholder {
+    //color: @font-color;
+  }
+
+  .click {
+    background: #F90;
+    -webkit-transition: 0.3s all ease;
+    -moz-transition: 0.3s all ease;
+    -ms-transition: 0.3s all ease;
+    -o-transition: 0.3s all ease;
+    -webkit-transition: .3s left ease;
+    transition: 0.3s all ease;
+  }
+}

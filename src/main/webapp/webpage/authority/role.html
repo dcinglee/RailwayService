@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <title>权限管理</title>
+    <meta name="keywords" content="station,personal,manage"/>
+    <meta name="description" content="角色管理"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!-- zTreeStyle styles -->
+    <link rel="stylesheet" href="assets/css/zTreeStyle.css"/>
+</head>
+
+<body>
+<div class="page-content page-content2">
+    <div class="row">
+        <div class="col-xs-12">
+            <form id="stationFormId" class="form-horizontal" role="form">
+                <div class="input-group input-group-sm input-group-sm3" style="margin-bottom: 5px">
+                    <span class="input-group-addon" style="width: 10%;">角色名称</span>
+                    <input type="text" class="form-control" id="inputStation" style="width: 33%;">&nbsp;
+                    <button id="dataSearch" class="btn btn-primary btn-sm" title="查询">
+                        <i class="icon-search nav-search-icon"></i>
+                    </button>
+                    <button id="dataadd" type="button" class="btn btn-primary btn-sm"
+                            data-toggle="modal" data-target="#addModal" title="新增角色">
+                        <i class="icon-plus-sign bigger-120"></i>
+                    </button>
+                    <button id="datachange" type="button" class="btn btn-sm btn-success"
+                            data-toggle="modal" data-target="#updateModal" disabled
+                            title="修改角色">
+                        <i class="icon-pencil bigger-130"></i>
+                    </button>
+                    <button id="datadelete" type="button" class="btn btn-sm btn-danger"
+                            data-toggle="modal" data-target="#deleteModal" disabled
+                            title="删除角色">
+                        <i class="icon-trash bigger-130"></i>
+                    </button>
+                    <!-- </div>	 -->
+                </div>
+            </form>
+
+            <div class="row" style="margin-top: 0px;">
+                <div class="col-xs-12">
+                    <!-- PAGE CONTENT BEGINS -->
+                    <table id="role_table" class="table"></table>
+                    <!-- PAGE CONTENT ENDS -->
+                </div>
+                <!-- /.col -->
+            </div>
+        </div>
+        <!--<div class="col-xs-12" style="padding-left: 0;">-->
+        <!--&lt;!&ndash;<form id="stationFormId"&ndash;&gt;-->
+        <!--&lt;!&ndash;class="form-horizontal  col-xs-6 col-sm-4 col-lg-2" role="form">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="input-group">&ndash;&gt;-->
+        <!--&lt;!&ndash;<input type="text" class="form-control" id="inputStation"&ndash;&gt;-->
+        <!--&lt;!&ndash;placeholder="角色名称"> <span class="input-group-btn">&ndash;&gt;-->
+        <!--&lt;!&ndash;<button class="btn btn-primary btn-sm" title="查询">&ndash;&gt;-->
+        <!--&lt;!&ndash;<i class="icon-search nav-search-icon"></i>&ndash;&gt;-->
+        <!--&lt;!&ndash;</button>&ndash;&gt;-->
+        <!--&lt;!&ndash;</span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</form>&ndash;&gt;-->
+        <!--<div class="col-xs-6">-->
+        <!--<button type="button" class="btn btn-primary btn-sm"-->
+        <!--data-toggle="modal" data-target="#addModal" title="新增角色">-->
+        <!--<i class="icon-plus-sign bigger-120"></i>-->
+        <!--</button>-->
+        <!--<button type="button" class="btn btn-sm btn-success"-->
+        <!--data-toggle="modal" data-target="#updateModal" disabled-->
+        <!--title="修改角色">-->
+        <!--<i class="icon-pencil bigger-130"></i>-->
+        <!--</button>-->
+        <!--<button type="button" class="btn btn-sm btn-danger"-->
+        <!--data-toggle="modal" data-target="#deleteModal" disabled-->
+        <!--title="删除角色">-->
+        <!--<i class="icon-trash bigger-130"></i>-->
+        <!--</button>-->
+        <!--</div>-->
+        <!--</div>-->
+    </div>
+    <!--<div class="row" style="margin-top: 0px;">-->
+    <!--<div class="col-xs-12">-->
+    <!--&lt;!&ndash; PAGE CONTENT BEGINS &ndash;&gt;-->
+    <!--<table id="role_table" class="table"></table>-->
+    <!--&lt;!&ndash; PAGE CONTENT ENDS &ndash;&gt;-->
+    <!--</div>-->
+    <!--&lt;!&ndash; /.col &ndash;&gt;-->
+    <!--</div>-->
+    <!-- /.row -->
+</div>
+<!-- /.page-content -->
+<!-- 添加的modal start-->
+<div class="modal fade bs-example-modal-lg" id="addModal" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="exampleModalLabel">新增角色</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="addForm" data-type="add">
+                    <div class="form-group">
+                        <label for="roleName" class="col-sm-2 control-label">角色名</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="roleName"
+                                   placeholder="请输入角色名" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">角色描述</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="description"
+                                   placeholder="请输入描述">
+                        </div>
+                    </div>
+                    <div class="form-group" name="authority">
+                        <label for="perms" class="col-sm-2 control-label">权限</label>
+                        <div class="col-sm-10" id="perms">
+                            <ul class="ztree"></ul>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" form="addForm">保存</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 添加的modal end-->
+<!-- 修改的modal start-->
+<div class="modal fade" id="updateModal" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="exampleModalLabel">角色修改</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form" id="updateForm"
+                      data-type="update">
+                    <div class="form-group">
+                        <label for="roUname" class="col-sm-2 control-label">角色名</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="roUname" readonly/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="updateDes" class="col-sm-2 control-label">角色描述</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="updateDes"/> </input>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="updatePerms" class="col-sm-2 control-label">权限</label>
+                        <div class="col-sm-10" id="updatePerms">
+                            <ul class="ztree"></ul>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" form="updateForm">保存</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 修改的modal end-->
+<!-- 删除的modal start-->
+<div class="modal fade" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">删除任务</h4>
+            </div>
+            <!--Form的id为deleteForm-->
+            <form id="deleteForm" data-type="delete">
+                <div class="modal-body"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary">确认</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- 删除的modal end-->
+<script src="assets/js/jquery.ztree.all.min.js"></script>
+<script src="script/role.js"></script>
+</body>
+
+</html>

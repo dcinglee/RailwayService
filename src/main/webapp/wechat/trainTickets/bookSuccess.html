@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>预订成功</title>
+    <meta name="keywords" content="railway,Service,weChat,RailwayServiceWechat"/>
+    <meta name="description" content="高铁微信端,高铁微信服务,高铁微信服务首页"/>
+    <script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.2/??flexible_css.js,flexible.js"></script>
+    <link href="../statics/css/weui.min.css" rel="stylesheet"/>
+    <link href="../statics/css/jquery-weui.min.css" rel="stylesheet"/>
+    <link href="../statics/css/icon-font/iconfont.css" rel="stylesheet">
+    <link rel="stylesheet" href="../statics/css/ticket/bookSuccess.css"/>
+</head>
+
+<body>
+<p class="train-prompt">
+    车票已经成功预订，请在<span class="pay-time">30:00</span>分钟内通过12306网站完成网络支付，否则系统将自动取消本次交易。
+</p>
+
+<div class="ticket-info">
+    <ul class="ticket ticket-success">
+        <li class="ticket-head">
+            <dl class="ticket-time">
+                <dd>发车日期</dd>
+            </dl>
+            <div class="weui-flex ticket-detail">
+                <dl class="weui-flex__item">
+                    <dd id="fromStation" class="ticket-stationName">出发站点</dd>
+                    <dd id="startDate" class="ticket-stationTime">出发时间</dd>
+                </dl>
+                <dl class="weui-flex__item">
+                    <dd class="ticket-line">车次编号</dd>
+                    <dd class="ticket-line-img"><img src="../statics/images/trainTickets/goThere_icon_w.png" alt=""></dd>
+                </dl>
+                <dl class="weui-flex__item">
+                    <dd id="toStation" class="ticket-stationName">到达站点</dd>
+                    <dd id="endDate" class="ticket-stationTime">到达时间</dd>
+                </dl>
+            </div>
+        </li>
+        <li class="ticket-timeout"></li>
+    </ul>
+    <div class="btn-bottom">
+        <!-- <a href="javascript:void(0);" class="weui-btn weui-btn_plain-default" data-toggle="cancel" data-orderId="111"  data-ticketOrderId="33333">取消订单</a> -->
+    </div>
+</div>
+
+<div class="train-confirm hide">
+    <div class="train-mask"></div>
+    <div class="train-dialog">
+        <ul>
+            <li class="train-dialog__title">取消订单</li>
+            <li class="train-dialog__content">您确定取消当前订单吗？</li>
+            <li class="train-dialog__control">
+                <dl class="weui-flex">
+                    <dd class="weui-flex__item">
+                        <a href="javascript:void(0);"
+                           class="weui-btn weui-btn_plain-default train-dialog__cancel">取消</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:void(0);" class="weui-btn weui-btn_plain-default train-dialog__ok">确 定</a>
+                    </dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script type="text/html" id="bookSuccessInfos">
+    <li class="ticket-detail user-info">
+        <dl class="weui-flex user-info__item">
+            <dd class="weui-flex__item">乘客姓名</dd>
+            <dd>详细座位</dd>
+        </dl>
+        <dl class="weui-flex user-info__item">
+            <dd class="weui-flex__item">车票种类</dd>
+            <dd>座位种类</dd>
+        </dl>
+        <dl class="weui-flex user-info__item">
+            <dd class="weui-flex__item">证件号码</dd>
+            <dd>&yen;车票单价</dd>
+        </dl>
+    </li>
+</script>
+
+<script src="../statics/js/lib/jquery-2.0.3.min.js"></script>
+<script src="../statics/js/lib/jquery-weui.min.js"></script>
+<script src="../statics/js/ticketjs/base.js"></script>
+<script src="../statics/js/ticketjs/bookSuccess.js"></script>
+</body>
+</html>

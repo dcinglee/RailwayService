@@ -1,0 +1,103 @@
+:root {
+  -webkit-overflow-scrolling: touch;
+}
+body {
+  background: #FFFFFF;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+body div.cancel-btn-top {
+  padding: 15px 5%;
+}
+body div.cancel-btn-top div.font {
+  margin: auto;
+}
+body div.cancel-btn-top div.btn {
+  padding-left: 5vw;
+}
+body div.cancel-btn-top div.btn a {
+  background: #ff6600;
+  color: #FFFFFF;
+  padding: 0;
+  line-height: 2;
+  width: 60%;
+  float: left;
+}
+body div.separated {
+  background: #e4e3e3;
+  height: 10px;
+}
+body div.detail {
+  padding: 10px 5%;
+  height: -moz-calc(100% - 100px);
+  height: -webkit-calc(100% - 100px);
+  height: calc(100% - 100px);
+  overflow: auto;
+}
+body div.detail .money-info {
+  padding: 0;
+}
+body div.detail div.radio {
+  margin-top: 1.5rem;
+}
+body div.detail div.radio div.radio-bd label {
+  margin-top: .3rem;
+}
+body div.detail div.radio div.radio-bd div.weui-flex {
+  margin-top: .5rem;
+}
+body div.detail div.radio div.radio-bd input[type=radio].radio-checked {
+  position: absolute;
+  left: -9999em;
+}
+body div.detail div.radio div.radio-bd input[type=radio].radio-checked:checked + .weui-icon-checked:before {
+  content: "\EA06";
+  color: #09bb07;
+}
+body div.detail div.radio div.radio-bd i.weui-icon-checked {
+  line-height: 21px;
+  vertical-align: text-top;
+}
+body div.detail div.radio div.radio-bd i.weui-icon-checked:before {
+  content: "\EA01";
+  color: #c9c9c9;
+  font-size: 15px;
+  display: block;
+}
+body div.detail div.radio div.radio-bd div.holder {
+  width: 6%;
+}
+body div.detail div.radio div.radio-bd textarea {
+  margin-top: 0.5%;
+  border: 1px solid #dedede;
+}
+@media screen and (min-width: 320px) {
+  body div.detail div.confirm-btn-bottom {
+    padding-top: 2.5rem;
+  }
+}
+@media screen and (min-width: 360px) {
+  body div.detail div.confirm-btn-bottom {
+    padding-top: 3.5rem;
+  }
+}
+@media screen and (min-width: 375px) {
+  body div.detail div.confirm-btn-bottom {
+    padding-top: 4rem;
+  }
+}
+@media screen and (min-width: 384px) {
+  body div.detail div.confirm-btn-bottom {
+    padding-top: 4.5rem;
+  }
+}
+@media screen and (min-width: 400px) {
+  body div.detail div.confirm-btn-bottom {
+    padding-top: 5.5rem;
+  }
+}
+body div.detail div.confirm-btn-bottom a {
+  background: #ff6600;
+  color: #FFFFFF;
+}

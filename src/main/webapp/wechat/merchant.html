@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="keywords" content="railway,Service,weChat,RailwayServiceWechat"/>
+    <meta name="description" content="高铁微信端,高铁微信服务,高铁微信服务点餐"/>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <script src="statics/js/config/wechat-cfg.js"></script>
+    <script type="text/javascript">
+        document.title = sessionStorage.getItem('classifyName');
+        //        微信分享
+        if (!sessionStorage.userInfo) {
+            window.location.href = login_url;
+        }
+    </script>
+    <!-- weUI.css -->
+    <link href="statics/css/weui.min.css" rel="stylesheet"/>
+    <!-- jQ-weUI.css -->
+    <link href="statics/css/jquery-weui.min.css" rel="stylesheet"/>
+    <link href="statics/css/icon-font/iconfont.css" rel="stylesheet">
+    <link href="statics/css/merchant.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="main">
+    <div class="weui-panel weui-panel_access">
+        <div class="weui-panel__bd">
+
+        </div>
+    </div>
+</div>
+
+
+<!-- 底部导航栏 -->
+<div class="weui-tab" id="tabBar">
+    <div class="weui-tabbar">
+        <a href="index.html" class="weui-tabbar__item tabBarList">
+            <div class="weui-tabbar__icon">
+                <i class="iconfont icon-shouye1" style="font-size: 20px;margin-top: 3px;"></i>
+            </div>
+            <p class="weui-tabbar__label">首页</p>
+        </a>
+        <a href="order.html" class="weui-tabbar__item tabBarList">
+            <div class="weui-tabbar__icon">
+                <i class="iconfont icon-dingdan" style="font-size: 20px;margin-top: 2px;"></i>
+            </div>
+            <p class="weui-tabbar__label">订单</p>
+        </a>
+        <a href="news.html" class="weui-tabbar__item tabBarList">
+            <div class="weui-tabbar__icon">
+                <i class="iconfont icon-iconfontmark"></i>
+            </div>
+            <p class="weui-tabbar__label">消息</p>
+        </a>
+        <a href="my.html" class="weui-tabbar__item tabBarList">
+            <div class="weui-tabbar__icon">
+                <i class="iconfont icon-xingming"></i>
+            </div>
+            <p class="weui-tabbar__label">我的</p>
+        </a>
+    </div>
+</div>
+
+<div class="footer"></div>
+
+<script type="text/html" id="merchantTemplate">
+    <a href="javascript:void(0);" data-id="merchantId" class="weui-media-box weui-media-box_appmsg merchantLink">
+        <div class="weui-media-box__hd merchantLogo">
+            <img class="weui-media-box__thumb goodsImg" src="statics/images/indexImg/orderImg01.png">
+        </div>
+        <div class="weui-media-box__bd">
+            <p class="weui-media-box__title merchantName">麦当劳</p>
+            <div class="star">
+
+            </div>
+            <p class="weui-media-box__desc salesNumber">月售<span>销售额</span>单</p>
+        </div>
+        <div class="merchantInfo">
+            <p class="merchantStatus">营业中</p>
+        </div>
+    </a>
+</script>
+
+<script src="statics/js/lib/jquery-2.0.3.min.js"></script>
+<script src="statics/js/lib/fastclick.js"></script>
+<script src="statics/js/lib/jquery-weui.min.js"></script>
+<script src="statics/js/core.js"></script>
+<script src="statics/js/merchant.js"></script>
+<script>
+    $(function () {
+        FastClick.attach(document.body);
+    });
+</script>
+
+
+</body>
+
+</html>

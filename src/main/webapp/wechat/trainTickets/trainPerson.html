@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>请选择乘车人</title>
+    <meta name="keywords" content="railway,Service,weChat,RailwayServiceWechat"/>
+    <meta name="description" content="高铁微信端,高铁微信服务,高铁微信服务首页"/>
+    <script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.2/??flexible_css.js,flexible.js"></script>
+    <link href="../statics/css/weui.min.css" rel="stylesheet"/>
+    <link href="../statics/css/jquery-weui.min.css" rel="stylesheet"/>
+    <link href="../statics/css/icon-font/iconfont.css" rel="stylesheet"/>
+    <link href="../statics/css/ticket/trainPerson.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../statics/css/ticket/vCode.css"/>
+</head>
+<body>
+<!--用户信息-->
+<ul>
+    <li class="jump">
+        <a href="trainPerson_Detail.html" class="weui-flex">
+            <span class="weui-flex__item">添加乘车人</span>
+            <i class="iconfont icon-tianjiachangyonglvke"></i>
+        </a>
+    </li>
+    <li>
+        <dl></dl>
+    </li>
+</ul>
+<!--申明-->
+<div class="declare">
+    <a href="javascript:void(0);" id="verification">
+        <span>身份证核验申明</span>
+        <i class="iconfont icon-fanhui1"></i>
+    </a>
+</div>
+<!--提交按钮-->
+<div class="btn-bottom">
+    <a class="weui-btn btn_or" href="javascript:void(0);" id="submit">确定</a>
+</div>
+<!--身份核验内容-->
+<div class="alert">
+    <div class="train_mask"></div>
+    <div class="train_dialog">
+        <h2>非二代身份证购票需验证身份信息</h2>
+        <p>请正确填写乘客信息，购票成功后请在最晚发车前携带乘客购票时所使用的有效证件原件及“E”开头订单还至火车站窗口先报验再取票。</p>
+        <h2>乘客姓名填写说明</h2>
+        <p>1、使用身份证、护照、回乡证、台胞证等预订火车票请优先使用中文姓名。</p>
+        <p>2、台籍乘客请使用台胞证（台湾具名来往大陆通行证）。</p>
+        <p>3、只能是中文或英文，不能数字，但可包含“.”或英文姓名间隔符“●”。</p>
+        <h2>身份核验未通过购票失败怎么办？</h2>
+        <p>如因为身份核验未通过导致出票失败，请您持有效证件原件，去火车站或代售点核验购票。或选择送票上门票，免身份核验。</p>
+    </div>
+</div>
+<script type="text/html" id="clone_userInfo">
+    <dd class="user-info weui-flex">
+        <label for="单选按钮" class="weui-flex weui-flex__item">
+            <div class="check">
+                <input type="checkbox" class="radio-checked" id="单选按钮" data-idx="-1">
+                <i class="weui-icon-checked"></i>
+            </div>
+            <div class="weui-flex__item detail">
+                <p>
+                    <span>姓名</span>
+                    <span>用户姓名</span>
+                </p>
+                <div>
+                    <span>证件类型</span>:
+                    <span>证件号码</span>
+                </div>
+            </div>
+            <div class="status status-normal">
+                <span>状态</span>
+            </div>
+        </label>
+        <div>
+            <i class="icon iconfont icon-bianji" data-idx="-1"></i>
+        </div>
+    </dd>
+</script>
+<script src="../statics/js/lib/jquery-2.0.3.min.js"></script>
+<script src="../statics/js/lib/jquery-weui.min.js"></script>
+<script src="../statics/js/ticketjs/base.js"></script>
+<script src="../statics/js/ticketjs/trainPerson.js"></script>
+</body>
+</html>

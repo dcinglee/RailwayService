@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>请选择乘车人</title>
+    <meta name="keywords" content="railway,Service,weChat,RailwayServiceWechat"/>
+    <meta name="description" content="高铁微信端,高铁微信服务,高铁微信服务首页"/>
+    <script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.2/??flexible_css.js,flexible.js"></script>
+    <link href="../statics/css/weui.min.css" rel="stylesheet"/>
+    <link href="../statics/css/jquery-weui.min.css" rel="stylesheet"/>
+    <link href="../statics/css/icon-font/iconfont.css" rel="stylesheet">
+    <link rel="stylesheet" href="../statics/css/ticket/city.css"/>
+</head>
+<body ontouchstart>
+<section class="search_bar">
+    <div class="page__bd info-top">
+        <div class="search weui-flex">
+            <div class="search-bar weui-flex__item focus" id="searchBar1">
+                <div class="search-bar__box weui-flex ">
+                    <input type="search" class="search-bar__input active" id="fromStation" placeholder="搜索" autofocus/>
+                    <a href="javascript:" class="weui-icon-clear weui-flex__item"></a>
+                </div>
+                <label class="search-bar__label">
+                    <i class="weui-icon-search"></i>
+                    <span>搜索</span>
+                </label> 
+            </div>
+            <div class="search-bar weui-flex__item" id="searchBar2">
+                <div class="search-bar__box weui-flex">
+                    <input type="search" class="search-bar__input" id="toStation" placeholder="搜索"/>
+                    <a href="javascript:" class="weui-icon-clear weui-flex__item"></a>
+                </div>
+                <label class="search-bar__label">
+                    <i class="weui-icon-search"></i>
+                    <span>搜索</span>
+                </label>
+            </div>
+            <a href="javascript:void(0);" class="weui-btn weui-btn_plain-default" id="submit">确认</a>
+        </div>
+        <div class="title">
+            <h2>热门城市</h2>
+        </div>
+    </div>
+
+    <div class="page__bd info-center">
+        <div class="weui-cell">
+            <dl class="city_list">
+                <dt><span>北京</span></dt>
+                <dt><span>上海</span></dt>
+                <dt><span>天津</span></dt>
+                <dt><span>深圳</span></dt>
+                <dt><span>长沙</span></dt>
+                <dt><span>南昌</span></dt>
+                <dt><span>海口</span></dt>
+                <dt><span>武汉</span></dt>
+                <dt><span>重庆</span></dt>
+                <dt><span>成都</span></dt>
+                <dt><span>桂林</span></dt>
+                <dt><span>杭州</span></dt>
+                <dt><span>南京</span></dt>
+                <dt><span>合肥</span></dt>
+                <dt><span>郑州</span></dt>
+                <dt><span>厦门</span></dt>
+            </dl>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="searchbar-result hide" id="searchResult">
+        <div class="no-record hide">
+            <p>没有找到该条记录</p>
+        </div>
+    </div>
+</section>
+<script type="text/html" id="hotCity">
+    <div class="search__item">
+            实时搜索文本
+    </div>
+</script>
+<script src="../statics/js/lib/jquery-2.0.3.min.js"></script>
+<script src="../statics/js/lib/jquery-weui.min.js"></script>
+<script src="../statics/js/ticketjs/city.js"></script>
+</body>
+</html>

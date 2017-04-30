@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>广告管理</title>
+    <meta name="keywords" content="advertise,information,manage"/>
+    <meta name="description" content="广告,广告信息，广告管理哦"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="./assets/css/datepicker.css"/>
+    <!-- basic styles -->
+    <link rel="stylesheet" href="./assets/css/validationEngine.jquery.css" type="text/css">
+    <script src="./assets/js/jquery.validationEngine-zh_CN.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./assets/js/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+<div class="page-content page-content2">
+    <div class="row">
+        <div class="col-xs-12">
+            <form id="stationFormId" class="form-horizontal" role="form">
+                <div class="input-group input-group-sm input-group-sm3" style="margin-bottom: 5px">
+                    <span class="input-group-addon" style="width: 10%;">订单编号</span>
+                    <input type="text" class="form-control" id="orderno" style="width: 33%;">
+                </div>
+
+                <div class="input-group input-group-sm input-group-sm3" style="margin-bottom: 5px">
+                    <span class="input-group-addon" style="width: 10%;">客户名称</span>
+                    <input type="text" class="form-control" id="csname" style="width: 33%;">
+                </div>
+
+                <div class="input-group input-group-sm input-group-sm3" style="margin-bottom: 5px">
+                    <span class="input-group-addon" style="width: 10%;">客户电话</span>
+                    <input type="text" class="form-control" id="csphone" style="width: 33%;">
+                </div>
+
+                <!--<div class="input-group input-group-sm input-group-sm3" style="margin-bottom: 5px">-->
+                    <!--<span class="input-group-addon" style="width: 10%;">开始时间</span>-->
+                    <!--&lt;!&ndash;<input type="date" class="form-control" id="startdate"&ndash;&gt;-->
+                    <!--&lt;!&ndash;style="width: 33%;">&ndash;&gt;-->
+
+                    <!--<input class="form-control date-picker" style="width: 33%;" id="startdate"-->
+                           <!--type="text" data-date-format="yyyy-mm-dd"/>-->
+                <!--</div>-->
+                <div class="input-group input-group-sm input-group-sm3" style="margin-bottom: 5px">
+                    <span class="input-group-addon" style="width: 10%;">订单日期</span>
+
+                    <input class="form-control date-picker" style="width: 15%;" id="startdate"
+                           type="text" data-date-format="yyyy-mm-dd"/>
+                    <span> 至 </span>
+                    <input class="form-control date-picker" style="width: 15%;" id="enddate"
+                           type="text" data-date-format="yyyy-mm-dd"/>
+                    <!--<input type="date" class="form-control" id="enddate"-->
+                    <!--style="width: 33%;">&nbsp;-->
+
+                    <span>&nbsp;</span>
+                    <button id="dataSearch" class="btn btn-primary btn-sm" title="查询">
+                        <i class="icon-search nav-search-icon"></i>
+                    </button>
+                    <button id="derive" type="button" class="btn btn-primary btn-sm"
+                            data-toggle="modal" data-target="#detailModal" title="订单详情">
+                        订单详情
+                    </button>
+                </div>
+            </form>
+            <div class="row" style="margin-top: 0px;">
+                <div class="col-xs-12">
+                    <!-- PAGE CONTENT BEGINS -->
+                    <table id="order_table" class="table"></table>
+                    <!-- PAGE CONTENT ENDS -->
+                </div>
+                <!-- /.col -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.page-content -->
+<!-- 详细的modal start-->
+<div class="modal fade bs-example-modal-lg" id="detailModal" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="exampleModalLabel">订单详情</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="addForm" data-type="add">
+                    <div class="form-group" hidden>
+                        <label for="inputPassword3" class="col-sm-2 control-label">ID</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control"
+                                   name="orderId" placeholder="payType" readonly/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="roleName" class="col-sm-2 control-label">订单编号</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="validate[required] form-control" id="orderNo"
+                                   name="orderNo" placeholder="orderNo" readonly>
+                        </div>
+                        <label for="inputPassword3" class="col-sm-2 control-label">订单日期</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="createDate"
+                                   name="createDate" placeholder="createDate" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">客户姓名</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="validate[required] form-control" id="customerName"
+                                   name="customerName" placeholder="customerName" readonly>
+                        </div>
+                        <label for="inputPassword3" class="col-sm-2 control-label">客户手机</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="validate[required,custom[number]] form-control"
+                                   name="customerPhoneNo" placeholder="customerPhoneNo" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="updateDes" class="col-sm-2 control-label">商户名称</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="merchantName"
+                                   name="merchantName" placeholder="merchantName" readonly/>
+                        </div>
+                        <label class="col-sm-2 control-label">所属车站</label>
+                        <div class="col-sm-3">
+                            <select class="form-control selectAllStation" name="stationId" readonly>
+
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">支付类型</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control"
+                                   name="payType" placeholder="payType" readonly/>
+                        </div>
+                        <label for="inputPassword3" class="col-sm-2 control-label">支付日期</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="payType"
+                                   name="payDate" placeholder="payType" readonly/>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">支付状态</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control"
+                                   name="payStatus" placeholder="payStatus" readonly/>
+                        </div>
+                        <label for="inputPassword3" class="col-sm-2 control-label">订单状态</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control"
+                                   name="orderStatus" placeholder="orderStatus" readonly/>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="updateDes" class="col-sm-2 control-label">订单价格</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control"
+                                   name="orderTotalPrice" placeholder="orderprice" readonly/>
+                        </div>
+                        <label for="updateDes" class="col-sm-2 control-label">申请退款</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control"
+                                   name="refundApplyDate" placeholder="refundApplyDate" readonly/>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="updateDes" class="col-sm-2 control-label">退款日期</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control"
+                                   name="refundDate" placeholder="refundDate" readonly/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <table id="sample-table-1" class="table  table-hover">
+                            <thead>
+                            <tr class="success">
+                                <th>商品名称</th>
+                                <th>商品数量</th>
+                                <th>商品价格</th>
+                                <th>商品总价</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- 添加的modal end-->
+<script src="./assets/js/date-time/bootstrap-datepicker.min.js"></script>
+<script src="script/order.js"></script>
+<!-- inline scripts related to this page -->
+</body>
+
+
+<!--商品详情模板-->
+<script type="text/html" id="cloneTR">
+    <tr>
+        <td name="orderId" style="display: none;">1</td>
+        <td name="name">秀秀</td>
+        <td name="productCount">99</td>
+        <td name="productPrice">998</td>
+        <td name="totalPrice">9999</td>
+    </tr>
+</script>
+</html>

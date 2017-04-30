@@ -1,0 +1,179 @@
+@import 'dpr.less';
+
+body {
+  background-color: @body-default-bg-color;
+  margin: 0;
+  color: @font-default-color;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  line-height: 1;
+  .mixin-font-dpr(14px);
+
+  section {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+
+    // 顶部信息
+    .info-top {
+      background: #fff;
+      width: 100%;
+      margin-bottom: 0.14666666666666667rem;
+
+      // 搜索
+      .search {
+        //height: 1.88rem;
+        padding: .48rem .4rem .44rem;
+        background: url('../../images/锯齿.jpg');
+        background-size: cover;
+
+        > .weui-flex__item {
+          margin-right: .16rem;
+          padding: 0;
+          height: .92rem;;
+          width: 3.7733333333333334rem;
+          .mixin-font-dpr(12px);
+
+          &.search-bar {
+            border-radius: 5px;
+            .mixin-border();
+            position: relative;
+            // 聚焦
+            &.focus {
+              .mixin-border(@color: @orange);
+
+              .search-bar__label {
+                display: none;
+              }
+            }
+
+            // 输入层
+            .search-bar__box {
+              height: .4rem;
+              padding: 0.26rem 0.2rem;
+              input {
+                border-radius: 5px;
+                border: none;
+                width: 90%;
+                .mixin-font-dpr(14px);
+                color: @orange;
+              }
+              .weui-icon-clear {
+                line-height: .4rem;
+                .mixin-font-dpr();
+              }
+            }
+
+            // 覆盖层
+            .search-bar__label {
+              position: absolute;
+              top: 1px;
+              right: 1px;
+              bottom: 1px;
+              left: 1px;
+              z-index: 2;
+              color: #9b9b9b;
+              text-align: center;
+              background: #fff;
+
+              // 文字
+              span {
+                vertical-align: middle;
+                line-height: .92rem;
+              }
+            }
+
+            i.weui-icon-search {
+              .mixin-font-dpr(12px);
+            }
+          }
+        }
+
+        .weui-btn_plain-default {
+          color: @orange;
+          .mixin-border(@color: @orange);
+          height: .97rem;
+          padding: .3rem 0.25333333333333335rem;
+          line-height: 1;
+          .mixin-font-dpr(12px);
+        }
+      }
+
+      // 热门城市标题
+      .title {
+        h2 {
+          padding: 0.25333333333333335rem .4rem 0.41333333333333333rem;
+          .mixin-font-dpr();
+        }
+      }
+    }
+
+    // 热门城市信息
+    .info-center {
+      height: 4.1066666666666665rem;
+      background: #FFFFFF;
+
+      .weui-cell {
+        padding: .2rem .4rem .33333333333rem;
+      }
+
+      .city_list {
+        width: 100%;
+        height: auto;
+        float: left;
+
+        dt {
+          width: 25%;
+          float: left;
+          text-align: center;
+          padding: .28rem 0 .26666666666rem;
+          .mixin-font-dpr(14px);
+
+          &:nth-child(4n) {
+            text-align: right;
+          }
+
+          &:nth-child(4n+1) {
+            text-align: left;
+          }
+
+          span {
+            color: #999;
+          }
+        }
+      }
+    }
+
+    // 搜索结果
+    .searchbar-result {
+      position: fixed;
+      top: 2rem;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: white;
+      overflow: auto;
+      .search__item {
+        .mixin-font-dpr(14px);
+        font-weight: bold;
+        position: relative;
+        background: white;
+        padding: 27/75rem 46/75rem;
+        &:not(:last-child) {
+          .mixin-after-border(.5px);
+        }
+        &.hide-bottom {
+          &:after {
+            border-bottom: none;
+          }
+        }
+      }
+      .no-record {
+        text-align: center;
+      }
+    }
+  }
+}

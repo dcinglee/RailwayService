@@ -1,0 +1,107 @@
+@import 'dpr.less';
+@color99: #999;
+*{
+  box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -o-box-sizing:border-box;
+}
+html, body{height: 100%;width: 100%;background-color: #f0f0f0}
+
+
+body{
+  background-color:#f0f0f0;
+  margin:0;
+  font-size:14px;
+  color:#555555;
+  -webkit-overflow-scrolling:touch;
+}
+.txt_center {
+  text-align: center;
+}
+.ft_left {
+  float: left;
+}
+.ft_right {
+  float: right;
+}
+//主体css
+.train_order{
+  width: 100%;
+  height: auto;
+  padding-bottom: 0.8rem;
+  .page__bd {
+    width: 100%;
+    height: auto;
+    background-color: #fff;
+    margin-bottom: 0.4rem;
+    .topBox{
+      padding: 0.226666667rem 0.4rem 0.16rem;
+      border-bottom: 2px dashed #d9d9d9;
+      overflow: hidden;
+      .leftInfo{
+        width: 50%;
+        text-align: left;
+        .stationInfo{
+          line-height: 0.64rem;
+          .mixin-font-dpr(16px);
+          color: #555555;
+        }
+        .timeInfo{
+          min-height:0.64rem;
+          padding-left: 0.05rem;
+          line-height: 0.5866667rem;
+          .mixin-font-dpr(12px);
+          color: @color99;
+        }
+        .trainInfo{
+          padding-left: 0.05rem;
+          line-height: 0.6133333rem;
+          .mixin-font-dpr(12px);
+          color: @color99;
+        }
+      }
+      .rightInfo{
+        width: 50%;
+        text-align: right;
+        .startDay{
+          line-height: 0.72rem;
+          .mixin-font-dpr(12px);
+          color: @color99;
+        }
+        .price{
+          line-height: 0.64rem;
+          .mixin-font-dpr(12px);
+          color: @color99;
+        }
+      }
+    }
+    .bottomBox{
+      padding: 0.1733333rem 0.4rem 0.12rem;
+      overflow: hidden;
+      .btn{
+        display: inline-block;
+        line-height: 0.49333333rem;
+        width: 1.84rem;
+        text-align: center;
+        .mixin-font-dpr(12px);
+        color: #555555;
+        border: 1px solid #555555;
+        border-radius: 10px;
+        float: right;
+        &:hover{
+          text-decoration: none;
+        }
+      }
+      .delete{
+        margin-right: 0.54666667rem;
+      }
+      .cancel{
+        margin-right: 0.54666667rem;
+      }
+      .stopTickets{
+        margin-right: 0.54666667rem;
+      }      
+    }
+  }
+}

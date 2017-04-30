@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>广告管理</title>
+    <meta name="keywords" content="advertise,information,manage"/>
+    <meta name="description" content="广告,广告信息，广告管理哦"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+     <link rel="stylesheet" href="./assets/css/validationEngine.jquery.css" type="text/css">
+
+    <script src="./assets/js/jquery.validationEngine-zh_CN.js"></script>
+    <script src="./assets/js/jquery.validationEngine.js"></script>
+    <!-- basic styles -->
+</head>
+<body>
+<div class="page-content page-content2">
+    <div class="row">
+        <div class="col-xs-12">
+            <form id="stationFormId" class="form-horizontal" role="form">
+                <div class="input-group input-group-sm input-group-sm3" style="margin-bottom: 5px">
+                    <span class="input-group-addon" style="width: 10%;">广告名称</span>
+                    <input type="text" class="form-control" id="inputStation" style="width: 33%;">&nbsp;
+
+                    <button id="dataSearch" class="btn btn-primary btn-sm" title="查询">
+                        <i class="icon-search nav-search-icon"></i>
+                    </button>
+                    <button id="dataadd" type="button" class="btn btn-primary btn-sm"
+                            data-toggle="modal" data-target="#addModal" title="广告添加">
+                        <i class="icon-plus-sign bigger-120"></i>
+                    </button>
+                    <button id="datachange" type="button" class="btn btn-sm btn-success"
+                            data-toggle="modal" data-target="#updateModal" disabled
+                            title="广告修改">
+                        <i class="icon-pencil bigger-130"></i>
+                    </button>
+                    <button id="datadelete" type="button" class="btn btn-sm btn-danger"
+                            data-toggle="modal" data-target="#deleteModal" disabled
+                            title="删除任务">
+                        <i class="icon-trash bigger-130"></i>
+                    </button>
+                    <!-- </div>	 -->
+                </div>
+            </form>
+            <div class="row" style="margin-top: 0px;">
+                <div class="col-xs-12">
+                    <!-- PAGE CONTENT BEGINS -->
+                    <table id="advertise_table" class="table"></table>
+                    <!-- PAGE CONTENT ENDS -->
+                </div>
+                <!-- /.col -->
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+</div>
+<!-- /.page-content -->
+
+<!-- 添加的modal start-->
+<div class="modal fade bs-example-modal-lg" id="addModal" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="exampleModalLabel">广告添加</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="addForm" data-type="add">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">广告标题</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="validate[required] form-control" name="title"
+                                   placeholder="请输入广告标题">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">广告内容</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="validate[required] form-control" name="content"
+                                   placeholder="请输入广告内容">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">广告权重</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="adWeight" class="validate[required] form-control"
+                                   placeholder="请输入广告权重">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">链接Url</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="validate[required] form-control" name="linkUrl"
+                                   placeholder="请输入链接Url">
+                        </div>
+                    </div>
+                    
+                      <div class="form-group" hidden >
+                        <label for="inputPassword3" class="col-sm-2 control-label">图片</label>
+                        <div class="col-sm-10">
+                            <input type="hidden" class="form-control" id="advertiseImages"
+                                   name="imageId" placeholder="请输入确认密码" >
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">广告图片</label>                    
+						<div class="col-sm-10">	
+							<a href="#">					
+								<input class="putbox" type="file"  name="file" id="addPageAddImg" multiple="multiple" accept="image/*" />
+								<!-- <div id="advertiseImg" style=" width:990px;"></div>	 -->
+								<img class="imgbox" id="advertiseImg" src="" />	
+							</a>					
+						</div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" form="addForm">保存</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 添加的modal end-->
+
+<!-- 修改的modal start-->
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLabel">
+    <div id="modalDialog" class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="exampleModalLabel">广告修改</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="updateForm" data-type="update">
+					<!-- <input type="hidden" id="updateadBannerId" name="adbannerId"> -->
+                    <div class="form-group" hidden>
+                        <label for="inputEmail3" class="col-sm-2 control-label">ID</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="updateadBannerId" name="adBannerId"
+                                   placeholder="adBannerId">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" hidden>
+                        <label for="inputEmail3" class="col-sm-2 control-label">adminId</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control"  name="adminId"
+                                   placeholder="title">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">广告标题</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="title"
+                                   placeholder="请输入广告标题">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">广告内容</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="content"
+                                   placeholder="请输入广告内容">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">广告权重</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="adWeight" class="form-control"
+                                   placeholder="请输入广告权重">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">linkUrl</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" name="linkUrl"
+                                   placeholder="linkUrl">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" hidden >
+                        <label for="inputPassword3" class="col-sm-2 control-label">图片</label>
+                        <div class="col-sm-10">
+                            <input type="hidden" class="form-control" id="advertiseUpdateImages"
+                                   name="imageId" placeholder="请输入确认密码" >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">广告图片</label>
+                        <div class="col-sm-10">
+                        	<a href="#">						
+								<input class="putbox" type="file"  name="file" id="inputfile" />
+								<!-- <div id="advertiseImgs" style=" width:990px;"></div> -->	
+								 <img class="imgbox" id="advertiseImgs" src=""/>
+							</a>	 					
+						</div>
+                    </div>
+
+                    <div class="form-group" hidden>
+                        <label for="inputPassword3" class="col-sm-2 control-label">hits</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" name="hits"
+                                   placeholder="点击量">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" form="updateForm">保存</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- 修改的modal end-->
+
+
+<!-- 删除的modal start-->
+<div class="modal fade" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">删除任务</h4>
+            </div>
+            <!--Form的id为myForm-->
+            <form id="deleteForm" data-type="delete">
+                <div class="modal-body"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary">确认</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- 删除的modal end-->
+
+
+<script type="text/javascript" src="script/advertise.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#inputfile").change(function () {
+            //创建FormData对象
+            var data = new FormData();
+            data.append('adBannerId', $("#updateadBannerId").val());
+            //为FormData对象添加数据
+            $.each($('#inputfile')[0].files, function (i, file) {
+                //data
+                data.append('imageFile', file);
+            });
+            $.ajax({
+                url: '../AdBanner/updateImage.action',
+                type: 'POST',
+                data: data,
+                cache: false,
+                contentType: false,    //不可缺
+                processData: false,    //不可缺
+                success: function (resb) {
+                    var rs = eval("(" + resb + ")");
+                    alert(rs.message);
+                    
+                    var imageId=rs.data.imageId;
+                    console.log(imageId);
+                    $("#advertiseUpdateImages").val(imageId);                                   
+                    $.ajax({
+                        url: '../common/getImageUrl',
+                        type: 'POST',
+                        data: {
+                            "imageId": imageId,        
+                        },
+                        cache: false,
+                        dataType: 'json',
+                        success: function (resb) {
+                            var rs = resb;
+                            
+                            if(rs.code == '1'){
+                            	
+                            	var preview = document.getElementById('advertiseImgs');
+                            	preview.src = rs.data;
+                            }else{
+                            	alert("预览失败，请重新上传");
+                            }                            
+                        
+                        }
+                    });
+                }
+            });
+        });
+        
+        
+        $("#addPageAddImg").change(function () {
+       	 var $that=$(this);
+           //创建FormData对象
+           var data = new FormData();
+           //data.append('merchantId', $("#updatemerchantId").val());
+           
+           $.each($('#addPageAddImg')[0].files, function (i, file) {
+               //data
+               data.append('imageFile', file);
+           });
+                       
+           $.ajax({
+               url: '../common/addImage.action',
+               type: 'POST',
+               data: data,
+               cache: false,
+               contentType: false,    //不可缺
+               processData: false,    //不可缺
+               success: function (resb) {
+                   var rs = eval("(" + resb + ")");
+                   
+                   //imageId 40283cab5ada1ac5015adb2a9de60019
+                   //url /images/40283cab5ada1ac5015adb2a9de60019.jpg
+                   //var $merchantImg = $(this).find('input[name="imageId"]');
+                  
+                   var imageId=rs.data.imageId;
+                   console.log(imageId);
+                //	$merchantImg.val(rs.data.imageId);
+                $("#advertiseImages").val(imageId);  
+                console.log( $("#advertiseImages").val(imageId));
+                	  $.ajax({
+                         url: '../common/getImageUrl',
+                         type: 'POST',
+                         data: {
+                             "imageId": imageId,        
+                         },
+                         cache: false,
+                         dataType: 'json',
+                         success: function (resb) {
+                             var rs = resb;                             
+                             if(rs.code == '1'){                            
+                             	var previews = document.getElementById('advertiseImg');
+                             	previews.src = rs.data;
+                             }else{
+                             	alert("预览失败，请重新上传");
+                             }                            
+                         
+                         }
+                     });
+               }
+           
+           }); 
+            
+       });
+        
+    });
+</script>
+</body>
+</html>

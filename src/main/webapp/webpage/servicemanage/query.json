@@ -1,0 +1,17 @@
+[
+
+  {	
+    "name":"jack", "phoneNo":"18289986789",  "gender":"1", "age":"17","address":"changsha"
+  },
+  
+  {	
+    "name":"john", "phoneNo":"18288886789",  "gender":"2", "age":"17","address":"changsha"
+  },
+  {	
+    "name":"Cindy", "phoneNo":"18245789789",  "gender":"2", "age":"18","address":"anhui"
+  },
+  {	
+    "name":"Jeff", "phoneNo":"182898455789",  "gender":"1", "age":"11","address":"wuhan"
+  }
+  
+]

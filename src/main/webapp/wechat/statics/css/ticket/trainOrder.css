@@ -1,0 +1,272 @@
+:root {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+}
+:root a {
+  text-decoration: none;
+}
+:root a:visited {
+  text-decoration: none;
+}
+:root a:hover {
+  text-decoration: none;
+}
+[data-dpr="2"] .weui-dialog {
+  max-width: none;
+  border-radius: 6px;
+}
+[data-dpr="2"] .weui-dialog .weui-dialog__title {
+  font-size: 36px;
+}
+[data-dpr="2"] .weui-dialog .weui-dialog__bd {
+  font-size: 30px;
+  min-height: 80px;
+}
+[data-dpr="2"] .weui-dialog .weui-dialog__ft {
+  font-size: 36px;
+  line-height: 96px;
+}
+[data-dpr="3"] .weui-dialog {
+  max-width: none;
+  border-radius: 9px;
+}
+[data-dpr="3"] .weui-dialog .weui-dialog__title {
+  font-size: 54px;
+}
+[data-dpr="3"] .weui-dialog .weui-dialog__bd {
+  font-size: 45px;
+  min-height: 120px;
+}
+[data-dpr="3"] .weui-dialog .weui-dialog__ft {
+  font-size: 54px;
+  line-height: 144px;
+}
+.color-orange {
+  color: #ff6600;
+}
+.color-green {
+  color: #09bb07;
+}
+.color-btn-jianshao {
+  color: #ff5b45;
+}
+.hide {
+  display: none;
+}
+.train-mask {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 2;
+}
+.train-confirm .train-dialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  background: white;
+  margin: 1.98666667rem 1.96rem;
+  padding: 0.42666667rem 0.21333333rem 0.42666667rem 0.49333333rem;
+  border-radius: 0.2rem;
+}
+@media all and (orientation: landscape) {
+  .train-confirm .train-dialog {
+    margin: 0.28rem 1.96rem;
+  }
+}
+.train-confirm .train-dialog .train-dialog__title {
+  color: #ff6600;
+  font-size: 14.5px !important;
+}
+[data-dpr="2"] .train-confirm .train-dialog .train-dialog__title {
+  font-size: 29px !important;
+}
+[data-dpr="3"] .train-confirm .train-dialog .train-dialog__title {
+  font-size: 43.5px !important;
+}
+.train-confirm .train-dialog .train-dialog__content {
+  margin-top: 0.84rem;
+  font-size: 15px !important;
+}
+[data-dpr="2"] .train-confirm .train-dialog .train-dialog__content {
+  font-size: 30px !important;
+}
+[data-dpr="3"] .train-confirm .train-dialog .train-dialog__content {
+  font-size: 45px !important;
+}
+.train-confirm .train-dialog .train-dialog__control {
+  margin-top: 0.84rem;
+}
+.train-confirm .train-dialog .train-dialog__control .train-dialog__cancel {
+  border-color: #ff6600;
+  float: right;
+  font-size: 13px !important;
+}
+[data-dpr="2"] .train-confirm .train-dialog .train-dialog__control .train-dialog__cancel {
+  font-size: 26px !important;
+}
+[data-dpr="3"] .train-confirm .train-dialog .train-dialog__control .train-dialog__cancel {
+  font-size: 39px !important;
+}
+.train-confirm .train-dialog .train-dialog__control .train-dialog__ok {
+  margin-left: 0.25333333rem;
+  background: #ff6600;
+  border-color: #ff6600;
+  color: white;
+  font-size: 13px !important;
+}
+[data-dpr="2"] .train-confirm .train-dialog .train-dialog__control .train-dialog__ok {
+  font-size: 26px !important;
+}
+[data-dpr="3"] .train-confirm .train-dialog .train-dialog__control .train-dialog__ok {
+  font-size: 39px !important;
+}
+* {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+  width: 100%;
+  background-color: #f0f0f0;
+}
+body {
+  background-color: #f0f0f0;
+  margin: 0;
+  font-size: 14px;
+  color: #555555;
+  -webkit-overflow-scrolling: touch;
+}
+.txt_center {
+  text-align: center;
+}
+.ft_left {
+  float: left;
+}
+.ft_right {
+  float: right;
+}
+.train_order {
+  width: 100%;
+  height: auto;
+  padding-bottom: 0.8rem;
+}
+.train_order .page__bd {
+  width: 100%;
+  height: auto;
+  background-color: #fff;
+  margin-bottom: 0.4rem;
+}
+.train_order .page__bd .topBox {
+  padding: 0.226666667rem 0.4rem 0.16rem;
+  border-bottom: 2px dashed #d9d9d9;
+  overflow: hidden;
+}
+.train_order .page__bd .topBox .leftInfo {
+  width: 50%;
+  text-align: left;
+}
+.train_order .page__bd .topBox .leftInfo .stationInfo {
+  line-height: 0.64rem;
+  font-size: 16px !important;
+  color: #555555;
+}
+[data-dpr="2"] .train_order .page__bd .topBox .leftInfo .stationInfo {
+  font-size: 32px !important;
+}
+[data-dpr="3"] .train_order .page__bd .topBox .leftInfo .stationInfo {
+  font-size: 48px !important;
+}
+.train_order .page__bd .topBox .leftInfo .timeInfo {
+  min-height:0.64rem;
+  padding-left: 0.05rem;
+  line-height: 0.5866667rem;
+  font-size: 12px !important;
+  color: #999;
+}
+[data-dpr="2"] .train_order .page__bd .topBox .leftInfo .timeInfo {
+  font-size: 24px !important;
+}
+[data-dpr="3"] .train_order .page__bd .topBox .leftInfo .timeInfo {
+  font-size: 36px !important;
+}
+.train_order .page__bd .topBox .leftInfo .trainInfo {
+  padding-left: 0.05rem;
+  line-height: 0.6133333rem;
+  font-size: 12px !important;
+  color: #999;
+}
+[data-dpr="2"] .train_order .page__bd .topBox .leftInfo .trainInfo {
+  font-size: 24px !important;
+}
+[data-dpr="3"] .train_order .page__bd .topBox .leftInfo .trainInfo {
+  font-size: 36px !important;
+}
+.train_order .page__bd .topBox .rightInfo {
+  width: 50%;
+  text-align: right;
+}
+.train_order .page__bd .topBox .rightInfo .startDay {
+  line-height: 0.72rem;
+  font-size: 12px !important;
+  color: #999;
+}
+[data-dpr="2"] .train_order .page__bd .topBox .rightInfo .startDay {
+  font-size: 24px !important;
+}
+[data-dpr="3"] .train_order .page__bd .topBox .rightInfo .startDay {
+  font-size: 36px !important;
+}
+.train_order .page__bd .topBox .rightInfo .price {
+  line-height: 0.64rem;
+  font-size: 12px !important;
+  color: #999;
+}
+[data-dpr="2"] .train_order .page__bd .topBox .rightInfo .price {
+  font-size: 24px !important;
+}
+[data-dpr="3"] .train_order .page__bd .topBox .rightInfo .price {
+  font-size: 36px !important;
+}
+.train_order .page__bd .bottomBox {
+  padding: 0.1733333rem 0.4rem 0.12rem;
+  overflow: hidden;
+}
+.train_order .page__bd .bottomBox .btn {
+  display: inline-block;
+  line-height: 0.49333333rem;
+  width: 1.84rem;
+  text-align: center;
+  font-size: 12px !important;
+  color: #555555;
+  border: 1px solid #555555;
+  border-radius: 10px;
+  float: right;
+}
+[data-dpr="2"] .train_order .page__bd .bottomBox .btn {
+  font-size: 24px !important;
+}
+[data-dpr="3"] .train_order .page__bd .bottomBox .btn {
+  font-size: 36px !important;
+}
+.train_order .page__bd .bottomBox .btn:hover {
+  text-decoration: none;
+}
+.train_order .page__bd .bottomBox .delete {
+  margin-right: 0.54666667rem;
+}
+.train_order .page__bd .bottomBox .cancel {
+  margin-right: 0.54666667rem;
+}
+.train_order .page__bd .bottomBox .stopTickets {
+  margin-right: 0.54666667rem;
+}

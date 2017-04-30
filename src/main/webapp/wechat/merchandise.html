@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="keywords" content="railway,Service,weChat,RailwayServiceWechat"/>
+    <meta name="description" content="高铁微信端,高铁微信服务,高铁微信服务首页"/>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <!--<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>-->
+    <!--<meta http-equiv="Pragma" content="no-cache"/>-->
+    <!--<meta http-equiv="Expires" content="0"/>-->
+    <script src="statics/js/config/wechat-cfg.js"></script>
+
+    <script>
+        switch (sessionStorage.serviceType) {
+            case 'service_type_catering_trade':
+                document.title = '送餐服务';
+                break;
+            case 'service_type_charge':
+                document.title = '充电服务';
+                break;
+            case 'service_type_shopping':
+                document.title = '购物服务';
+                break;
+            default:
+                document.title = '图书服务';
+        }
+
+        if (!sessionStorage.userInfo) {
+            window.location.href = login_url;
+        }
+    </script>
+    <link rel="stylesheet" href="statics/css/weui.min.css">
+    <link rel="stylesheet" href="statics/css/jquery-weui.min.css">
+    <link rel="stylesheet" href="statics/css/icon-font/iconfont.css">
+    <link rel="stylesheet" href="statics/css/merchandise.css">
+</head>
+
+<body>
+
+<!--页面内容-->
+<div id="content" style="height: 100%;">
+    <!--商户信息-->
+    <div class="merchandise-top">
+        <div class="weui-panel__bd merchandise-info-center">
+            <div class="weui-media-box weui-media-box_appmsg">
+                <div class="weui-flex"></div>
+            </div>
+        </div>
+    </div>
+
+    <!--商品内容-->
+    <div class="weui-flex merchandise-menu" data-toggle="menu">
+        <!--未设置商品时-->
+        <div class="empty" style="display: none;"></div>
+    </div>
+
+    <!--购物车-->
+    <div class="commodity-shopping-cart weui-flex"></div>
+</div>
+
+<!--商户信息模版-->
+<script id="clone_hdiv" type="text/html">
+    <!--logo-->
+    <div class="weui-media-box__hd logo">
+        <img class="weui-media-box__thumb" src="url" alt=""
+             onerror="imgErrorLoad(this, 'statics/images/merchant_logo.jpg')">
+    </div>
+    <!--商户信息-->
+    <div class="weui-media-box__bd merchandise-top-detail">
+        <h4 class="weui-media-box__title"></h4>
+        <p id="address" class="weui-media-box__desc"></p>
+        <p id="proc" class="weui-media-box__desc"></p>
+        <!--商户评价-->
+        <div class="star-g"></div>
+    </div>
+</script>
+
+<!--分类菜单模版-->
+<script id="clone_fdiv" type="text/html">
+    <div class="firstMenu" data-name="firstMenu">
+        <ul class="nav nav-tabs"></ul>
+    </div>
+</script>
+
+<!--分类li模版-->
+<script id="clone_li" type="text/html">
+    <li>
+        <a href="#__section-1__" data-id="__section-1__">__第一部分__</a>
+    </li>
+</script>
+
+<!--商品菜单模版-->
+<script id="clone_sdiv" type="text/html">
+    <div class="weui-flex__item secondMenu scroll" data-name="secondMenu"></div>
+</script>
+
+<!--分类商品块模版-->
+<script id="clone_goods" type="text/html">
+    <div class="weui-panel_access" id="__target__">
+        <div class="weui-panel__hd">
+            <span>__标题__</span>&nbsp;<span>__描述__</span>
+        </div>
+    </div>
+</script>
+
+<!--商品模版-->
+<script id="clone_good" type="text/html">
+    <div class="weui-panel__bd goods-info" data-id="__商品id__">
+        <div class="weui-media-box weui-media-box_appmsg">
+            <!--商品图片-->
+            <div class="weui-media-box__hd">
+                <img class="weui-media-box__thumb" src="url" alt="" onerror="imgErrorLoad(this)">
+            </div>
+
+            <!--商品信息-->
+            <div class="weui-media-box__bd">
+                <span class="weui-media-box__title">__标题__</span>
+                <span class="weui-media-box__desc detail">__内容__</span>
+                <span class="weui-media-box__desc detail">月售__sales__份</span>
+                <!--商品单价-->
+                <div class="weui-media-box__desc price weui-flex price-tip">
+                    <div class="weui-flex__item">
+                        <span class="color-orange">
+                            <span class="yuan">&yen;</span>
+                            <span data-name="price">__价格__</span>
+                        </span>
+                    </div>
+                    <!--操作按钮-->
+                    <div class="weui-flex__item btn-ctl">
+                        <div data-name="reduce" data-id="__商品id__" style="display: none;">
+                            <i class="iconfont icon-jianshao color-orange"></i>
+                        </div>
+                        <span class="color-orange count" data-name="count" style="display: none;">0</span>
+                        <div data-name="add" data-id="__商品id__">
+                            <i class="iconfont icon-zengjia color-orange"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<!--空商品背景-->
+<script id="clone_good_bg" type="text/html">
+    <div class="product-empty">
+        <img src="statics/images/product_empty.png" alt="该分类未设置商品">
+    </div>
+</script>
+
+<!--弹窗模版-->
+<script id="clone_popup" type="text/html">
+    <div class="goods-popup-detail" style="display: none;">
+        <div class="close">
+            <i class="iconfont icon-guanbi"></i>
+        </div>
+        <div class="goods-popup-detail-bg">
+            <img src="__url__" alt="" onerror="imgErrorLoad(this, 'statics/images/goods_empty2.jpg')">
+        </div>
+        <div class="goods-popup-detail-info">
+            <article class="weui-article">
+                <section>
+                    <h2>__标题__</h2>
+                    <p>__副标题__</p>
+                    <div class="weui-flex">
+                        <div class="weui-flex__item">
+                            <span class="yuan color-orange">&yen;</span>
+                            <span class="price color-orange" data-name="price">__价格__</span>
+                            <span>月售__sales__份</span>
+                        </div>
+                        <div class="weui-flex__item">
+                            <a href="javascript:void(0);" data-name="addToCart" data-id="__商品id__"
+                               class="weui-btn weui-btn_plain-default">加入购物车</a>
+                        </div>
+                    </div>
+                </section>
+            </article>
+        </div>
+    </div>
+    <div class="weui-mask weui-actions_mask weui-mask--visible" style="z-index: 999999" data-name="pop-mask"></div>
+</script>
+
+<!--购物车内容模版-->
+<script id="clone_shopCart" type="text/html">
+    <!--商品数量-->
+    <div class="show-shopping-detail" data-toggle="show-shopping-detail">
+        <span class="weui-badge" style="display: none;">0</span>
+    </div>
+    <!--商品总价格-->
+    <div class="weui-flex__item cost">
+        <p>
+            &yen;<span id="cost">0</span>
+        </p>
+    </div>
+    <!--提交按钮-->
+    <div class="weui-flex__item" style="text-align: center;">
+        <span id="num_0">购物车为空</span>
+        <span id="b_end" style="display: none;">商家休息中，暂不接单</span>
+        <a id="submit" href="javascript:void(0);" class="weui-btn color-orange" data-name="submit"
+           style="display: none;">
+            去结算
+        </a>
+    </div>
+</script>
+
+<!--上拉配送费-->
+<script id="clone_detail_fee" type="text/html">
+    <div class="flex goods_info  tip">
+        <a class="weui-btn weui-btn_plain-default">温馨提示</a>
+        <span>另需配送费__fee__元，到店自取不收配送费</span>
+    </div>
+</script>
+
+<!--上拉模版-->
+<script id="clone_detail" type="text/html">
+    <div class="weui-flex goods_info">
+        <div class="weui-flex__item">
+            <span>__商品名称__</span>
+        </div>
+        <div class="weui-flex__item btn-ctl">
+            <div class="weui-flex">
+                <div class="weui-flex__item">
+                    <span class="yuan color-orange mini">&yen;</span>
+                    <span class="color-orange" data-name="price">__价格__</span>
+                </div>
+                <div class="weui-flex__item" data-type="reduce" data-name="sheet" data-id="__商品id__">
+                    <i class="iconfont icon-jianshao color-gray"></i>
+                </div>
+                <span class="color-orange count">__数量__</span>
+                <div class="weui-flex__item" data-type="add" data-name="sheet" data-id="__商品id__">
+                    <i class="iconfont icon-zengjia color-orange"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<!--上拉模版表头-->
+<script id="clone_detail_title" type="text/html">
+    <div class="weui-flex">
+        <div class="weui-flex__item commodity-shopping-detail-1">
+            <span>购物车</span>
+        </div>
+        <div class="weui-flex__item commodity-shopping-detail-2">
+            <i class="iconfont icon-qingchu" data-name="clearAll">清空</i>
+        </div>
+    </div>
+</script>
+
+<script src="statics/js/lib/jquery-2.0.3.min.js"></script>
+<script src="statics/js/lib/jquery-weui.min.js"></script>
+<script src="statics/js/core.min.js"></script>
+<!--<script src="statics/js/core.js"></script>-->
+<script src="statics/js/lib/scrollspy.min.js"></script>
+<script src="statics/js/merchandise-menu.js?v=1"></script>
+<!--<script src="statics/js/merchandise-menu.min.js"></script>-->
+<script src="statics/js/disable_ios_scroll.min.js"></script>
+<script>
+    $('[data-toggle="menu"]').menus({
+        'url': '/RailwayService/merchant/getProductsByMerchant.do',
+        'data': {'merchantId': sessionStorage.merchantId},
+        'async': false
+    });
+</script>
+</body>
+
+</html>

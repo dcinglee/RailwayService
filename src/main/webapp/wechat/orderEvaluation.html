@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>订单评价</title>
+    <meta name="keywords" content="railway,Service,weChat,RailwayServiceWechat"/>
+    <meta name="description" content="高铁微信端,高铁微信服务,高铁微信服务首页"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0"/>
+    <!--<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>-->
+    <!--<meta http-equiv="Pragma" content="no-cache"/>-->
+    <!--<meta http-equiv="Expires" content="0"/>-->
+    <script src="statics/js/config/wechat-cfg.js"></script>
+    <script>if(!sessionStorage.userInfo){window.location.href = login_url;}</script>
+    <link rel="stylesheet" href="statics/css/weui.min.css">
+    <link rel="stylesheet" href="statics/css/jquery-weui.min.css">
+    <link rel="stylesheet" href="statics/css/icon-font/iconfont.css">
+    <link rel="stylesheet" href="statics/css/orderEvaluation.css">
+</head>
+<body>
+<div class="scroll">
+    <div class="order-top">
+        <div>
+            <img class="logo-circle" src="" />
+            <div class="merchant-title">
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <div class="order-content">
+        <span class="appraisal">商家服务怎么样？</span>
+        <div class="click-star">
+            <div id="starBg" class="star_bg">
+                <input type="radio" id="starScore1" class="score score_1" value="1" name="score">
+                <a href="#starScore1" class="star star_1" title="差"><label for="starScore1">差</label></a>
+                <input type="radio" id="starScore2" class="score score_2" value="2" name="score">
+                <a href="#starScore2" class="star star_2" title="较差"><label for="starScore2">较差</label></a>
+                <input type="radio" id="starScore3" class="score score_3" value="3" name="score">
+                <a href="#starScore3" class="star star_3" title="普通"><label for="starScore3">普通</label></a>
+                <input type="radio" id="starScore4" class="score score_4" value="4" name="score">
+                <a href="#starScore4" class="star star_4" title="较好"><label for="starScore4">较好</label></a>
+                <input type="radio" id="starScore5" class="score score_5" value="5" name="score">
+                <a href="#starScore5" class="star star_5" title="好"><label for="starScore5">好</label></a>
+            </div>
+        </div>
+        <span class="text-title">评价内容</span>
+        <div class="area">
+            <textarea class="weui-textarea" placeholder="请输入评价内容，以便其他小伙伴了解情况" rows="5"></textarea>
+        </div>
+        <div class="order-btn">
+            <a href="javascript:void(0);" class="weui-btn weui-btn_default color-btn" id="submit">确认</a>
+        </div>
+    </div>
+</div>
+<script src="statics/js/lib/jquery-2.0.3.min.js"></script>
+<script src="statics/js/lib/jquery-weui.min.js"></script>
+<script src="statics/js/core.min.js"></script>
+<script src="statics/js/orderEvaluation.min.js"></script>
+</body>
+</html>

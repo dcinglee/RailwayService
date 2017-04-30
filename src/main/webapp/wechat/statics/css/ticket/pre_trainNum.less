@@ -1,0 +1,152 @@
+@import 'dpr.less';
+*{
+  box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -o-box-sizing:border-box;
+}
+html, body{height: 100%;width: 100%;background-color: #f0f0f0}
+
+body{
+  background-color:#f0f0f0;
+  margin:0;
+  color:#000;
+  -webkit-overflow-scrolling:touch;
+}
+.txt_center {
+  text-align: center;
+}
+.ft_left {
+  float: left;
+}
+.ft_right {
+  float: right;
+}
+//主体css
+.pre_trainNum{
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  overflow: auto;
+  -webkit-overflow-scrolling:touch;
+  width: 100%;
+  height: 94%;
+  &::-webkit-scrollbar{width:0;height:0;}
+  .trainNum_state{
+    width: 100%;
+    height: auto;
+    .mixin-font-dpr(12px);
+    color: #555555;
+    background-color: #fff7dc;
+    padding: 0.10666667rem 4%;
+  }
+  .page__bd{
+    background-color: transparent;
+    width: 100%;
+    height: auto;
+    ul{
+      width: 100%;
+      height: auto;
+      list-style: none;
+      li{
+        margin: 0.4rem 0.53333333rem;
+        background-color: transparent;
+        min-height: 80px;
+        padding: 0.18666667rem 0.346666667rem 0.106666667rem;
+        background: url(../../images/trainTickets/trainNum_bg.png) no-repeat center;
+        background-size: 100% 100%;
+        .weui-cell{
+          padding: 0;
+          padding-bottom: 0.35rem;
+        }
+      }
+    }
+  }
+}
+//内部样式
+ul.trainList{
+  h2 {
+    .mixin-font-dpr(18px);
+    font-weight: normal;
+    float: left;
+    width: 38%;
+    p{
+      text-align: center;
+      line-height: 1;
+      margin-bottom:0.32rem;
+      }
+    .time{
+      .mixin-font-dpr(12px);
+      color: #000;
+      }
+    }
+  .goto_icon{
+    float: left;
+    width: 24%;
+    text-align: center;
+    line-height: 1;
+    margin-top: -0.06666667rem;
+    p{
+      .mixin-font-dpr(16px);
+      span {
+        .mixin-font-dpr(12px);
+        color: #000;
+      }
+    }
+  }
+  .right_txt{
+    float: right;
+    p{
+      padding: 0;
+      text-align: center;
+    }
+  }
+}
+//底部样式
+.pre_trainNum .train_bottom {
+  margin-top: 0.13333333rem;
+  text-align: center;
+}
+
+//选择按钮大小
+.weui-cells_checkbox .weui-icon-checked:before{
+  .mixin-font-dpr(18px);
+}
+//伪类样式重置
+ul.trainList .weui-cell:before{border: none;left: 0;}
+.pre_trainNum .train_bottom {
+  margin-top: 10px;
+  text-align: center;
+  span {
+    padding-right: 0.08rem;
+    .mixin-font-dpr(12px);
+    color: #000;
+  }
+}
+//底部样式
+.btn_cover{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1.30666667rem;
+  background-color: #ff6600;
+  a{
+    line-height: 1.306666667rem;
+    .mixin-font-dpr(18px);
+    &:hover{
+      text-decoration: none;
+    }
+  }
+}
+
+//weuiCSS
+.weui-toast {
+  width: 3rem;
+  min-height: 3rem;
+  .weui-toast_content{
+    .mixin-font-dpr(16px);
+  }
+}

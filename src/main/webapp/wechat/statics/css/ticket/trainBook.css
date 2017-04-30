@@ -1,0 +1,441 @@
+:root {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+}
+:root a {
+  text-decoration: none;
+}
+:root a:visited {
+  text-decoration: none;
+}
+:root a:hover {
+  text-decoration: none;
+}
+[data-dpr="2"] .weui-dialog {
+  max-width: none;
+  border-radius: 6px;
+}
+[data-dpr="2"] .weui-dialog .weui-dialog__title {
+  font-size: 36px;
+}
+[data-dpr="2"] .weui-dialog .weui-dialog__bd {
+  font-size: 30px;
+  min-height: 80px;
+}
+[data-dpr="2"] .weui-dialog .weui-dialog__ft {
+  font-size: 36px;
+  line-height: 96px;
+}
+[data-dpr="3"] .weui-dialog {
+  max-width: none;
+  border-radius: 9px;
+}
+[data-dpr="3"] .weui-dialog .weui-dialog__title {
+  font-size: 54px;
+}
+[data-dpr="3"] .weui-dialog .weui-dialog__bd {
+  font-size: 45px;
+  min-height: 120px;
+}
+[data-dpr="3"] .weui-dialog .weui-dialog__ft {
+  font-size: 54px;
+  line-height: 144px;
+}
+[data-dpr="2"] .weui-icon_toast.weui-loading {
+  margin: 60px 0 0;
+  width: 76px;
+  height: 76px;
+}
+[data-dpr="3"] .weui-icon_toast.weui-loading {
+  margin: 90px 0 0;
+  width: 114px;
+  height: 114px;
+}
+.weui-cells:before {
+  border-top: 2px solid #d9d9d9;
+}
+[data-dpr="2"] .weui-cells:before {
+  border-top: 4px solid #d9d9d9;
+}
+[data-dpr="3"] .weui-cells:before {
+  border-top: 6px solid #d9d9d9;
+}
+.weui-cells:after {
+  border-bottom: 2px solid #d9d9d9;
+}
+[data-dpr="2"] .weui-cells:after {
+  border-bottom: 4px solid #d9d9d9;
+}
+[data-dpr="3"] .weui-cells:after {
+  border-bottom: 6px solid #d9d9d9;
+}
+.color-orange {
+  color: #ff6600;
+}
+.color-green {
+  color: #09bb07;
+}
+.color-btn-jianshao {
+  color: #ff5b45;
+}
+.hide {
+  display: none;
+}
+.train-mask {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 2;
+}
+.train-confirm .train-dialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  background: white;
+  margin: 1.98666667rem 1.96rem;
+  padding: 0.42666667rem 0.21333333rem 0.42666667rem 0.49333333rem;
+  border-radius: 0.2rem;
+}
+@media all and (orientation: landscape) {
+  .train-confirm .train-dialog {
+    margin: 0.28rem 1.96rem;
+  }
+}
+.train-confirm .train-dialog .train-dialog__title {
+  color: #ff6600;
+  font-size: 14.5px !important;
+}
+[data-dpr="2"] .train-confirm .train-dialog .train-dialog__title {
+  font-size: 29px !important;
+}
+[data-dpr="3"] .train-confirm .train-dialog .train-dialog__title {
+  font-size: 43.5px !important;
+}
+.train-confirm .train-dialog .train-dialog__content {
+  margin-top: 0.84rem;
+  font-size: 15px !important;
+}
+[data-dpr="2"] .train-confirm .train-dialog .train-dialog__content {
+  font-size: 30px !important;
+}
+[data-dpr="3"] .train-confirm .train-dialog .train-dialog__content {
+  font-size: 45px !important;
+}
+.train-confirm .train-dialog .train-dialog__control {
+  margin-top: 0.84rem;
+}
+.train-confirm .train-dialog .train-dialog__control .train-dialog__cancel {
+  border-color: #ff6600;
+  float: right;
+  font-size: 13px !important;
+}
+[data-dpr="2"] .train-confirm .train-dialog .train-dialog__control .train-dialog__cancel {
+  font-size: 26px !important;
+}
+[data-dpr="3"] .train-confirm .train-dialog .train-dialog__control .train-dialog__cancel {
+  font-size: 39px !important;
+}
+.train-confirm .train-dialog .train-dialog__control .train-dialog__ok {
+  margin-left: 0.25333333rem;
+  background: #ff6600;
+  border-color: #ff6600;
+  color: white;
+  font-size: 13px !important;
+}
+[data-dpr="2"] .train-confirm .train-dialog .train-dialog__control .train-dialog__ok {
+  font-size: 26px !important;
+}
+[data-dpr="3"] .train-confirm .train-dialog .train-dialog__control .train-dialog__ok {
+  font-size: 39px !important;
+}
+body {
+  background-color: #f0f0f0;
+  margin: 0;
+  color: #555555;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  line-height: 1;
+  font-size: 14px !important;
+}
+[data-dpr="2"] body {
+  font-size: 28px !important;
+}
+[data-dpr="3"] body {
+  font-size: 42px !important;
+}
+body .trainLogin {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+body .trainLogin .timetable {
+  width: auto;
+  background: url('../../images/trainTickets/trainLogin_icon.png') no-repeat center;
+  background-size: 100% 100%;
+  border-top: 1px solid #ffa233;
+  border-bottom: 1px solid #ffa233;
+  margin: .4rem 0;
+  padding: .52rem 2rem .72rem;
+}
+body .trainLogin .timetable .train-date {
+  font-size: 13px !important;
+  margin-bottom: 0.5333333333333333rem;
+}
+[data-dpr="2"] body .trainLogin .timetable .train-date {
+  font-size: 26px !important;
+}
+[data-dpr="3"] body .trainLogin .timetable .train-date {
+  font-size: 39px !important;
+}
+body .trainLogin .timetable .train-station {
+  text-align: center;
+}
+body .trainLogin .timetable .train-station #start_station,
+body .trainLogin .timetable .train-station #end_station {
+  font-size: 19px !important;
+}
+[data-dpr="2"] body .trainLogin .timetable .train-station #start_station,
+[data-dpr="2"] body .trainLogin .timetable .train-station #end_station {
+  font-size: 38px !important;
+}
+[data-dpr="3"] body .trainLogin .timetable .train-station #start_station,
+[data-dpr="3"] body .trainLogin .timetable .train-station #end_station {
+  font-size: 57px !important;
+}
+body .trainLogin .timetable .train-station #start_time,
+body .trainLogin .timetable .train-station #end_time {
+  font-size: 12px !important;
+}
+[data-dpr="2"] body .trainLogin .timetable .train-station #start_time,
+[data-dpr="2"] body .trainLogin .timetable .train-station #end_time {
+  font-size: 24px !important;
+}
+[data-dpr="3"] body .trainLogin .timetable .train-station #start_time,
+[data-dpr="3"] body .trainLogin .timetable .train-station #end_time {
+  font-size: 36px !important;
+}
+body .trainLogin .timetable .train-station #line {
+  font-size: 15.8px !important;
+  line-height: 19px;
+}
+[data-dpr="2"] body .trainLogin .timetable .train-station #line {
+  font-size: 31.6px !important;
+}
+[data-dpr="3"] body .trainLogin .timetable .train-station #line {
+  font-size: 47.4px !important;
+}
+[data-dpr="2"] body .trainLogin .timetable .train-station #line {
+  line-height: 38px !important;
+}
+[data-dpr="3"] body .trainLogin .timetable .train-station #line {
+  line-height: 57px !important;
+}
+body .trainLogin .timetable .train-station .goto img {
+  vertical-align: super;
+  width: 2rem;
+}
+body .trainLogin .timetable .train-station #start_station,
+body .trainLogin .timetable .train-station #line,
+body .trainLogin .timetable .train-station #end_station {
+  margin-bottom: 0.17333333333333334rem;
+}
+body .trainLogin .train-info {
+  margin-bottom: .4rem;
+}
+body .trainLogin .train-info li {
+  background: white;
+  padding: .4rem .4rem .36rem;
+  font-size: 12px !important;
+}
+[data-dpr="2"] body .trainLogin .train-info li {
+  font-size: 24px !important;
+}
+[data-dpr="3"] body .trainLogin .train-info li {
+  font-size: 36px !important;
+}
+body .trainLogin .train-info li.userinfo {
+  padding: .38666666666666666rem .4rem .30666666666666664rem;
+}
+body .trainLogin .train-info li.userinfo > dd:first-child {
+  margin-right: 0.17333333333333334rem;
+}
+body .trainLogin .train-info li.userinfo > dd:nth-of-type(2) .weui-flex__item {
+  color: #747a7f;
+}
+body .trainLogin .train-info li.userinfo > dd:nth-of-type(2) .weui-flex__item span {
+  font-size: 9px !important;
+}
+[data-dpr="2"] body .trainLogin .train-info li.userinfo > dd:nth-of-type(2) .weui-flex__item span {
+  font-size: 18px !important;
+}
+[data-dpr="3"] body .trainLogin .train-info li.userinfo > dd:nth-of-type(2) .weui-flex__item span {
+  font-size: 27px !important;
+}
+body .trainLogin .train-info li.userinfo i.iconfont {
+  font-size: 18px !important;
+  line-height: 1rem;
+}
+[data-dpr="2"] body .trainLogin .train-info li.userinfo i.iconfont {
+  font-size: 36px !important;
+}
+[data-dpr="3"] body .trainLogin .train-info li.userinfo i.iconfont {
+  font-size: 54px !important;
+}
+body .trainLogin .train-info li.userinfo .block {
+  margin-bottom: 0.25333333333333335rem;
+}
+body .trainLogin .train-info li.userinfo .block-right {
+  margin-right: 0.14666666666666667rem;
+}
+body .trainLogin .train-info li:not(:last-child) {
+  margin-bottom: .02666666666666667rem;
+}
+body .trainLogin .train-info li#bound,
+body .trainLogin .train-info li#modify {
+  position: relative;
+}
+body .trainLogin .train-info li#bound dd:last-child,
+body .trainLogin .train-info li#modify dd:last-child {
+  position: absolute;
+  right: .4rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+body .trainLogin .train-info li i.iconfont {
+  font-size: 20px !important;
+}
+[data-dpr="2"] body .trainLogin .train-info li i.iconfont {
+  font-size: 40px !important;
+}
+[data-dpr="3"] body .trainLogin .train-info li i.iconfont {
+  font-size: 60px !important;
+}
+body .trainLogin .btn_bottom {
+  margin: 0;
+  padding: 0 1.2666666666666666rem;
+}
+body .trainLogin .btn_bottom a.btn_or {
+  background: #ff8b00;
+  font-size: 19px !important;
+}
+[data-dpr="2"] body .trainLogin .btn_bottom a.btn_or {
+  font-size: 38px !important;
+}
+[data-dpr="3"] body .trainLogin .btn_bottom a.btn_or {
+  font-size: 57px !important;
+}
+body .trainLogin #login {
+  background: white;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  -webkit-transform: translateY(100%);
+  transform: translateY(100%);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transition: -webkit-transform 0.4s;
+  transition: -webkit-transform 0.4s;
+  transition: transform .4s;
+  transition: transform 0.4s, -webkit-transform 0.4s;
+  overflow: auto;
+}
+@media all and (orientation: portrait) {
+  body .trainLogin #login {
+    top: 4rem;
+  }
+}
+@media all and (orientation: landscape) {
+  body .trainLogin #login {
+    top: 0;
+  }
+}
+body .trainLogin #login.login-show {
+  -webkit-transform: translate(0);
+  transform: translate(0);
+}
+body .trainLogin #login .tip {
+  padding: .37333333333333335rem .4rem .36rem;
+  text-align: center;
+  background: #ff8b00;
+  color: white;
+  font-size: 12px !important;
+}
+[data-dpr="2"] body .trainLogin #login .tip {
+  font-size: 24px !important;
+}
+[data-dpr="3"] body .trainLogin #login .tip {
+  font-size: 36px !important;
+}
+body .trainLogin #login .tip i.iconfont {
+  font-size: 12px !important;
+}
+[data-dpr="2"] body .trainLogin #login .tip i.iconfont {
+  font-size: 24px !important;
+}
+[data-dpr="3"] body .trainLogin #login .tip i.iconfont {
+  font-size: 36px !important;
+}
+body .trainLogin #login .login-info {
+  padding: .22666666666666666rem .4rem 0;
+}
+body .trainLogin #login .login-info dt {
+  border-bottom: 0.01333333rem solid #bdbdbd;
+  padding: .2rem 0;
+}
+body .trainLogin #login .login-info dt .weui-input {
+  height: auto;
+  line-height: normal;
+  font-size: 15px !important;
+}
+[data-dpr="2"] body .trainLogin #login .login-info dt .weui-input {
+  font-size: 30px !important;
+}
+[data-dpr="3"] body .trainLogin #login .login-info dt .weui-input {
+  font-size: 45px !important;
+}
+body .trainLogin #login .login-info dt input::-webkit-input-placeholder {
+  color: #acb5bd;
+}
+body .trainLogin #login .login-info dt input::-moz-placeholder {
+  color: #acb5bd;
+}
+body .trainLogin #login .login-info dt input:-ms-input-placeholder {
+  color: #acb5bd;
+}
+body .trainLogin #login .login-info dt i.iconfont {
+  font-size: 18px !important;
+  margin-left: 0.04rem;
+  margin-right: .49333333333333335rem;
+}
+[data-dpr="2"] body .trainLogin #login .login-info dt i.iconfont {
+  font-size: 36px !important;
+}
+[data-dpr="3"] body .trainLogin #login .login-info dt i.iconfont {
+  font-size: 54px !important;
+}
+body .trainLogin #login .btn_login {
+  color: white;
+  padding: .6rem 1.2666666666666666rem .8rem;
+}
+body .trainLogin #login .btn_login .btn_or {
+  background: #ff8b00;
+  font-size: 19px !important;
+}
+[data-dpr="2"] body .trainLogin #login .btn_login .btn_or {
+  font-size: 38px !important;
+}
+[data-dpr="3"] body .trainLogin #login .btn_login .btn_or {
+  font-size: 57px !important;
+}

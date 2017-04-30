@@ -1,0 +1,206 @@
+body.order {
+  background: #efefef;
+  color: #555555;
+}
+body.order .order-block {
+  padding: 0% 3%;
+  min-height: 40px;
+  background: #FFFFFF;
+}
+@media screen and (max-width: 320px) {
+  body.order .order-block {
+    padding: 0 2%;
+  }
+}
+body.order .order-block .icon-block {
+  margin-right: 1vw;
+  text-align: center;
+}
+body.order .order-block .icon-block i {
+  font-size: 26px;
+  color: #ff6600;
+}
+body.order .order-block .icon-block i.icon-icon-wepay {
+  color: #11cd6e;
+}
+body.order .order-block#receipt-time label,
+body.order .order-block#time label {
+  padding: 0 8%;
+}
+body.order .order-block#receipt-time label input[type=radio].radio-checked,
+body.order .order-block#time label input[type=radio].radio-checked {
+  position: absolute;
+  left: -9999em;
+}
+body.order .order-block#receipt-time label input[type=radio].radio-checked:checked + .weui-icon-checked:before,
+body.order .order-block#time label input[type=radio].radio-checked:checked + .weui-icon-checked:before {
+  content: "\EA06";
+  color: #09bb07;
+}
+body.order .order-block#receipt-time label i.weui-icon-checked,
+body.order .order-block#time label i.weui-icon-checked {
+  line-height: 17px;
+  vertical-align: text-top;
+}
+body.order .order-block#receipt-time label i.weui-icon-checked:before,
+body.order .order-block#time label i.weui-icon-checked:before {
+  content: "\EA01";
+  color: #c9c9c9;
+  font-size: 15px;
+  display: block;
+}
+body.order .order-block .we-pay {
+  color: #11cd6e;
+  margin: auto;
+}
+body.order .order-block input {
+  text-align: right;
+}
+body.order .order-block input::-webkit-input-placeholder {
+  text-align: right;
+}
+body.order .order-detail {
+  border-bottom: 1px solid #f0f0f0;
+}
+body.order .order-detail .weui-flex__item:not(:nth-of-type(1)) {
+  flex-grow: 1.2;
+}
+body.order #receipt-time .weui-flex__item:not(:nth-of-type(1)),
+body.order #time .weui-flex__item:not(:nth-of-type(1)) {
+  flex-grow: 1.2;
+}
+body.order .order-bg {
+  padding: 5px;
+}
+body.order .order-accounts {
+  padding: 0% 3%;
+}
+body.order .order-accounts span {
+  display: inline-block;
+}
+body.order .order-accounts label {
+  float: right;
+}
+body.order .order-accounts .order-accounts-hd {
+  padding: 5px 0;
+  height: 8%;
+  border-bottom: 1px dotted #ddd;
+}
+body.order .order-accounts .order-accounts-bd {
+  max-height: 50vh;
+  overflow: auto;
+  color: #989898;
+  padding-top: 5px;
+}
+@media screen and (max-width: 320px) {
+  body.order .order-accounts .order-accounts-bd {
+    max-height: 28vh;
+  }
+}
+body.order .order-accounts .order-accounts-bd div.order-accounts-cell {
+  display: block;
+}
+body.order .order-accounts .order-accounts-bd div.order-accounts-cell div {
+  display: inline-block;
+  float: left;
+}
+body.order .order-accounts .order-accounts-bd div.order-accounts-cell div.name {
+  width: 70%;
+}
+body.order .order-accounts .order-accounts-bd div.order-accounts-cell div.count {
+  width: 10%;
+  height: 25px;
+}
+body.order .order-accounts .order-accounts-bd div.order-accounts-cell div.money {
+  text-align: right;
+  width: 20%;
+}
+body.order .order-merchant {
+  max-width: 60%;
+  overflow: hidden;
+  margin: auto;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #9d9d9d;
+}
+body.order .order-submit {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0% 3%;
+  background: #fbe4d5;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  height: 10%;
+}
+body.order .order-submit span:nth-of-type(2) {
+  font-size: 20px;
+  font-weight: bold;
+}
+body.order .order-submit a {
+  color: #FFFFFF;
+  line-height: 1.8;
+  width: 70%;
+  border-radius: 20px;
+  background-color: #e84720;
+}
+@media screen and (max-width: 320px) {
+  body.order .order-submit a {
+    width: 80%;
+  }
+}
+@media screen and (max-width: 370px) and (min-width: 320px) {
+  body.order .order-submit a {
+    width: 100%;
+  }
+}
+body.order .weui-flex__item {
+  margin: auto;
+}
+body.order .time-picker {
+  width: 50%;
+}
+body.order .font-right {
+  text-align: right;
+}
+body.order .clearFix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+body.order input[type='radio'] {
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  margin-top: -2px;
+  margin-bottom: 1px;
+}
+body.order .font-orange {
+  color: #ff6600;
+}
+body.order .pay-mask {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  -webkit-transition-duration: .3s;
+  transition-duration: .3s;
+  z-index: 100;
+}
+body.order .pay-mask .map {
+  height: -moz-calc(100% - 260px);
+  height: -webkit-calc(100% - 260px);
+  height: calc(100% - 260px);
+  width: 100%;
+  overflow: auto;
+}
+body.order .pay-mask .map img {
+  max-width: 200%;
+  height: auto;
+}

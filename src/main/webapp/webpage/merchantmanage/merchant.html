@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>商户管理</title>
+    <meta name="keywords" content="service,personal,manage"/>
+    <meta name="description" content="商户管理,商户管理信息"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script src="merchantmanage/ajax.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" href="./assets/css/validationEngine.jquery.css" type="text/css">
+
+    <script src="./assets/js/jquery.validationEngine-zh_CN.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./assets/js/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
+    <!-- basic styles -->
+
+</head>
+
+<body>
+<div class="page-content page-content2">
+    <div class="row">
+        <div class="col-xs-12">
+            <form id="stationFormId" class="form-horizontal" role="form">
+                <div class="input-group input-group-sm" style="margin-bottom: 5px">
+                    <span class="input-group-addon" style="width: 10%;">商户名称</span>
+                    <input type="text" class="form-control" id="inputStation" style="width: 33%;">&nbsp;
+
+                    <button id="dataSearch" class="btn btn-primary btn-sm" title="查询">
+                        <i class="icon-search nav-search-icon"></i>
+                    </button>
+                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" id="showmercModal"
+                            title="添加">
+                        <i class="icon-plus-sign bigger-120"></i>
+                    </button>
+                    <button type="button" class="btn btn-sm btn-success" data-toggle="modal" disabled
+                            id="showupdatemercModal" title="修改">
+                        <i class="icon-pencil bigger-130"></i>
+                    </button>
+                    <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" disabled
+                            id="showdeltemercModal" title="删除">
+                        <i class="icon-trash bigger-130"></i>
+                    </button>
+                    <!-- </div>	 -->
+                </div>
+            </form>
+
+            <div class="row" style="margin-top: 0px;">
+                <div class="col-xs-12">
+                    <!-- PAGE CONTENT BEGINS -->
+                    <table id="serviceMerchant_table" class="table"></table>
+                    <!-- PAGE CONTENT ENDS -->
+                </div>
+                <!-- /.col -->
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.page-content -->
+
+
+<!-- 添加的modal start-->
+<div class="modal fade bs-example-modal-lg" id="addModal" tabindex="-1";">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">商户信息添加</h4>
+            </div>
+            <div class="modal-body" style="padding-bottom:0;">
+                <form class="form-horizontal" id="addForm">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">所属车站</label>
+                        <div class="col-sm-10">
+                            <select id="insetstationId" name="stationId" class="form-control"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">商户名称</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="validate[required] form-control" id="name"
+                                   name="name" placeholder="请输入商户名称">
+                        </div>
+                    </div>
+					
+					<div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">商户简介</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="validate[required] form-control" id="introduction"
+                                   name="introduction" placeholder="请输入商户简介">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">联系人</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="validate[required] form-control" id="linkman" name="linkman"
+                                   placeholder="请输入联系人">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">联系电话</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="validate[required] form-control" id="phoneNo" name="phoneNo"
+                                   placeholder="请输入联系电话">
+                        </div>
+                    </div>
+                    
+                     <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">商户地址</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="validate[required] form-control" id="address" name="address"
+                                   placeholder="请输入联系地址">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">商户类型</label>
+                        <div class="col-sm-10">
+                            <select id="insetserviceTypeId" name="serviceTypeId" class="form-control"></select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">商户账号</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="validate[required,custom[numberOfLetter]]  form-control" id="account" name="account"
+                                   placeholder="商户账号不能重复且不可修改">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">登录密码</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="validate[minSize[6],maxSize[50]] form-control" id="password"
+                                   name="password" placeholder="请输入登录密码">
+                        </div>
+                    </div>
+                       <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">确认密码</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="confirmPassword"
+                                   name="confirmPassword" placeholder="请输入确认密码">
+                        </div>
+                    </div>
+                     <div class="form-group" hidden >
+                        <label for="inputPassword3" class="col-sm-2 control-label">图片存imageId值</label>
+                        <div class="col-sm-10">
+                            <input type="hidden" class="form-control" id="merchantImages"
+                                   name="imageId" placeholder="请输入确认密码" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">月销售量</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="validate[required,custom[numberOfLetter]]  form-control" name="sailsInMonth"
+                                   placeholder="请输入月销量">
+                        </div>
+                        <label for="inputPassword3" class="col-sm-2 control-label">商户评价</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="validate[required,custom[numberOfLetter]]  form-control"  name="evaluate"
+                                   placeholder="请输入1-5的数字">
+                        </div>
+                    </div>
+                  
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">状态</label>
+                        <div class="col-sm-10">
+                              <select class="form-control" name="status" placeholder="status">
+                                <option value="8001">营业中</option>
+                                <option value="8002">歇业</option>
+                                <option value="8003">商家休息</option>                                                     
+                            </select>
+                        </div>
+                    </div>
+                    
+                      <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">上传图片</label>
+                        <div class="col-sm-10" style="position:relative;">
+                            <!-- <img onclick="getElementById('addPageAddImg').click()"
+                                 style="cursor:pointer;border: 1px solid #AABBCC;" title="点击添加图片" alt="点击添加图片"
+                                 src="./assets/images/addImg.jpg" /> -->
+                            <a href="#" >   
+                            	<input class="putbox" type="file" name="image" id="addPageAddImg" />
+                            	<div id="bord">
+                           		<img class="imgbox" id="merchantImgs" src="" >
+                           		</div>
+                           </a> 
+                        </div>
+                    </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="button" id="saveMerch">保存</button>
+                <!--  <button type="reset" class="btn btn-warnning">重置</button> -->
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- 添加的modal end-->
+
+<!-- 修改的modal start-->
+<div class="modal fade fade bs-example-modal-lg" id="updateModal" tabindex="-2">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">商户信息修改</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="updateForm">
+                    <input type="hidden" id="updatemerchantId" name="merchantId">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">所属车站</label>
+                        <div class="col-sm-10">
+                            <select id="updatestationId" name="stationId"
+                                    class="validate[required] form-control"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">商户名称</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="validate[required] form-control" id="updatename" name="name"
+                                   placeholder="请输入商户名称">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">商户简介</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="validate[required] form-control" id="updateintroduction"
+                                   name="introduction" placeholder="请输入商户简介">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">联系人</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="validate[required] form-control" id="updatelinkman" name="linkman"
+                                   placeholder="请输入联系人">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">联系电话</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="validate[required] form-control" id="updatephoneNo" name="phoneNo"
+                                   placeholder="请输入联系电话">
+                        </div>
+                    </div>
+                    
+                     <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">商户地址</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="validate[required] form-control" id="updateaddress" name="address"
+                                   placeholder="请输入联系地址">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">服务类型</label>
+                        <div class="col-sm-10">
+                            <select id="updateserviceTypeId" name="serviceTypeId" class="form-control"></select>
+                        </div>
+                    </div>
+
+                    <div class="form-group" hidden>
+                        <label for="inputPassword3" class="col-sm-2 control-label">商户账号</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="validate[required] form-control" id="updateaccount" name="account"
+                             readonly  placeholder="请输入登录账户">
+                        </div>
+                    </div>
+
+                    <!--   <div class="form-group" hidden>
+                        <label for="inputPassword3" class="col-sm-2 control-label">登录密码</label>
+                        <div class="col-sm-10">
+                               <input type="password" class="form-control" id="password" name="password" placeholder="请输入登录密码">
+                        </div>
+                      </div>  -->
+
+                    <div class="form-group" hidden>
+                        <label for="inputPassword3" class="col-sm-2 control-label">登录密码</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="updatepassword" name="password"
+                                   placeholder="请输入登录密码">
+                        </div>
+                    </div>
+                     
+                     <div class="form-group">
+                        <label  class="col-sm-2 control-label">月销售量</label>
+                        <div class="col-sm-4">
+                            <input type="text"  id="updatesailsInMonth" class="validate[required,custom[numberOfLetter]]  form-control" name="sailsInMonth"
+                                   placeholder="请输入月销量">
+                        </div>
+                        <label  class="col-sm-2 control-label">商户评价</label>
+                        <div class="col-sm-4">
+                            <input type="text"  id="updateevaluate" class="validate[required,custom[numberOfLetter]]  form-control"  name="evaluate"
+                                   placeholder="请输入评价">
+                        </div>
+                    </div>
+                  
+                    <div class="form-group">
+                        <label  class="col-sm-2 control-label">状态</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" id="updatestatus" name="status" placeholder="status">
+                                <option value="8001">营业中</option>
+                                <option value="8002">歇业</option>
+                                <option value="8003">商家休息</option>                                                     
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">商户图片</label>
+                        <div class="col-sm-10">
+                            <!-- <img onclick="getElementById('inputfile').click()"
+                                 style="cursor:pointer;border: 1px solid #AABBCC;" title="点击添加图片" alt="点击添加图片"
+                                 src="./assets/images/addImg.jpg"> -->
+                            <a href="#">    
+                            	<input class="putbox" type="file" name="image" id="inputfile"  />
+                            	<div class="borderbox">
+                            		<img class="imgbox" id="merchantImg" src="" style="width:100%;height:100%;"/>
+                            	</div>
+                            </a> 
+                        </div>
+                    </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="updateMerch" class="btn btn-primary">保存</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 修改的modal end-->
+
+<!-- 删除的modal start-->
+<div class="modal fade" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="myModalLabel">商户人员删除</h4>
+            </div>
+            <div class="modal-body">
+                您确认需要删除此条商户记录
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" id="deleteMerch" class="btn btn-primary">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 删除的modal end-->
+
+<!--  <script src="assets/js/jquery.ztree.all.min.js"></script> -->
+<script src="script/servicemerchant.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#inputfile").change(function () {
+            //创建FormData对象
+            var data = new FormData();
+            data.append('merchantId', $("#updatemerchantId").val());
+            //为FormData对象添加数据
+            $.each($('#inputfile')[0].files, function (i, file) {
+                //data
+                data.append('imageFile', file);
+            });
+            $.ajax({
+                url: '../merchant/updateImage.action',
+                type: 'POST',
+                data: data,
+                cache: false,
+                contentType: false,    //不可缺
+                processData: false,    //不可缺
+                success: function (resb) {
+                    var rs = eval("(" + resb + ")");
+                   
+                    var imageId=rs.data.imageId;
+                                                       
+                    $.ajax({
+                        url: '../common/getImageUrl',
+                        type: 'POST',
+                        data: {
+                            "imageId": imageId,        
+                        },
+                        cache: false,
+                        dataType: 'json',
+                        success: function (resb) {
+                            var rs = resb;
+                            
+                            if(rs.code == '1'){
+                            	
+                            	var preview = document.getElementById('merchantImg');
+                            	preview.src = rs.data;
+                            }else{
+                            	alert("预览失败，请重新上传");
+                            }                            
+                        
+                        }
+                    });
+                    
+				}
+            });
+            
+        }); 
+        
+        
+        
+         $("#addPageAddImg").change(function () {
+        	 var $that=$(this);
+            //创建FormData对象
+            var data = new FormData();
+            //data.append('merchantId', $("#updatemerchantId").val());
+            
+            $.each($('#addPageAddImg')[0].files, function (i, file) {
+                //data
+                data.append('imageFile', file);
+            });
+                        
+            $.ajax({
+                url: '../common/addImage.action',
+                type: 'POST',
+                data: data,
+                cache: false,
+                contentType: false,    //不可缺
+                processData: false,    //不可缺
+                success: function (resb) {
+                    var rs = eval("(" + resb + ")");
+                    
+                    //imageId 40283cab5ada1ac5015adb2a9de60019
+                    //url /images/40283cab5ada1ac5015adb2a9de60019.jpg
+                    var $merchantImg = $(this).find('input[name="imageId"]');
+                   
+                    var imageId=rs.data.imageId;
+                 //	$merchantImg.val(rs.data.imageId);
+                 $("#merchantImages").val(imageId);                	
+                 	  $.ajax({
+                          url: '../common/getImageUrl',
+                          type: 'POST',
+                          data: {
+                              "imageId": imageId,        
+                          },
+                          cache: false,
+                          dataType: 'json',
+                          success: function (resb) {
+                              var rs = resb;                             
+                              if(rs.code == '1'){                            
+                              	var previews = document.getElementById('merchantImgs');
+                              	previews.src = rs.data;
+                              }else{
+                              	alert("预览失败，请重新上传");
+                              }                            
+                          
+                          }
+                      });
+                }
+            
+            }); 
+             
+        }); 
+    });     
+</script>
+
+<!-- <script type="text/javascript">
+function previewFile() {
+    var preview = document.querySelector('merchantImg');
+    console.log("88888888");
+    var file  = document.querySelector('input[type=file]').files[0];
+    console.log("9999");
+    var reader = new FileReader();
+    reader.onloadend = function () {
+     preview.src = reader.result;
+    }
+    if (file) {
+     reader.readAsDataURL(file);
+    } else {
+     preview.src = "";
+    }
+   };
+</script>
+ -->
+</body>
+</html>

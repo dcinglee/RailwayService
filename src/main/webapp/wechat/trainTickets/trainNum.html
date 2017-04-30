@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>选择车次</title>
+    <meta name="keywords" content="railway,Service,weChat,RailwayServiceWechat" />
+    <meta name="description" content="高铁微信端,高铁微信服务,高铁微信服务首页" />
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0" />-->
+    <script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.2/??flexible_css.js,flexible.js"></script>
+    <link href="../statics/css/weui.min.css" rel="stylesheet"/>
+    <link href="../statics/css/jquery-weui.min.css" rel="stylesheet"/>
+    <link href="../statics/css/icon-font/iconfont.css" rel="stylesheet">
+    <link rel="stylesheet" href="../statics/css/ticket/selectTrain.css" />
+    <!--<link rel="stylesheet" href="../statics/css/ticketsStyle.css" />-->
+    <!--<link rel="stylesheet" href="../statics/css/selectTrain.less">-->
+
+</head>
+<body ontouchstart>
+<header>
+    <div class="weui-flex">
+        <div class="iconLeft arrow">
+            <i class="iconfont icon-houtui"></i>
+        </div>
+        <div class="weui-flex__item">
+            <i class="iconfont icon-rili"></i>
+            <span class="today"></span>
+        </div>
+        <div class="iconRight arrow">
+            <i class="iconfont icon-qianjin"></i>
+        </div>
+    </div>
+</header>
+<section class="container">
+    <ul class="trainList">
+        <!--<li>
+            &lt;!&ndash;车票信息&ndash;&gt;
+            <div class="trainInfo">
+                <div class="left">
+                    <div class="startName">
+                        <span class="startLogo">始</span>
+                        <div class="startStation">
+                            <p>长沙南</p>
+                            <p class="startTime">10:21</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="center">
+                    <p class="trainNum">G77</p>
+                    <img src="../statics/images/trainTickets/to_icon.png"/>
+                    <p class="time">2时55分</p>
+                </div>
+                <div class="right">
+                    <div class="endName">
+                        <div class="endStation">
+                            <p>深圳北</p>
+                            <p class="endTime">10:21</p>
+                        </div>
+                        <span class="endLogo">终</span>
+                    </div>
+                </div>
+            </div>
+            &lt;!&ndash;座次信息&ndash;&gt;
+            <div class="seatInfo">
+                <div class="weui-flex seatNum">
+                    <div class="weui-flex__item">无座：11张</div>
+                    <div class="weui-flex__item">硬座：11张</div>
+                    <div class="weui-flex__item">硬卧：11张</div>
+                    <div class="weui-flex__item">软卧：11张</div>
+                </div>
+                <p class="price"><span>￥</span><span>388.5</span> 起</p>
+            </div>
+        </li>
+        <li>
+            &lt;!&ndash;车票信息&ndash;&gt;
+            <div class="trainInfo">
+                <div class="left">
+                    <div class="startName">
+                        <span class="startLogo">始</span>
+                        <div class="startStation">
+                            <p>长沙南</p>
+                            <p class="startTime">10:21</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="center">
+                    <p class="trainNum">G77</p>
+                    <img src="../statics/images/trainTickets/to_icon.png"/>
+                    <p class="time">2时55分</p>
+                </div>
+                <div class="right">
+                    <div class="endName">
+                        <div class="endStation">
+                            <p>深圳北</p>
+                            <p class="endTime">10:21</p>
+                        </div>
+                        <span class="endLogo">终</span>
+                    </div>
+                </div>
+            </div>
+            &lt;!&ndash;座次信息&ndash;&gt;
+            <div class="seatInfo">
+                <div class="weui-flex seatNum">
+                    <div class="weui-flex__item">无座：11张</div>
+                    <div class="weui-flex__item">硬座：11张</div>
+                    <div class="weui-flex__item">硬卧：11张</div>
+                    <div class="weui-flex__item">软卧：11张</div>
+                </div>
+                <p class="price"><span>￥</span><span>388.5</span> 起</p>
+            </div>
+        </li>-->
+    </ul>
+    </div>
+</section>
+
+<template id="ticketsList">
+    <li data-idx="-1">
+        <!--车票信息-->
+        <div class="trainInfo">
+            <div class="left">
+                <div class="startName">
+                    <span class="startLogo">始</span>
+                    <div class="startStation">
+                        <p name="fromStation" hidden>no1</p>
+                        <p name="from">changshan</p>
+                        <p class="startTime">10:21</p>
+                    </div>
+                </div>
+            </div>
+            <div class="center">
+                <p class="trainNum">G77</p>
+                <p name="train_no" hidden>GO</p>
+                <img src="../statics/images/trainTickets/to_icon.png"/>
+                <p class="time">2时55分</p>
+            </div>
+            <div class="right">
+                <div class="endName">
+                    <div class="endStation">
+                        <p name="toStation" hidden>no2</p>
+                        <p name="to">shenzhenb</p>
+                        <p class="endTime">20:21</p>
+                    </div>
+                    <span class="endLogo">终</span>
+                </div>
+            </div>
+        </div>
+        <!--座次信息-->
+        <div class="seatInfo">
+            <div class="weui-flex seatNum">
+                <div class="weui-flex__item">软卧：<span name="RW">11张</span></div>
+                <div class="weui-flex__item">硬卧：<span name="YW">12张</span></div>
+                <div class="weui-flex__item">软座：<span name="RZ">10张</span></div>
+                <div class="weui-flex__item">硬座：<span name="YZ">13张</span></div>
+                <div class="weui-flex__item">无座：<span name="WZ">14张</span></div>
+            </div>
+            <!--<p class="price"><span>￥</span><span>388.5</span> 起</p>-->
+        </div>
+    </li>
+</template>
+
+
+<template id="gaoTicketsList">
+    <li data-idx="-1">
+        <!--车票信息-->
+        <div class="trainInfo">
+            <div class="left">
+                <div class="startName">
+                    <span class="startLogo">始</span>
+                    <div class="startStation">
+                        <p name="fromStation" hidden>no1</p>
+                        <p name="from">changshan</p>
+                        <p class="startTime">10:21</p>
+                    </div>
+                </div>
+            </div>
+            <div class="center">
+                <p class="trainNum">G77</p>
+                <p name="train_no" hidden>GO</p>
+                <img src="../statics/images/trainTickets/to_icon.png"/>
+                <p class="time">2时55分</p>
+            </div>
+            <div class="right">
+                <div class="endName">
+                    <div class="endStation">
+                        <p name="toStation" hidden>no2</p>
+                        <p name="to">shenzhenb</p>
+                        <p class="endTime">20:21</p>
+                    </div>
+                    <span class="endLogo">终</span>
+                </div>
+            </div>
+        </div>
+        <!--座次信息-->
+        <div class="seatInfo">
+            <div class="weui-flex seatNum">
+                <div class="weui-flex__item">商务座：<span name="SW">11张</span></div>
+                <div class="weui-flex__item">特等座：<span name="TD">10张</span></div>
+                <div class="weui-flex__item">一等座：<span name="YD">12张</span></div>
+                <div class="weui-flex__item">二等坐：<span name="ED">13张</span></div>
+            </div>
+            <!--<p class="price"><span>￥</span><span>388.5</span> 起</p>-->
+        </div>
+    </li>
+</template>
+<script src="../statics/js/lib/jquery-2.0.3.min.js"></script>
+<!--<script src="../statics/js/lib/jweixin-1.0.0.js"></script>-->
+<!--<script src="../statics/js/lib/weui.min.js"></script>-->
+<script src="../statics/js/lib/jquery-weui.min.js"></script>
+<script src="../statics/js/ticketjs/base.js"></script>
+<script src="../statics/js/ticketjs/trainNum.js" type="text/javascript"></script>
+
+</body>
+</html>

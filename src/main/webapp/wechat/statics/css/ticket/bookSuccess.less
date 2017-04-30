@@ -1,0 +1,160 @@
+@import 'dpr';
+
+body {
+  .mixin-all(fixed);
+  color: @font-default-color;
+  background: @body-default-bg-color;
+  .mixin-font-dpr(12px);
+  overflow: auto;
+
+  // 提示信息
+  .train-prompt {
+    background: #fff7dc;
+    padding: 17/75rem 30/75rem 29/75rem;
+
+    // 支付时间
+    .pay-time {
+      color: red;
+      .mixin-font-dpr(15px);
+    }
+  }
+
+  // 车票信息
+  .ticket-info {
+    padding: 30/75rem;
+
+    // 车票详情
+    .ticket {
+      position: relative;
+
+      // 成功背景图
+      &.ticket-success .ticket-head {
+        background: url(../../images/trainTickets/bookSuccess_head.png) no-repeat center;
+        background-size: 100% 100%;
+      }
+
+      &.ticket-timeout {
+        // 超时背景图
+        .ticket-head {
+          background: url(../../images/trainTickets/bookDel_head.png) no-repeat center;
+          background-size: 100% 100%;
+        }
+
+        // 超时图片
+        .ticket-timeout {
+          background: url(../../images/trainTickets/del_book.png) no-repeat center;
+          background-size: contain;
+          position: absolute;
+          left: 50%;
+          top: 56%;
+          transform: translate(-50%, -56%);
+          width: 194/75rem;
+          height: 123/75rem;
+        }
+      }
+
+      .ticket-head {
+        padding: 23/75rem 25/75rem .15rem;
+        color: white;
+
+        // 时间
+        .ticket-time {
+          text-align: right;
+          .mixin-font-dpr(12.875px);
+        }
+
+        // 车票信息
+        .ticket-detail {
+          text-align: center;
+          padding: 55/75rem 0 45/75rem;
+          .ticket-stationName {
+            .mixin-font-dpr(19px);
+          }
+          .ticket-line {
+            .mixin-font-dpr(18px);
+          }
+          .ticket-line-img {
+            line-height: 1;
+            img {
+              vertical-align: super;
+            }
+          }
+          .ticket-stationTime {
+            padding-top: 37/75rem;
+          }
+        }
+      }
+
+      // 用户信息
+      .user-info {
+        padding: 0 25/75rem 38/75rem;
+        background: white;
+        position: relative;
+
+        // 虚线
+        &:not(:nth-last-child(2)) {
+          .mixin-after-border(@bottom: .2rem, @left: .2rem, @right: .2rem, @width: 2px, @style: dotted);
+        }
+
+        // 圆角
+        &:nth-last-child(2) {
+          border-bottom-left-radius: 15/75rem;
+          border-bottom-right-radius: 15/75rem;
+        }
+
+        .user-info__item {
+          // 车票、座位类型
+          &:nth-of-type(2) {
+            padding-top: 26/75rem;
+          }
+
+          // 证件号码、车票价格
+          &:nth-of-type(3) {
+            padding-top: 26/75rem;
+          }
+        }
+      }
+
+      //.ticket-detail {
+      //  // 出发、到达站点
+      //  &:nth-of-type(2) {
+      //    color: white;
+      //
+      //  }
+      //
+      //  // 乘客姓名、座位编号
+      //  &:nth-of-type(3) {
+      //    padding-top: 27/75rem;
+      //  }
+      //
+      //  // 车票、座位类型
+      //  &:nth-of-type(4) {
+      //    padding-top: 26/75rem;
+      //  }
+      //
+      //  // 证件号码、车票价格
+      //  &:nth-of-type(5) {
+      //    padding-top: 26/75rem;
+      //  }
+      //}
+    }
+
+    // 取消按钮
+    .btn-bottom {
+      a.weui-btn_plain-default {
+        margin: 30/75rem 0;
+        .mixin-font-dpr(12px);
+        width: 2.64rem;
+        padding: 0;
+        float: right;
+        border-radius: 15/75rem;
+        border-width: 1/75rem;
+        &:visited, &:active {
+          background: @orange;
+          color: white;
+          border-color: @orange;
+        }
+      }
+    }
+  }
+}
